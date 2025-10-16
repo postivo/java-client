@@ -19,7 +19,7 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.1";
-    public static final String SDK_VERSION = "0.0.9";
+    public static final String SDK_VERSION = "0.0.10";
     public static final String GEN_VERSION = "2.723.11";
     private static final String BASE_PACKAGE = "pl.postivo.sdk";
     public static final String USER_AGENT = 

@@ -60,7 +60,7 @@ public class Contact {
     private JsonNullable<String> flatNumber;
 
     /**
-     * Postal code. For `PL`, 5-digit values are normalized to the `NN-NNN` format.
+     * Postal code. For <code>PL</code>, 5-digit values are normalized to the <code>NN-NNN</code> format.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("post_code")
@@ -179,7 +179,7 @@ public class Contact {
     }
 
     /**
-     * Postal code. For `PL`, 5-digit values are normalized to the `NN-NNN` format.
+     * Postal code. For <code>PL</code>, 5-digit values are normalized to the <code>NN-NNN</code> format.
      */
     public JsonNullable<String> postCode() {
         return this.postCode;
@@ -273,7 +273,7 @@ public class Contact {
 
 
     /**
-     * Postal code. For `PL`, 5-digit values are normalized to the `NN-NNN` format.
+     * Postal code. For <code>PL</code>, 5-digit values are normalized to the <code>NN-NNN</code> format.
      */
     public Contact withPostCode(@Nullable String postCode) {
         this.postCode = JsonNullable.of(postCode);
@@ -446,7 +446,7 @@ public class Contact {
         }
 
         /**
-         * Postal code. For `PL`, 5-digit values are normalized to the `NN-NNN` format.
+         * Postal code. For <code>PL</code>, 5-digit values are normalized to the <code>NN-NNN</code> format.
          */
         public Builder postCode(@Nullable String postCode) {
             this.postCode = postCode;

@@ -191,7 +191,7 @@ public class ByExtId {
      * 
      * <p>Remove a contact from a group in your Address Book using the contact’s external (custom) ID. This
      * operation does not delete the contact; it only detaches the contact from the group. Provide the
-     * contact’s `ext_id` and the group’s `group_id` parameters to perform the detachment.
+     * contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
      * 
      * @return The call builder
      */
@@ -204,10 +204,10 @@ public class ByExtId {
      * 
      * <p>Remove a contact from a group in your Address Book using the contact’s external (custom) ID. This
      * operation does not delete the contact; it only detaches the contact from the group. Provide the
-     * contact’s `ext_id` and the group’s `group_id` parameters to perform the detachment.
+     * contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
      * 
      * @param extId External (custom) ID of the contact to detach from the group.
-     * @param groupId Group `id` to detach from the contact.
+     * @param groupId Group <code>id</code> to detach from the contact.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -220,10 +220,10 @@ public class ByExtId {
      * 
      * <p>Remove a contact from a group in your Address Book using the contact’s external (custom) ID. This
      * operation does not delete the contact; it only detaches the contact from the group. Provide the
-     * contact’s `ext_id` and the group’s `group_id` parameters to perform the detachment.
+     * contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
      * 
      * @param extId External (custom) ID of the contact to detach from the group.
-     * @param groupId Group `id` to detach from the contact.
+     * @param groupId Group <code>id</code> to detach from the contact.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -243,7 +243,7 @@ public class ByExtId {
      * <p>Assign a contact to a group using the contact’s external (custom) ID (assigned when creating the
      * contact). If a contact and a group exist in your account, you can add the contact to that group.
      * 
-     * <p>Provide the contact’s `ext_id` and the group’s `group_id` parameters to perform the assignment.
+     * <p>Provide the contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
      * 
      * @return The call builder
      */
@@ -257,10 +257,10 @@ public class ByExtId {
      * <p>Assign a contact to a group using the contact’s external (custom) ID (assigned when creating the
      * contact). If a contact and a group exist in your account, you can add the contact to that group.
      * 
-     * <p>Provide the contact’s `ext_id` and the group’s `group_id` parameters to perform the assignment.
+     * <p>Provide the contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
      * 
      * @param extId External (custom) ID of the contact to add to the group.
-     * @param groupId Group `id` to associate with the contact.
+     * @param groupId Group <code>id</code> to associate with the contact.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -274,10 +274,10 @@ public class ByExtId {
      * <p>Assign a contact to a group using the contact’s external (custom) ID (assigned when creating the
      * contact). If a contact and a group exist in your account, you can add the contact to that group.
      * 
-     * <p>Provide the contact’s `ext_id` and the group’s `group_id` parameters to perform the assignment.
+     * <p>Provide the contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
      * 
      * @param extId External (custom) ID of the contact to add to the group.
-     * @param groupId Group `id` to associate with the contact.
+     * @param groupId Group <code>id</code> to associate with the contact.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails

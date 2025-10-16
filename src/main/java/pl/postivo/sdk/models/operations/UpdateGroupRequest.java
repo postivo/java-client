@@ -15,13 +15,13 @@ import pl.postivo.sdk.utils.Utils;
 
 public class UpdateGroupRequest {
     /**
-     * Group `id` to update.
+     * Group <code>id</code> to update.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private long id;
 
     /**
-     * A `Group` object with the updated fields.
+     * A <code>Group</code> object with the updated fields.
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Group group;
@@ -36,14 +36,14 @@ public class UpdateGroupRequest {
     }
 
     /**
-     * Group `id` to update.
+     * Group <code>id</code> to update.
      */
     public long id() {
         return this.id;
     }
 
     /**
-     * A `Group` object with the updated fields.
+     * A <code>Group</code> object with the updated fields.
      */
     public Group group() {
         return this.group;
@@ -55,7 +55,7 @@ public class UpdateGroupRequest {
 
 
     /**
-     * Group `id` to update.
+     * Group <code>id</code> to update.
      */
     public UpdateGroupRequest withId(long id) {
         this.id = id;
@@ -64,7 +64,7 @@ public class UpdateGroupRequest {
 
 
     /**
-     * A `Group` object with the updated fields.
+     * A <code>Group</code> object with the updated fields.
      */
     public UpdateGroupRequest withGroup(@Nonnull Group group) {
         this.group = Utils.checkNotNull(group, "group");
@@ -111,7 +111,7 @@ public class UpdateGroupRequest {
         }
 
         /**
-         * Group `id` to update.
+         * Group <code>id</code> to update.
          */
         public Builder id(long id) {
             this.id = id;
@@ -119,7 +119,7 @@ public class UpdateGroupRequest {
         }
 
         /**
-         * A `Group` object with the updated fields.
+         * A <code>Group</code> object with the updated fields.
          */
         public Builder group(@Nonnull Group group) {
             this.group = Utils.checkNotNull(group, "group");

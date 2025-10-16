@@ -29,7 +29,7 @@ public class ShipmentCancellation {
     private String id;
 
     /**
-     * Cancellation status code (`204` if cancelled successfully; otherwise an error code).
+     * Cancellation status code (<code>204</code> if cancelled successfully; otherwise an error code).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -65,7 +65,7 @@ public class ShipmentCancellation {
     }
 
     /**
-     * Cancellation status code (`204` if cancelled successfully; otherwise an error code).
+     * Cancellation status code (<code>204</code> if cancelled successfully; otherwise an error code).
      */
     public Optional<Long> status() {
         return Optional.ofNullable(this.status);
@@ -93,7 +93,7 @@ public class ShipmentCancellation {
 
 
     /**
-     * Cancellation status code (`204` if cancelled successfully; otherwise an error code).
+     * Cancellation status code (<code>204</code> if cancelled successfully; otherwise an error code).
      */
     public ShipmentCancellation withStatus(@Nullable Long status) {
         this.status = status;
@@ -161,7 +161,7 @@ public class ShipmentCancellation {
         }
 
         /**
-         * Cancellation status code (`204` if cancelled successfully; otherwise an error code).
+         * Cancellation status code (<code>204</code> if cancelled successfully; otherwise an error code).
          */
         public Builder status(@Nullable Long status) {
             this.status = status;

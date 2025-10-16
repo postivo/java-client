@@ -53,10 +53,10 @@ public class AsyncSenders {
      * List senders
      * 
      * <p>Retrieve the list of allowed senders defined in your account. Senders are registered in your account
-     * and must be verified and activated before use. Activated senders have `active: true` property and
+     * and must be verified and activated before use. Activated senders have <code>active: true</code> property and
      * can be used to send shipments.
      * 
-     * <p>Inactive senders are also returned (`active: false`), but cannot be used until activated.
+     * <p>Inactive senders are also returned (<code>active: false</code>), but cannot be used until activated.
      * 
      * @return The async call builder
      */
@@ -68,10 +68,10 @@ public class AsyncSenders {
      * List senders
      * 
      * <p>Retrieve the list of allowed senders defined in your account. Senders are registered in your account
-     * and must be verified and activated before use. Activated senders have `active: true` property and
+     * and must be verified and activated before use. Activated senders have <code>active: true</code> property and
      * can be used to send shipments.
      * 
-     * <p>Inactive senders are also returned (`active: false`), but cannot be used until activated.
+     * <p>Inactive senders are also returned (<code>active: false</code>), but cannot be used until activated.
      * 
      * @return {@code CompletableFuture<ListSendersResponse>} - The async response
      */
@@ -83,10 +83,10 @@ public class AsyncSenders {
      * List senders
      * 
      * <p>Retrieve the list of allowed senders defined in your account. Senders are registered in your account
-     * and must be verified and activated before use. Activated senders have `active: true` property and
+     * and must be verified and activated before use. Activated senders have <code>active: true</code> property and
      * can be used to send shipments.
      * 
-     * <p>Inactive senders are also returned (`active: false`), but cannot be used until activated.
+     * <p>Inactive senders are also returned (<code>active: false</code>), but cannot be used until activated.
      * 
      * @param options additional options
      * @return {@code CompletableFuture<ListSendersResponse>} - The async response
@@ -104,11 +104,11 @@ public class AsyncSenders {
     /**
      * Add a new sender
      * 
-     * <p>Create a new sender on your account. The request must contain a `Sender` object. To prevent fraud,
+     * <p>Create a new sender on your account. The request must contain a <code>Sender</code> object. To prevent fraud,
      * all additional senders are verified by mailing a verification code to the sender’s address.
      * 
-     * <p>Complete the verification using the `verifySender` method. Verified senders have `active: true` and
-     * can be used to send shipments. Inactive senders are also returned (`active: false`), but cannot be
+     * <p>Complete the verification using the <code>verifySender</code> method. Verified senders have <code>active: true</code> and
+     * can be used to send shipments. Inactive senders are also returned (<code>active: false</code>), but cannot be
      * used until verification is completed.
      * 
      * @return The async call builder
@@ -120,11 +120,11 @@ public class AsyncSenders {
     /**
      * Add a new sender
      * 
-     * <p>Create a new sender on your account. The request must contain a `Sender` object. To prevent fraud,
+     * <p>Create a new sender on your account. The request must contain a <code>Sender</code> object. To prevent fraud,
      * all additional senders are verified by mailing a verification code to the sender’s address.
      * 
-     * <p>Complete the verification using the `verifySender` method. Verified senders have `active: true` and
-     * can be used to send shipments. Inactive senders are also returned (`active: false`), but cannot be
+     * <p>Complete the verification using the <code>verifySender</code> method. Verified senders have <code>active: true</code> and
+     * can be used to send shipments. Inactive senders are also returned (<code>active: false</code>), but cannot be
      * used until verification is completed.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -137,11 +137,11 @@ public class AsyncSenders {
     /**
      * Add a new sender
      * 
-     * <p>Create a new sender on your account. The request must contain a `Sender` object. To prevent fraud,
+     * <p>Create a new sender on your account. The request must contain a <code>Sender</code> object. To prevent fraud,
      * all additional senders are verified by mailing a verification code to the sender’s address.
      * 
-     * <p>Complete the verification using the `verifySender` method. Verified senders have `active: true` and
-     * can be used to send shipments. Inactive senders are also returned (`active: false`), but cannot be
+     * <p>Complete the verification using the <code>verifySender</code> method. Verified senders have <code>active: true</code> and
+     * can be used to send shipments. Inactive senders are also returned (<code>active: false</code>), but cannot be
      * used until verification is completed.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -161,7 +161,7 @@ public class AsyncSenders {
     /**
      * Delete a sender
      * 
-     * <p>Remove a sender from your account by `id`. Pass the sender’s `id` parameter to remove it. The sender
+     * <p>Remove a sender from your account by <code>id</code>. Pass the sender’s <code>id</code> parameter to remove it. The sender
      * is deleted immediately.
      * 
      * @return The async call builder
@@ -173,10 +173,10 @@ public class AsyncSenders {
     /**
      * Delete a sender
      * 
-     * <p>Remove a sender from your account by `id`. Pass the sender’s `id` parameter to remove it. The sender
+     * <p>Remove a sender from your account by <code>id</code>. Pass the sender’s <code>id</code> parameter to remove it. The sender
      * is deleted immediately.
      * 
-     * @param id Sender `id` to remove.
+     * @param id Sender <code>id</code> to remove.
      * @return {@code CompletableFuture<DeleteSenderResponse>} - The async response
      */
     public CompletableFuture<DeleteSenderResponse> delete(long id) {
@@ -186,10 +186,10 @@ public class AsyncSenders {
     /**
      * Delete a sender
      * 
-     * <p>Remove a sender from your account by `id`. Pass the sender’s `id` parameter to remove it. The sender
+     * <p>Remove a sender from your account by <code>id</code>. Pass the sender’s <code>id</code> parameter to remove it. The sender
      * is deleted immediately.
      * 
-     * @param id Sender `id` to remove.
+     * @param id Sender <code>id</code> to remove.
      * @param options additional options
      * @return {@code CompletableFuture<DeleteSenderResponse>} - The async response
      */

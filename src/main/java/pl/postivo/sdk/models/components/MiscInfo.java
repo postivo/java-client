@@ -19,7 +19,7 @@ import pl.postivo.sdk.utils.Utils;
 /**
  * MiscInfo
  * 
- * <p>Additional shipment metadata. At least one of `order_name` or `mpk` must be provided.
+ * <p>Additional shipment metadata. At least one of <code>order_name</code> or <code>mpk</code> must be provided.
  */
 public class MiscInfo {
     /**

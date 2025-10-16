@@ -138,7 +138,7 @@ public class AsyncGroups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its `id` (returned when the group was
+     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
      * created).
      * 
      * @return The async call builder
@@ -150,7 +150,7 @@ public class AsyncGroups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its `id` (returned when the group was
+     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
      * created).
      * 
      * @param id Group id to fetch
@@ -163,7 +163,7 @@ public class AsyncGroups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its `id` (returned when the group was
+     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
      * created).
      * 
      * @param id Group id to fetch
@@ -197,7 +197,7 @@ public class AsyncGroups {
      * 
      * <p>Update a group’s details by ID.
      * 
-     * @param id Group `id` to update.
+     * @param id Group <code>id</code> to update.
      * @param group Contact group definition in the Address Book.
      * @return {@code CompletableFuture<UpdateGroupResponse>} - The async response
      */
@@ -210,7 +210,7 @@ public class AsyncGroups {
      * 
      * <p>Update a group’s details by ID.
      * 
-     * @param id Group `id` to update.
+     * @param id Group <code>id</code> to update.
      * @param group Contact group definition in the Address Book.
      * @param options additional options
      * @return {@code CompletableFuture<UpdateGroupResponse>} - The async response
@@ -231,11 +231,11 @@ public class AsyncGroups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by `ID`. Pass the group’s `id` to remove it. The
+     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
      * group is deleted immediately from the Address Book.
      * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter `contacts` to
-     * `delete`. The default is `contacts: detach`, which detaches contacts from the removed group but
+     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
+     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
      * leaves them in the Address Book.
      * 
      * @return The async call builder
@@ -247,14 +247,14 @@ public class AsyncGroups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by `ID`. Pass the group’s `id` to remove it. The
+     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
      * group is deleted immediately from the Address Book.
      * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter `contacts` to
-     * `delete`. The default is `contacts: detach`, which detaches contacts from the removed group but
+     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
+     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
      * leaves them in the Address Book.
      * 
-     * @param id Group `id` to remove.
+     * @param id Group <code>id</code> to remove.
      * @return {@code CompletableFuture<DeleteGroupResponse>} - The async response
      */
     public CompletableFuture<DeleteGroupResponse> delete(long id) {
@@ -264,14 +264,14 @@ public class AsyncGroups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by `ID`. Pass the group’s `id` to remove it. The
+     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
      * group is deleted immediately from the Address Book.
      * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter `contacts` to
-     * `delete`. The default is `contacts: detach`, which detaches contacts from the removed group but
+     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
+     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
      * leaves them in the Address Book.
      * 
-     * @param id Group `id` to remove.
+     * @param id Group <code>id</code> to remove.
      * @param contacts How to handle contacts that belong to the group.
      * @param options additional options
      * @return {@code CompletableFuture<DeleteGroupResponse>} - The async response

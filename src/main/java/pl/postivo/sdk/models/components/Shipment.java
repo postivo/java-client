@@ -22,17 +22,17 @@ import pl.postivo.sdk.utils.Utils;
  */
 public class Shipment {
     /**
-     * Recipient data for a single shipment. For one recipient, provide a `RecipientInline`,
-     * `RecipientFromAddressBook`, or `RecipientFromAddressBookByExternalId` object. For multiple
+     * Recipient data for a single shipment. For one recipient, provide a <code>RecipientInline</code>,
+     * <code>RecipientFromAddressBook</code>, or <code>RecipientFromAddressBookByExternalId</code> object. For multiple
      * recipients, provide an array of these objects (1–50).
      */
     @JsonProperty("recipients")
     private ShipmentRecipients recipients;
 
     /**
-     * Document payload to print and enclose into shipment. For a single document, provide `DocumentPdf`,
-     * `DocumentLibrary`, or `DocumentMock` (for checking the price only). For multiple documents, provide
-     * an array of `DocumentPdf`, `DocumentLibrary`, or `DocumentMock` objects (1–20).
+     * Document payload to print and enclose into shipment. For a single document, provide <code>DocumentPdf</code>,
+     * <code>DocumentLibrary</code>, or <code>DocumentMock</code> (for checking the price only). For multiple documents, provide
+     * an array of <code>DocumentPdf</code>, <code>DocumentLibrary</code>, or <code>DocumentMock</code> objects (1–20).
      */
     @JsonProperty("documents")
     private ShipmentDocuments documents;
@@ -62,8 +62,8 @@ public class Shipment {
     }
 
     /**
-     * Recipient data for a single shipment. For one recipient, provide a `RecipientInline`,
-     * `RecipientFromAddressBook`, or `RecipientFromAddressBookByExternalId` object. For multiple
+     * Recipient data for a single shipment. For one recipient, provide a <code>RecipientInline</code>,
+     * <code>RecipientFromAddressBook</code>, or <code>RecipientFromAddressBookByExternalId</code> object. For multiple
      * recipients, provide an array of these objects (1–50).
      */
     public ShipmentRecipients recipients() {
@@ -71,9 +71,9 @@ public class Shipment {
     }
 
     /**
-     * Document payload to print and enclose into shipment. For a single document, provide `DocumentPdf`,
-     * `DocumentLibrary`, or `DocumentMock` (for checking the price only). For multiple documents, provide
-     * an array of `DocumentPdf`, `DocumentLibrary`, or `DocumentMock` objects (1–20).
+     * Document payload to print and enclose into shipment. For a single document, provide <code>DocumentPdf</code>,
+     * <code>DocumentLibrary</code>, or <code>DocumentMock</code> (for checking the price only). For multiple documents, provide
+     * an array of <code>DocumentPdf</code>, <code>DocumentLibrary</code>, or <code>DocumentMock</code> objects (1–20).
      */
     public ShipmentDocuments documents() {
         return this.documents;
@@ -89,8 +89,8 @@ public class Shipment {
 
 
     /**
-     * Recipient data for a single shipment. For one recipient, provide a `RecipientInline`,
-     * `RecipientFromAddressBook`, or `RecipientFromAddressBookByExternalId` object. For multiple
+     * Recipient data for a single shipment. For one recipient, provide a <code>RecipientInline</code>,
+     * <code>RecipientFromAddressBook</code>, or <code>RecipientFromAddressBookByExternalId</code> object. For multiple
      * recipients, provide an array of these objects (1–50).
      */
     public Shipment withRecipients(@Nonnull ShipmentRecipients recipients) {
@@ -100,9 +100,9 @@ public class Shipment {
 
 
     /**
-     * Document payload to print and enclose into shipment. For a single document, provide `DocumentPdf`,
-     * `DocumentLibrary`, or `DocumentMock` (for checking the price only). For multiple documents, provide
-     * an array of `DocumentPdf`, `DocumentLibrary`, or `DocumentMock` objects (1–20).
+     * Document payload to print and enclose into shipment. For a single document, provide <code>DocumentPdf</code>,
+     * <code>DocumentLibrary</code>, or <code>DocumentMock</code> (for checking the price only). For multiple documents, provide
+     * an array of <code>DocumentPdf</code>, <code>DocumentLibrary</code>, or <code>DocumentMock</code> objects (1–20).
      */
     public Shipment withDocuments(@Nonnull ShipmentDocuments documents) {
         this.documents = Utils.checkNotNull(documents, "documents");
@@ -159,8 +159,8 @@ public class Shipment {
         }
 
         /**
-         * Recipient data for a single shipment. For one recipient, provide a `RecipientInline`,
-         * `RecipientFromAddressBook`, or `RecipientFromAddressBookByExternalId` object. For multiple
+         * Recipient data for a single shipment. For one recipient, provide a <code>RecipientInline</code>,
+         * <code>RecipientFromAddressBook</code>, or <code>RecipientFromAddressBookByExternalId</code> object. For multiple
          * recipients, provide an array of these objects (1–50).
          */
         public Builder recipients(@Nonnull ShipmentRecipients recipients) {
@@ -169,9 +169,9 @@ public class Shipment {
         }
 
         /**
-         * Document payload to print and enclose into shipment. For a single document, provide `DocumentPdf`,
-         * `DocumentLibrary`, or `DocumentMock` (for checking the price only). For multiple documents, provide
-         * an array of `DocumentPdf`, `DocumentLibrary`, or `DocumentMock` objects (1–20).
+         * Document payload to print and enclose into shipment. For a single document, provide <code>DocumentPdf</code>,
+         * <code>DocumentLibrary</code>, or <code>DocumentMock</code> (for checking the price only). For multiple documents, provide
+         * an array of <code>DocumentPdf</code>, <code>DocumentLibrary</code>, or <code>DocumentMock</code> objects (1–20).
          */
         public Builder documents(@Nonnull ShipmentDocuments documents) {
             this.documents = Utils.checkNotNull(documents, "documents");

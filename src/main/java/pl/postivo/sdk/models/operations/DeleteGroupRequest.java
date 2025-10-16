@@ -16,7 +16,7 @@ import pl.postivo.sdk.utils.Utils;
 
 public class DeleteGroupRequest {
     /**
-     * Group `id` to remove.
+     * Group <code>id</code> to remove.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private long id;
@@ -42,7 +42,7 @@ public class DeleteGroupRequest {
     }
 
     /**
-     * Group `id` to remove.
+     * Group <code>id</code> to remove.
      */
     public long id() {
         return this.id;
@@ -61,7 +61,7 @@ public class DeleteGroupRequest {
 
 
     /**
-     * Group `id` to remove.
+     * Group <code>id</code> to remove.
      */
     public DeleteGroupRequest withId(long id) {
         this.id = id;
@@ -117,7 +117,7 @@ public class DeleteGroupRequest {
         }
 
         /**
-         * Group `id` to remove.
+         * Group <code>id</code> to remove.
          */
         public Builder id(long id) {
             this.id = id;

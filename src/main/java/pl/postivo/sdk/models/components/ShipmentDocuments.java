@@ -19,9 +19,9 @@ import pl.postivo.sdk.utils.Utils;
 /**
  * ShipmentDocuments
  * 
- * <p>Document payload to print and enclose into shipment. For a single document, provide `DocumentPdf`,
- * `DocumentLibrary`, or `DocumentMock` (for checking the price only). For multiple documents, provide
- * an array of `DocumentPdf`, `DocumentLibrary`, or `DocumentMock` objects (1–20).
+ * <p>Document payload to print and enclose into shipment. For a single document, provide <code>DocumentPdf</code>,
+ * <code>DocumentLibrary</code>, or <code>DocumentMock</code> (for checking the price only). For multiple documents, provide
+ * an array of <code>DocumentPdf</code>, <code>DocumentLibrary</code>, or <code>DocumentMock</code> objects (1–20).
  */
 @JsonDeserialize(using = ShipmentDocuments._Deserializer.class)
 public class ShipmentDocuments {

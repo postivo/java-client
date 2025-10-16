@@ -152,7 +152,7 @@ public class Contacts {
     /**
      * Retrieve contact details
      * 
-     * <p>Get the details of a contact from your Address Book using its global `id`.
+     * <p>Get the details of a contact from your Address Book using its global <code>id</code>.
      * 
      * @return The call builder
      */
@@ -163,9 +163,9 @@ public class Contacts {
     /**
      * Retrieve contact details
      * 
-     * <p>Get the details of a contact from your Address Book using its global `id`.
+     * <p>Get the details of a contact from your Address Book using its global <code>id</code>.
      * 
-     * @param id Global contact `id` to fetch.
+     * @param id Global contact <code>id</code> to fetch.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -176,9 +176,9 @@ public class Contacts {
     /**
      * Retrieve contact details
      * 
-     * <p>Get the details of a contact from your Address Book using its global `id`.
+     * <p>Get the details of a contact from your Address Book using its global <code>id</code>.
      * 
-     * @param id Global contact `id` to fetch.
+     * @param id Global contact <code>id</code> to fetch.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -251,7 +251,7 @@ public class Contacts {
      * 
      * <p>Remove a contact from your account by system ID.
      * 
-     * @param id Global contact `id` to remove.
+     * @param id Global contact <code>id</code> to remove.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -264,7 +264,7 @@ public class Contacts {
      * 
      * <p>Remove a contact from your account by system ID.
      * 
-     * @param id Global contact `id` to remove.
+     * @param id Global contact <code>id</code> to remove.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -282,7 +282,7 @@ public class Contacts {
      * <p>Remove a contact from a group in your Address Book. This does not delete the contact; it only
      * detaches the contact from the group.
      * 
-     * <p>Provide the contact’s `id` and the group’s `group_id` parameters to perform the detachment.
+     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
      * 
      * @return The call builder
      */
@@ -296,10 +296,10 @@ public class Contacts {
      * <p>Remove a contact from a group in your Address Book. This does not delete the contact; it only
      * detaches the contact from the group.
      * 
-     * <p>Provide the contact’s `id` and the group’s `group_id` parameters to perform the detachment.
+     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
      * 
-     * @param id Global contact `id` to detach from the group.
-     * @param groupId Group `id` to detach from the contact.
+     * @param id Global contact <code>id</code> to detach from the group.
+     * @param groupId Group <code>id</code> to detach from the contact.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -313,10 +313,10 @@ public class Contacts {
      * <p>Remove a contact from a group in your Address Book. This does not delete the contact; it only
      * detaches the contact from the group.
      * 
-     * <p>Provide the contact’s `id` and the group’s `group_id` parameters to perform the detachment.
+     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
      * 
-     * @param id Global contact `id` to detach from the group.
-     * @param groupId Group `id` to detach from the contact.
+     * @param id Global contact <code>id</code> to detach from the group.
+     * @param groupId Group <code>id</code> to detach from the contact.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -336,7 +336,7 @@ public class Contacts {
      * <p>Assign a contact to a group. If a contact and a group exist in your account, you can add the contact
      * to that group.
      * 
-     * <p>Provide the contact’s `id` and the group’s `group_id` parameters to perform the assignment.
+     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
      * 
      * @return The call builder
      */
@@ -350,10 +350,10 @@ public class Contacts {
      * <p>Assign a contact to a group. If a contact and a group exist in your account, you can add the contact
      * to that group.
      * 
-     * <p>Provide the contact’s `id` and the group’s `group_id` parameters to perform the assignment.
+     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
      * 
-     * @param id Global contact `id` to add to the group.
-     * @param groupId Group `id` to associate with the contact.
+     * @param id Global contact <code>id</code> to add to the group.
+     * @param groupId Group <code>id</code> to associate with the contact.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -367,10 +367,10 @@ public class Contacts {
      * <p>Assign a contact to a group. If a contact and a group exist in your account, you can add the contact
      * to that group.
      * 
-     * <p>Provide the contact’s `id` and the group’s `group_id` parameters to perform the assignment.
+     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
      * 
-     * @param id Global contact `id` to add to the group.
-     * @param groupId Group `id` to associate with the contact.
+     * @param id Global contact <code>id</code> to add to the group.
+     * @param groupId Group <code>id</code> to associate with the contact.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails

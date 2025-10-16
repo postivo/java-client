@@ -46,7 +46,7 @@ public class AsyncAccounts {
      * 
      * <p>Retrieve the current account balance and other account details. You can also check the account limit
      * and whether the account is a **main** account. Main accounts have unrestricted privileges and, via
-     * the [User Panel](https://panel.postivo.pl), you can create as many subaccounts as needed.
+     * the <a href="https://panel.postivo.pl">User Panel</a>, you can create as many subaccounts as needed.
      * 
      * @return The async call builder
      */
@@ -59,7 +59,7 @@ public class AsyncAccounts {
      * 
      * <p>Retrieve the current account balance and other account details. You can also check the account limit
      * and whether the account is a **main** account. Main accounts have unrestricted privileges and, via
-     * the [User Panel](https://panel.postivo.pl), you can create as many subaccounts as needed.
+     * the <a href="https://panel.postivo.pl">User Panel</a>, you can create as many subaccounts as needed.
      * 
      * @return {@code CompletableFuture<GetAccountDetailsResponse>} - The async response
      */
@@ -72,7 +72,7 @@ public class AsyncAccounts {
      * 
      * <p>Retrieve the current account balance and other account details. You can also check the account limit
      * and whether the account is a **main** account. Main accounts have unrestricted privileges and, via
-     * the [User Panel](https://panel.postivo.pl), you can create as many subaccounts as needed.
+     * the <a href="https://panel.postivo.pl">User Panel</a>, you can create as many subaccounts as needed.
      * 
      * @param options additional options
      * @return {@code CompletableFuture<GetAccountDetailsResponse>} - The async response
@@ -92,7 +92,7 @@ public class AsyncAccounts {
      * 
      * <p>Check the account balance and other details, such as the subcredit balance of a subaccount.
      * Subaccounts are additional users who can access your account’s services and data. You can restrict
-     * access levels and set privileges for subaccounts in the [User Panel](https://panel.postivo.pl).
+     * access levels and set privileges for subaccounts in the <a href="https://panel.postivo.pl">User Panel</a>.
      * 
      * <p>Provide the full subaccount login to access its data.
      * 
@@ -107,7 +107,7 @@ public class AsyncAccounts {
      * 
      * <p>Check the account balance and other details, such as the subcredit balance of a subaccount.
      * Subaccounts are additional users who can access your account’s services and data. You can restrict
-     * access levels and set privileges for subaccounts in the [User Panel](https://panel.postivo.pl).
+     * access levels and set privileges for subaccounts in the <a href="https://panel.postivo.pl">User Panel</a>.
      * 
      * <p>Provide the full subaccount login to access its data.
      * 
@@ -123,7 +123,7 @@ public class AsyncAccounts {
      * 
      * <p>Check the account balance and other details, such as the subcredit balance of a subaccount.
      * Subaccounts are additional users who can access your account’s services and data. You can restrict
-     * access levels and set privileges for subaccounts in the [User Panel](https://panel.postivo.pl).
+     * access levels and set privileges for subaccounts in the <a href="https://panel.postivo.pl">User Panel</a>.
      * 
      * <p>Provide the full subaccount login to access its data.
      * 

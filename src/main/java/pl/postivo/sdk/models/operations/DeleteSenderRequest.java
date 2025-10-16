@@ -12,7 +12,7 @@ import pl.postivo.sdk.utils.Utils;
 
 public class DeleteSenderRequest {
     /**
-     * Sender `id` to remove.
+     * Sender <code>id</code> to remove.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private long id;
@@ -24,7 +24,7 @@ public class DeleteSenderRequest {
     }
 
     /**
-     * Sender `id` to remove.
+     * Sender <code>id</code> to remove.
      */
     public long id() {
         return this.id;
@@ -36,7 +36,7 @@ public class DeleteSenderRequest {
 
 
     /**
-     * Sender `id` to remove.
+     * Sender <code>id</code> to remove.
      */
     public DeleteSenderRequest withId(long id) {
         this.id = id;
@@ -79,7 +79,7 @@ public class DeleteSenderRequest {
         }
 
         /**
-         * Sender `id` to remove.
+         * Sender <code>id</code> to remove.
          */
         public Builder id(long id) {
             this.id = id;

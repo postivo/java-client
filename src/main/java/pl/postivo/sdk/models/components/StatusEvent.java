@@ -30,7 +30,7 @@ public class StatusEvent {
     private Long uniqueId;
 
     /**
-     * Event type: `OK` (regular) or `EX` (exception/irregular).
+     * Event type: <code>OK</code> (regular) or <code>EX</code> (exception/irregular).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
@@ -94,7 +94,7 @@ public class StatusEvent {
     }
 
     /**
-     * Event type: `OK` (regular) or `EX` (exception/irregular).
+     * Event type: <code>OK</code> (regular) or <code>EX</code> (exception/irregular).
      */
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
@@ -143,7 +143,7 @@ public class StatusEvent {
 
 
     /**
-     * Event type: `OK` (regular) or `EX` (exception/irregular).
+     * Event type: <code>OK</code> (regular) or <code>EX</code> (exception/irregular).
      */
     public StatusEvent withType(@Nullable String type) {
         this.type = type;
@@ -251,7 +251,7 @@ public class StatusEvent {
         }
 
         /**
-         * Event type: `OK` (regular) or `EX` (exception/irregular).
+         * Event type: <code>OK</code> (regular) or <code>EX</code> (exception/irregular).
          */
         public Builder type(@Nullable String type) {
             this.type = type;

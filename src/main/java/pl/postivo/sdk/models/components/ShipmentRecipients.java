@@ -19,8 +19,8 @@ import pl.postivo.sdk.utils.Utils;
 /**
  * ShipmentRecipients
  * 
- * <p>Recipient data for a single shipment. For one recipient, provide a `RecipientInline`,
- * `RecipientFromAddressBook`, or `RecipientFromAddressBookByExternalId` object. For multiple
+ * <p>Recipient data for a single shipment. For one recipient, provide a <code>RecipientInline</code>,
+ * <code>RecipientFromAddressBook</code>, or <code>RecipientFromAddressBookByExternalId</code> object. For multiple
  * recipients, provide an array of these objects (1–50).
  */
 @JsonDeserialize(using = ShipmentRecipients._Deserializer.class)

@@ -133,7 +133,7 @@ public class Groups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its `id` (returned when the group was
+     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
      * created).
      * 
      * @return The call builder
@@ -145,7 +145,7 @@ public class Groups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its `id` (returned when the group was
+     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
      * created).
      * 
      * @param id Group id to fetch
@@ -159,7 +159,7 @@ public class Groups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its `id` (returned when the group was
+     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
      * created).
      * 
      * @param id Group id to fetch
@@ -190,7 +190,7 @@ public class Groups {
      * 
      * <p>Update a group’s details by ID.
      * 
-     * @param id Group `id` to update.
+     * @param id Group <code>id</code> to update.
      * @param group Contact group definition in the Address Book.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -204,7 +204,7 @@ public class Groups {
      * 
      * <p>Update a group’s details by ID.
      * 
-     * @param id Group `id` to update.
+     * @param id Group <code>id</code> to update.
      * @param group Contact group definition in the Address Book.
      * @param options additional options
      * @return The response from the API call
@@ -222,11 +222,11 @@ public class Groups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by `ID`. Pass the group’s `id` to remove it. The
+     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
      * group is deleted immediately from the Address Book.
      * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter `contacts` to
-     * `delete`. The default is `contacts: detach`, which detaches contacts from the removed group but
+     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
+     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
      * leaves them in the Address Book.
      * 
      * @return The call builder
@@ -238,14 +238,14 @@ public class Groups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by `ID`. Pass the group’s `id` to remove it. The
+     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
      * group is deleted immediately from the Address Book.
      * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter `contacts` to
-     * `delete`. The default is `contacts: detach`, which detaches contacts from the removed group but
+     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
+     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
      * leaves them in the Address Book.
      * 
-     * @param id Group `id` to remove.
+     * @param id Group <code>id</code> to remove.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
@@ -256,14 +256,14 @@ public class Groups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by `ID`. Pass the group’s `id` to remove it. The
+     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
      * group is deleted immediately from the Address Book.
      * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter `contacts` to
-     * `delete`. The default is `contacts: detach`, which detaches contacts from the removed group but
+     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
+     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
      * leaves them in the Address Book.
      * 
-     * @param id Group `id` to remove.
+     * @param id Group <code>id</code> to remove.
      * @param contacts How to handle contacts that belong to the group.
      * @param options additional options
      * @return The response from the API call

@@ -20,7 +20,7 @@ public class AddContactByExtIdToGroupRequest {
     private String extId;
 
     /**
-     * Group `id` to associate with the contact.
+     * Group <code>id</code> to associate with the contact.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=group_id")
     private long groupId;
@@ -42,7 +42,7 @@ public class AddContactByExtIdToGroupRequest {
     }
 
     /**
-     * Group `id` to associate with the contact.
+     * Group <code>id</code> to associate with the contact.
      */
     public long groupId() {
         return this.groupId;
@@ -63,7 +63,7 @@ public class AddContactByExtIdToGroupRequest {
 
 
     /**
-     * Group `id` to associate with the contact.
+     * Group <code>id</code> to associate with the contact.
      */
     public AddContactByExtIdToGroupRequest withGroupId(long groupId) {
         this.groupId = groupId;
@@ -118,7 +118,7 @@ public class AddContactByExtIdToGroupRequest {
         }
 
         /**
-         * Group `id` to associate with the contact.
+         * Group <code>id</code> to associate with the contact.
          */
         public Builder groupId(long groupId) {
             this.groupId = groupId;

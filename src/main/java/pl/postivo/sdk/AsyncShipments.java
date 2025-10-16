@@ -57,7 +57,7 @@ public class AsyncShipments {
     /**
      * Retrieve shipment details with status events
      * 
-     * <p>Retrieve the current status and details for one or more shipments by their `ids`. Pass the unique
+     * <p>Retrieve the current status and details for one or more shipments by their <code>ids</code>. Pass the unique
      * shipment IDs (returned when the shipments were created) as a path parameter. To query provide a list
      * (up to **50** IDs per call).
      * 
@@ -72,7 +72,7 @@ public class AsyncShipments {
     /**
      * Retrieve shipment details with status events
      * 
-     * <p>Retrieve the current status and details for one or more shipments by their `ids`. Pass the unique
+     * <p>Retrieve the current status and details for one or more shipments by their <code>ids</code>. Pass the unique
      * shipment IDs (returned when the shipments were created) as a path parameter. To query provide a list
      * (up to **50** IDs per call).
      * 
@@ -88,7 +88,7 @@ public class AsyncShipments {
     /**
      * Retrieve shipment details with status events
      * 
-     * <p>Retrieve the current status and details for one or more shipments by their `ids`. Pass the unique
+     * <p>Retrieve the current status and details for one or more shipments by their <code>ids</code>. Pass the unique
      * shipment IDs (returned when the shipments were created) as a path parameter. To query provide a list
      * (up to **50** IDs per call).
      * 
@@ -112,12 +112,12 @@ public class AsyncShipments {
     /**
      * Cancel shipments
      * 
-     * <p>Cancel shipments that have not yet been processed by their `ids`. Pass the unique shipment IDs
+     * <p>Cancel shipments that have not yet been processed by their <code>ids</code>. Pass the unique shipment IDs
      * (returned when the shipment was created) as a parameter. To cancel multiple shipments at once,
      * provide a list of IDs (up to **50** per call).
      * 
      * <p>For larger volumes, split the operation into multiple requests. Only shipments with status
-     * `ACCEPTED` can be cancelled.
+     * <code>ACCEPTED</code> can be cancelled.
      * 
      * <p>If duplicate shipment IDs are provided in a single call, the API processes each unique ID only once.
      * 
@@ -130,12 +130,12 @@ public class AsyncShipments {
     /**
      * Cancel shipments
      * 
-     * <p>Cancel shipments that have not yet been processed by their `ids`. Pass the unique shipment IDs
+     * <p>Cancel shipments that have not yet been processed by their <code>ids</code>. Pass the unique shipment IDs
      * (returned when the shipment was created) as a parameter. To cancel multiple shipments at once,
      * provide a list of IDs (up to **50** per call).
      * 
      * <p>For larger volumes, split the operation into multiple requests. Only shipments with status
-     * `ACCEPTED` can be cancelled.
+     * <code>ACCEPTED</code> can be cancelled.
      * 
      * <p>If duplicate shipment IDs are provided in a single call, the API processes each unique ID only once.
      * 
@@ -149,12 +149,12 @@ public class AsyncShipments {
     /**
      * Cancel shipments
      * 
-     * <p>Cancel shipments that have not yet been processed by their `ids`. Pass the unique shipment IDs
+     * <p>Cancel shipments that have not yet been processed by their <code>ids</code>. Pass the unique shipment IDs
      * (returned when the shipment was created) as a parameter. To cancel multiple shipments at once,
      * provide a list of IDs (up to **50** per call).
      * 
      * <p>For larger volumes, split the operation into multiple requests. Only shipments with status
-     * `ACCEPTED` can be cancelled.
+     * <code>ACCEPTED</code> can be cancelled.
      * 
      * <p>If duplicate shipment IDs are provided in a single call, the API processes each unique ID only once.
      * 
@@ -176,7 +176,7 @@ public class AsyncShipments {
     /**
      * Dispatch a new shipment
      * 
-     * <p>Send a shipment to one or multiple recipients in a single request. Provide a `Shipment` object. The
+     * <p>Send a shipment to one or multiple recipients in a single request. Provide a <code>Shipment</code> object. The
      * object includes properties that define the shipment (recipient details, included documents, and
      * optional settings).
      * 
@@ -194,7 +194,7 @@ public class AsyncShipments {
     /**
      * Dispatch a new shipment
      * 
-     * <p>Send a shipment to one or multiple recipients in a single request. Provide a `Shipment` object. The
+     * <p>Send a shipment to one or multiple recipients in a single request. Provide a <code>Shipment</code> object. The
      * object includes properties that define the shipment (recipient details, included documents, and
      * optional settings).
      * 
@@ -213,7 +213,7 @@ public class AsyncShipments {
     /**
      * Dispatch a new shipment
      * 
-     * <p>Send a shipment to one or multiple recipients in a single request. Provide a `Shipment` object. The
+     * <p>Send a shipment to one or multiple recipients in a single request. Provide a <code>Shipment</code> object. The
      * object includes properties that define the shipment (recipient details, included documents, and
      * optional settings).
      * 
@@ -239,7 +239,7 @@ public class AsyncShipments {
     /**
      * Retrieve documents related to a shipment
      * 
-     * <p>Download documents related to a shipment by its `id`. Pass the unique shipment `id` (returned when
+     * <p>Download documents related to a shipment by its <code>id</code>. Pass the unique shipment <code>id</code> (returned when
      * the shipment was created) as a parameter. The second parameter is the document type to download.
      * 
      * <p>Supported document types include: dispatch certificate, envelope template, and EPO (in PDF or XML
@@ -254,7 +254,7 @@ public class AsyncShipments {
     /**
      * Retrieve documents related to a shipment
      * 
-     * <p>Download documents related to a shipment by its `id`. Pass the unique shipment `id` (returned when
+     * <p>Download documents related to a shipment by its <code>id</code>. Pass the unique shipment <code>id</code> (returned when
      * the shipment was created) as a parameter. The second parameter is the document type to download.
      * 
      * <p>Supported document types include: dispatch certificate, envelope template, and EPO (in PDF or XML
@@ -271,7 +271,7 @@ public class AsyncShipments {
     /**
      * Retrieve documents related to a shipment
      * 
-     * <p>Download documents related to a shipment by its `id`. Pass the unique shipment `id` (returned when
+     * <p>Download documents related to a shipment by its <code>id</code>. Pass the unique shipment <code>id</code> (returned when
      * the shipment was created) as a parameter. The second parameter is the document type to download.
      * 
      * <p>Supported document types include: dispatch certificate, envelope template, and EPO (in PDF or XML
@@ -298,7 +298,7 @@ public class AsyncShipments {
     /**
      * Check the shipment price
      * 
-     * <p>Check the price of a shipment for one or multiple recipients. Provide a `Shipment` object in the
+     * <p>Check the price of a shipment for one or multiple recipients. Provide a <code>Shipment</code> object in the
      * request. Each object includes properties such as recipient details, included documents, and optional
      * settings.
      * 
@@ -316,7 +316,7 @@ public class AsyncShipments {
     /**
      * Check the shipment price
      * 
-     * <p>Check the price of a shipment for one or multiple recipients. Provide a `Shipment` object in the
+     * <p>Check the price of a shipment for one or multiple recipients. Provide a <code>Shipment</code> object in the
      * request. Each object includes properties such as recipient details, included documents, and optional
      * settings.
      * 
@@ -335,7 +335,7 @@ public class AsyncShipments {
     /**
      * Check the shipment price
      * 
-     * <p>Check the price of a shipment for one or multiple recipients. Provide a `Shipment` object in the
+     * <p>Check the price of a shipment for one or multiple recipients. Provide a <code>Shipment</code> object in the
      * request. Each object includes properties such as recipient details, included documents, and optional
      * settings.
      * 

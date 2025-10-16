@@ -18,7 +18,7 @@ import pl.postivo.sdk.utils.Utils;
 /**
  * InlineConfig
  * 
- * <p>Shipment configuration parameters. Overrides settings loaded from `predefined_config_id`.
+ * <p>Shipment configuration parameters. Overrides settings loaded from <code>predefined_config_id</code>.
  */
 public class InlineConfig {
     /**
@@ -41,14 +41,14 @@ public class InlineConfig {
     private Long paperId;
 
     /**
-     * Print documents in color (`true`) or grayscale (`false`).
+     * Print documents in color (<code>true</code>) or grayscale (<code>false</code>).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("color_print")
     private Boolean colorPrint;
 
     /**
-     * Print documents duplex (`true`) or single-sided (`false`).
+     * Print documents duplex (<code>true</code>) or single-sided (<code>false</code>).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("duplex_print")
@@ -62,7 +62,7 @@ public class InlineConfig {
     private Long envelopeId;
 
     /**
-     * Print the envelope in color (`true`) or grayscale (`false`).
+     * Print the envelope in color (<code>true</code>) or grayscale (<code>false</code>).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("envelope_color_print")
@@ -116,14 +116,14 @@ public class InlineConfig {
     }
 
     /**
-     * Print documents in color (`true`) or grayscale (`false`).
+     * Print documents in color (<code>true</code>) or grayscale (<code>false</code>).
      */
     public Optional<Boolean> colorPrint() {
         return Optional.ofNullable(this.colorPrint);
     }
 
     /**
-     * Print documents duplex (`true`) or single-sided (`false`).
+     * Print documents duplex (<code>true</code>) or single-sided (<code>false</code>).
      */
     public Optional<Boolean> duplexPrint() {
         return Optional.ofNullable(this.duplexPrint);
@@ -137,7 +137,7 @@ public class InlineConfig {
     }
 
     /**
-     * Print the envelope in color (`true`) or grayscale (`false`).
+     * Print the envelope in color (<code>true</code>) or grayscale (<code>false</code>).
      */
     public Optional<Boolean> envelopeColorPrint() {
         return Optional.ofNullable(this.envelopeColorPrint);
@@ -176,7 +176,7 @@ public class InlineConfig {
 
 
     /**
-     * Print documents in color (`true`) or grayscale (`false`).
+     * Print documents in color (<code>true</code>) or grayscale (<code>false</code>).
      */
     public InlineConfig withColorPrint(@Nullable Boolean colorPrint) {
         this.colorPrint = colorPrint;
@@ -185,7 +185,7 @@ public class InlineConfig {
 
 
     /**
-     * Print documents duplex (`true`) or single-sided (`false`).
+     * Print documents duplex (<code>true</code>) or single-sided (<code>false</code>).
      */
     public InlineConfig withDuplexPrint(@Nullable Boolean duplexPrint) {
         this.duplexPrint = duplexPrint;
@@ -203,7 +203,7 @@ public class InlineConfig {
 
 
     /**
-     * Print the envelope in color (`true`) or grayscale (`false`).
+     * Print the envelope in color (<code>true</code>) or grayscale (<code>false</code>).
      */
     public InlineConfig withEnvelopeColorPrint(@Nullable Boolean envelopeColorPrint) {
         this.envelopeColorPrint = envelopeColorPrint;
@@ -296,7 +296,7 @@ public class InlineConfig {
         }
 
         /**
-         * Print documents in color (`true`) or grayscale (`false`).
+         * Print documents in color (<code>true</code>) or grayscale (<code>false</code>).
          */
         public Builder colorPrint(@Nullable Boolean colorPrint) {
             this.colorPrint = colorPrint;
@@ -304,7 +304,7 @@ public class InlineConfig {
         }
 
         /**
-         * Print documents duplex (`true`) or single-sided (`false`).
+         * Print documents duplex (<code>true</code>) or single-sided (<code>false</code>).
          */
         public Builder duplexPrint(@Nullable Boolean duplexPrint) {
             this.duplexPrint = duplexPrint;
@@ -320,7 +320,7 @@ public class InlineConfig {
         }
 
         /**
-         * Print the envelope in color (`true`) or grayscale (`false`).
+         * Print the envelope in color (<code>true</code>) or grayscale (<code>false</code>).
          */
         public Builder envelopeColorPrint(@Nullable Boolean envelopeColorPrint) {
             this.envelopeColorPrint = envelopeColorPrint;

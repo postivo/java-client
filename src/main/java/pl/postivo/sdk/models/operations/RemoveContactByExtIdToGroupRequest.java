@@ -20,7 +20,7 @@ public class RemoveContactByExtIdToGroupRequest {
     private String extId;
 
     /**
-     * Group `id` to detach from the contact.
+     * Group <code>id</code> to detach from the contact.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=group_id")
     private long groupId;
@@ -42,7 +42,7 @@ public class RemoveContactByExtIdToGroupRequest {
     }
 
     /**
-     * Group `id` to detach from the contact.
+     * Group <code>id</code> to detach from the contact.
      */
     public long groupId() {
         return this.groupId;
@@ -63,7 +63,7 @@ public class RemoveContactByExtIdToGroupRequest {
 
 
     /**
-     * Group `id` to detach from the contact.
+     * Group <code>id</code> to detach from the contact.
      */
     public RemoveContactByExtIdToGroupRequest withGroupId(long groupId) {
         this.groupId = groupId;
@@ -118,7 +118,7 @@ public class RemoveContactByExtIdToGroupRequest {
         }
 
         /**
-         * Group `id` to detach from the contact.
+         * Group <code>id</code> to detach from the contact.
          */
         public Builder groupId(long groupId) {
             this.groupId = groupId;

@@ -12,13 +12,13 @@ import pl.postivo.sdk.utils.Utils;
 
 public class RemoveContactFromGroupRequest {
     /**
-     * Global contact `id` to detach from the group.
+     * Global contact <code>id</code> to detach from the group.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private long id;
 
     /**
-     * Group `id` to detach from the contact.
+     * Group <code>id</code> to detach from the contact.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=group_id")
     private long groupId;
@@ -32,14 +32,14 @@ public class RemoveContactFromGroupRequest {
     }
 
     /**
-     * Global contact `id` to detach from the group.
+     * Global contact <code>id</code> to detach from the group.
      */
     public long id() {
         return this.id;
     }
 
     /**
-     * Group `id` to detach from the contact.
+     * Group <code>id</code> to detach from the contact.
      */
     public long groupId() {
         return this.groupId;
@@ -51,7 +51,7 @@ public class RemoveContactFromGroupRequest {
 
 
     /**
-     * Global contact `id` to detach from the group.
+     * Global contact <code>id</code> to detach from the group.
      */
     public RemoveContactFromGroupRequest withId(long id) {
         this.id = id;
@@ -60,7 +60,7 @@ public class RemoveContactFromGroupRequest {
 
 
     /**
-     * Group `id` to detach from the contact.
+     * Group <code>id</code> to detach from the contact.
      */
     public RemoveContactFromGroupRequest withGroupId(long groupId) {
         this.groupId = groupId;
@@ -107,7 +107,7 @@ public class RemoveContactFromGroupRequest {
         }
 
         /**
-         * Global contact `id` to detach from the group.
+         * Global contact <code>id</code> to detach from the group.
          */
         public Builder id(long id) {
             this.id = id;
@@ -115,7 +115,7 @@ public class RemoveContactFromGroupRequest {
         }
 
         /**
-         * Group `id` to detach from the contact.
+         * Group <code>id</code> to detach from the contact.
          */
         public Builder groupId(long groupId) {
             this.groupId = groupId;
