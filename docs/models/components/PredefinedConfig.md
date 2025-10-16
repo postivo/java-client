@@ -1,0 +1,18 @@
+# PredefinedConfig
+
+Predefined configuration usable for dispatching shipments (referenced via `predefined_config_id`).
+
+
+## Fields
+
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *Optional\<Long>*                                            | :heavy_minus_sign:                                           | Unique predefined configuration ID.                          | 334                                                          |
+| `name`                                                       | *Optional\<String>*                                          | :heavy_minus_sign:                                           | Predefined configuration name.                               | Konfiguracja z listem poleconym w kolorze                    |
+| `paperName`                                                  | *Optional\<String>*                                          | :heavy_minus_sign:                                           | Paper type name.                                             | A4 (80 g/m2) biały - klasa A                                 |
+| `colorPrint`                                                 | *Optional\<Boolean>*                                         | :heavy_minus_sign:                                           | Print documents in color (`true`) or grayscale (`false`).    | true                                                         |
+| `duplexPrint`                                                | *Optional\<Boolean>*                                         | :heavy_minus_sign:                                           | Print documents duplex (`true`) or single-sided (`false`).   | true                                                         |
+| `envelopeName`                                               | *Optional\<String>*                                          | :heavy_minus_sign:                                           | Preferred envelope type name.                                | C6/5 (DL)                                                    |
+| `envelopeSize`                                               | *Optional\<String>*                                          | :heavy_minus_sign:                                           | Preferred envelope size.                                     | 229x114                                                      |
+| `envelopeGroupName`                                          | *Optional\<String>*                                          | :heavy_minus_sign:                                           | Envelope group name.                                         | Koperty z logo                                               |
+| `envelopeColorPrint`                                         | *Optional\<Boolean>*                                         | :heavy_minus_sign:                                           | Print the envelope in color (`true`) or grayscale (`false`). | true                                                         |

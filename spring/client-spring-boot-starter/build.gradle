@@ -1,0 +1,29 @@
+description = 'openapi Spring Boot Starter'
+
+// Publishing configuration overrides
+ext {
+    publishingConfig = [
+        groupId: rootProject.group,
+        artifactId: 'client-spring-boot-starter',
+        version: rootProject.version,
+        name: 'POSTIVO.PL Java SDK - Spring Boot Starter',
+        description: 'Spring Boot starter for the POSTIVO.PL Java SDK.',
+    ]
+}
+
+dependencies {
+    api project(':')
+    api project(':client-spring-boot-autoconfigure')
+    api "org.springframework.boot:spring-boot-starter:${rootProject.springBootVersion}"
+}
+
+jar {
+    dependsOn 'generatePomFileForMavenPublication'
+    archiveBaseName = 'client-spring-boot-starter'
+    into("META-INF/maven/pl.postivo/client-spring-boot-starter") {
+        from(layout.buildDirectory.file("pom.xml")) {
+            // Only include if it exists to avoid build ordering issues
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
+}

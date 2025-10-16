@@ -1,0 +1,9 @@
+# VerifySenderRequest
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   | Example                                                                       |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `id`                                                                          | *long*                                                                        | :heavy_check_mark:                                                            | ID of the sender to verify.                                                   | 443                                                                           |
+| `requestBody`                                                                 | [VerifySenderRequestBody](../../models/operations/VerifySenderRequestBody.md) | :heavy_check_mark:                                                            | Verification code received in the letter.                                     |                                                                               |
