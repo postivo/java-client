@@ -2,3 +2,43 @@
 // * is referred to in an `apply from` command in `build.gradle`
 // * can be used to customise `build.gradle`
 // * is generated once and not overwritten in SDK generation updates
+publishing {
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = uri("https://maven.pkg.github.com/postivo/java-client/")
+			credentials {
+				username = System.getenv("GITHUB_ACTOR")
+				password = System.getenv("GITHUB_TOKEN")
+			}
+		}
+	}
+}
+
+task normalizeComments{
+	doLast {
+		ant.lineseparator = "\r\n"
+
+		ant.replaceregexp(match:'(?:(\\/\\*\\*)(?=.*\\*\\/)|\\G(?!^))((?:(?!\\/\\*\\*|\\*\\/)(?>(?!&lt;br&gt;).))*)&lt;br&gt;', replace:"\\1\\2${ant.lineseparator} * <br>", flags:'gs') {
+			fileset(dir: 'src')
+		}
+		ant.replaceregexp(match:'(?:(\\/\\*\\*)(?=.*\\*\\/)|\\G(?!^))((?:(?!\\/\\*\\*|\\*\\/)(?>(?!```.*?```).))*)```(.*?)```', replace:'\\1\\2<pre><code>\\3</code></pre>', flags:'gs') {
+			fileset(dir: 'src')
+		}
+		ant.replaceregexp(match:'(?:(\\/\\*\\*)(?=.*\\*\\/)|\\G(?!^))((?:(?!\\/\\*\\*|\\*\\/)(?>(?!`.*?`).))*)`(.*?)`', replace:'\\1\\2<code>\\3</code>', flags:'gs') {
+			fileset(dir: 'src')
+		}
+		ant.replaceregexp(match:'(?:(\\/\\*\\*)(?=.*\\*\\/)|\\G(?!^))((?:(?!\\/\\*\\*|\\*\\/)(?>(?!&lt;strong&gt;.*?&lt;/strong&gt;).))*)&lt;strong&gt;(.*?)&lt;/strong&gt;', replace:'\\1\\2<strong>\\3</strong>', flags:'gs') {
+			fileset(dir: 'src')
+		}
+		ant.replaceregexp(match:'(?:(\\/\\*\\*)(?=.*\\*\\/)|\\G(?!^))((?:(?!\\/\\*\\*|\\*\\/)(?>(?!&lt;em&gt;.*?&lt;/em&gt;).))*)&lt;em&gt;(.*?)&lt;/em&gt;', replace:'\\1\\2<em>\\3</em>', flags:'gs') {
+			fileset(dir: 'src')
+		}
+		ant.replaceregexp(match:'(?:(\\/\\*\\*)(?=.*\\*\\/)|\\G(?!^))((?:(?!\\/\\*\\*|\\*\\/)(?>(?!\\[.*?\\]\\(.*?\\)).))*)\\[(.*?)\\]\\((.*?)\\)', replace:'\\1\\2<a href="\\4">\\3</a>', flags:'gs') {
+			fileset(dir: 'src')
+		}
+	}
+}
+tasks.withType(Javadoc) {
+  options.overview = file('overview.html')
+}

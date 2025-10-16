@@ -1,0 +1,71 @@
+<html>
+<body>
+<p>
+    This package provides the POSTIVO.PL Hybrid Mail Services SDK for C#, allowing you to dispatch shipments directly from your application via the <a href="https://postivo.pl">https://postivo.pl</a> platform.
+</p>
+<h2>Additional documentation</h2>
+<p>Comprehensive documentation of all methods and types is available on <a href="https://github.com/postivo/java-client">our GitHub</a></p>
+<p>You can also refer to the <a href="https://api.postivo.pl/rest/v1/">REST API v1 documentation</a> for additional details about this SDK.</p>
+<h2>Builder style SDK</h2>
+<p>
+	This SDK uses <strong>builders</strong> and method chaining for all SDK objects. For example, to create a Shipment object please use this style:
+<pre><code>
+Shipment.builder()
+    .recipients(ShipmentRecipients.of(Recipients.of(RecipientInline.builder()
+        .name("Jan Nowak")
+        .address("ul. Testowa")
+        .postCode("00-999")
+        .city("Warszawa")
+        .name2("Firma testowa Sp. z o.o.")
+        .homeNumber("23")
+        .flatNumber("2")
+        .phoneNumber("+48666666666")
+        .postscript("Komunikat")
+        .customId("1234567890")
+        .build())))
+    .documents(ShipmentDocuments.of(List.of(
+        Documents.of(DocumentPdf.builder()
+            .fileStream("&lt;document_1 content encoded to base64&gt;")
+            .fileName("document1.pdf")
+            .build()),
+        Documents.of(DocumentPdf.builder()
+            .fileStream("&lt;document_2 content encoded to base64&gt;")
+            .fileName("document2.pdf")
+            .build()))))
+    .options(Options.of(ShipmentOptions.builder()
+        .predefinedConfigId(2670L)
+        .build()))
+    .build();
+</code></pre>
+</p>
+<p>For example, to build a <code>RecipientInline</code> object you call <code>RecipientInline.builder()</code> and not new <code>Builders.RecipientInlineFactory()</code>.</p>
+<h2>Null safety</h2>
+<p>For non-required and nullable fields, the java.util.Optional and JSONNullable classes are used.</p>
+<h2>Initialization</h2>
+<p>
+	<em>Client</em> class is used to initialize SDK environment.<br>
+	<br>Please initialize it this way:
+<pre><code>
+import java.lang.Exception;
+import pl.postivo.sdk.Client;
+import pl.postivo.sdk.models.errors.ErrorResponse;
+
+Client sdk = Client.builder()
+   .bearer("YOUR API ACCESS TOKEN")
+   .build();
+</code></pre>
+	<br>If you want to use a Sandbox test system please initialize it as follows:
+	<br>
+<pre><code>
+Client sdk = Client.builder()
+   .server(Client.AvailableServers.SANDBOX)
+   .bearer("&lt;YOUR API ACCESS TOKEN&gt;")
+   .build();
+</code></pre>
+</p>
+<dl>
+	<dt>Author</dt>
+	<dd>POSTIVO.PL</dd>
+</dl>
+</body>
+</html>
