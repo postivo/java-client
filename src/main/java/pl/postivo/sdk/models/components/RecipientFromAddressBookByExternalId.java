@@ -31,11 +31,11 @@ public class RecipientFromAddressBookByExternalId {
     private String extId;
 
     /**
-     * Set to true to fetch recipient data by external ID from a main account’s shared Address Book.
+     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("from_shared")
-    private Boolean fromShared;
+    @JsonProperty("inherited")
+    private Boolean inherited;
 
     /**
      * Custom shipment ID assigned by the user.
@@ -54,13 +54,13 @@ public class RecipientFromAddressBookByExternalId {
     @JsonCreator
     public RecipientFromAddressBookByExternalId(
             @JsonProperty("ext_id") @Nonnull String extId,
-            @JsonProperty("from_shared") @Nullable Boolean fromShared,
+            @JsonProperty("inherited") @Nullable Boolean inherited,
             @JsonProperty("custom_id") @Nullable JsonNullable<String> customId,
             @JsonProperty("postscript") @Nullable JsonNullable<String> postscript) {
         this.extId = Optional.ofNullable(extId)
             .orElseThrow(() -> new IllegalArgumentException("extId cannot be null"));
-        this.fromShared = Optional.ofNullable(fromShared)
-            .orElse(Builder._SINGLETON_VALUE_FromShared.value());
+        this.inherited = Optional.ofNullable(inherited)
+            .orElse(Builder._SINGLETON_VALUE_Inherited.value());
         this.customId = Optional.ofNullable(customId)
             .orElse(JsonNullable.of(Builder._SINGLETON_VALUE_CustomId.value()));
         this.postscript = Optional.ofNullable(postscript)
@@ -81,10 +81,10 @@ public class RecipientFromAddressBookByExternalId {
     }
 
     /**
-     * Set to true to fetch recipient data by external ID from a main account’s shared Address Book.
+     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book.
      */
-    public Optional<Boolean> fromShared() {
-        return Optional.ofNullable(this.fromShared);
+    public Optional<Boolean> inherited() {
+        return Optional.ofNullable(this.inherited);
     }
 
     /**
@@ -116,10 +116,10 @@ public class RecipientFromAddressBookByExternalId {
 
 
     /**
-     * Set to true to fetch recipient data by external ID from a main account’s shared Address Book.
+     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book.
      */
-    public RecipientFromAddressBookByExternalId withFromShared(@Nullable Boolean fromShared) {
-        this.fromShared = fromShared;
+    public RecipientFromAddressBookByExternalId withInherited(@Nullable Boolean inherited) {
+        this.inherited = inherited;
         return this;
     }
 
@@ -153,7 +153,7 @@ public class RecipientFromAddressBookByExternalId {
         RecipientFromAddressBookByExternalId other = (RecipientFromAddressBookByExternalId) o;
         return 
             Utils.enhancedDeepEquals(this.extId, other.extId) &&
-            Utils.enhancedDeepEquals(this.fromShared, other.fromShared) &&
+            Utils.enhancedDeepEquals(this.inherited, other.inherited) &&
             Utils.enhancedDeepEquals(this.customId, other.customId) &&
             Utils.enhancedDeepEquals(this.postscript, other.postscript);
     }
@@ -161,7 +161,7 @@ public class RecipientFromAddressBookByExternalId {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            extId, fromShared, customId,
+            extId, inherited, customId,
             postscript);
     }
     
@@ -169,7 +169,7 @@ public class RecipientFromAddressBookByExternalId {
     public String toString() {
         return Utils.toString(RecipientFromAddressBookByExternalId.class,
                 "extId", extId,
-                "fromShared", fromShared,
+                "inherited", inherited,
                 "customId", customId,
                 "postscript", postscript);
     }
@@ -179,7 +179,7 @@ public class RecipientFromAddressBookByExternalId {
 
         private String extId;
 
-        private Boolean fromShared;
+        private Boolean inherited;
 
         private JsonNullable<String> customId;
 
@@ -198,10 +198,10 @@ public class RecipientFromAddressBookByExternalId {
         }
 
         /**
-         * Set to true to fetch recipient data by external ID from a main account’s shared Address Book.
+         * Set to true to fetch recipient data by external ID from inherited main account’s Address Book.
          */
-        public Builder fromShared(@Nullable Boolean fromShared) {
-            this.fromShared = fromShared;
+        public Builder inherited(@Nullable Boolean inherited) {
+            this.inherited = inherited;
             return this;
         }
 
@@ -223,14 +223,14 @@ public class RecipientFromAddressBookByExternalId {
 
         public RecipientFromAddressBookByExternalId build() {
             return new RecipientFromAddressBookByExternalId(
-                extId, fromShared, customId,
+                extId, inherited, customId,
                 postscript);
         }
 
 
-        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_FromShared =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Inherited =
                 new LazySingletonValue<>(
-                        "from_shared",
+                        "inherited",
                         "false",
                         new TypeReference<Boolean>() {});
 

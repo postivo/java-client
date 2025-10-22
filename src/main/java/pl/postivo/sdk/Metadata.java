@@ -6,7 +6,6 @@ package pl.postivo.sdk;
 import static pl.postivo.sdk.operations.Operations.RequestlessOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.models.operations.ListMetadataRequestBuilder;
 import pl.postivo.sdk.models.operations.ListMetadataResponse;
 import pl.postivo.sdk.models.operations.ListPredefinedConfigsRequestBuilder;
@@ -57,9 +56,9 @@ public class Metadata {
      * and more.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListMetadataResponse listDirect() throws Exception {
+    public ListMetadataResponse listDirect() {
         return list(null);
     }
 
@@ -72,9 +71,9 @@ public class Metadata {
      * 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListMetadataResponse list(@Nullable Options options) throws Exception {
+    public ListMetadataResponse list(@Nullable Options options) {
         RequestlessOperation<ListMetadataResponse> operation
             = new ListMetadata.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -99,9 +98,9 @@ public class Metadata {
      * parameters. The response includes all stored configuration options.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPredefinedConfigsResponse getPredefinedConfigsDirect() throws Exception {
+    public ListPredefinedConfigsResponse getPredefinedConfigsDirect() {
         return getPredefinedConfigs(null);
     }
 
@@ -113,9 +112,9 @@ public class Metadata {
      * 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPredefinedConfigsResponse getPredefinedConfigs(@Nullable Options options) throws Exception {
+    public ListPredefinedConfigsResponse getPredefinedConfigs(@Nullable Options options) {
         RequestlessOperation<ListPredefinedConfigsResponse> operation
             = new ListPredefinedConfigs.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());

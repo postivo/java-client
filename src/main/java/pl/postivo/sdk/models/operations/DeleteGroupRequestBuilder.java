@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.DeleteGroup;
 import pl.postivo.sdk.utils.Headers;
@@ -64,7 +63,7 @@ public class DeleteGroupRequestBuilder {
     *
     * @return The response from the server.
     */
-    public DeleteGroupResponse call() throws Exception {
+    public DeleteGroupResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<DeleteGroupRequest, DeleteGroupResponse> operation
               = new DeleteGroup.Sync(sdkConfiguration, options, _headers);

@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestlessOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.Ping;
 import pl.postivo.sdk.utils.Headers;
@@ -42,7 +41,7 @@ public class PingRequestBuilder {
     *
     * @return The response from the server.
     */
-    public PingResponse call() throws Exception {
+    public PingResponse call() {
         Options options = optionsBuilder.build();
         RequestlessOperation<PingResponse> operation
             = new Ping.Sync(sdkConfiguration, options, _headers);

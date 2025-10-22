@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import pl.postivo.sdk.models.components.Contact;
 import pl.postivo.sdk.models.operations.AddContactByExtIdToGroupRequest;
@@ -73,9 +72,9 @@ public class ByExtId {
      * 
      * @param extId External (custom) ID of the contact to fetch.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetContactByExternalIdResponse get(@Nonnull String extId) throws Exception {
+    public GetContactByExternalIdResponse get(@Nonnull String extId) {
         return get(extId, null);
     }
 
@@ -88,9 +87,9 @@ public class ByExtId {
      * @param extId External (custom) ID of the contact to fetch.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetContactByExternalIdResponse get(@Nonnull String extId, @Nullable Options options) throws Exception {
+    public GetContactByExternalIdResponse get(@Nonnull String extId, @Nullable Options options) {
         GetContactByExternalIdRequest request = new GetContactByExternalIdRequest(extId);
         RequestOperation<GetContactByExternalIdRequest, GetContactByExternalIdResponse> operation
               = new GetContactByExternalId.Sync(sdkConfiguration, options, _headers);
@@ -116,9 +115,9 @@ public class ByExtId {
      * @param extId External (custom) ID of the contact to update.
      * @param contact Contact data for an Address Book entry.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateContactByExternalIdResponse update(@Nonnull String extId, @Nonnull Contact contact) throws Exception {
+    public UpdateContactByExternalIdResponse update(@Nonnull String extId, @Nonnull Contact contact) {
         return update(extId, contact, null);
     }
 
@@ -131,11 +130,11 @@ public class ByExtId {
      * @param contact Contact data for an Address Book entry.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateContactByExternalIdResponse update(
             @Nonnull String extId, @Nonnull Contact contact,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         UpdateContactByExternalIdRequest request = new UpdateContactByExternalIdRequest(extId, contact);
         RequestOperation<UpdateContactByExternalIdRequest, UpdateContactByExternalIdResponse> operation
               = new UpdateContactByExternalId.Sync(sdkConfiguration, options, _headers);
@@ -162,9 +161,9 @@ public class ByExtId {
      * 
      * @param extId External (custom) ID of the contact to remove.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteContactByExternalIdResponse delete(@Nonnull String extId) throws Exception {
+    public DeleteContactByExternalIdResponse delete(@Nonnull String extId) {
         return delete(extId, null);
     }
 
@@ -177,9 +176,9 @@ public class ByExtId {
      * @param extId External (custom) ID of the contact to remove.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteContactByExternalIdResponse delete(@Nonnull String extId, @Nullable Options options) throws Exception {
+    public DeleteContactByExternalIdResponse delete(@Nonnull String extId, @Nullable Options options) {
         DeleteContactByExternalIdRequest request = new DeleteContactByExternalIdRequest(extId);
         RequestOperation<DeleteContactByExternalIdRequest, DeleteContactByExternalIdResponse> operation
               = new DeleteContactByExternalId.Sync(sdkConfiguration, options, _headers);
@@ -209,9 +208,9 @@ public class ByExtId {
      * @param extId External (custom) ID of the contact to detach from the group.
      * @param groupId Group <code>id</code> to detach from the contact.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RemoveContactByExtIdToGroupResponse removeFromGroup(@Nonnull String extId, long groupId) throws Exception {
+    public RemoveContactByExtIdToGroupResponse removeFromGroup(@Nonnull String extId, long groupId) {
         return removeFromGroup(extId, groupId, null);
     }
 
@@ -226,11 +225,11 @@ public class ByExtId {
      * @param groupId Group <code>id</code> to detach from the contact.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public RemoveContactByExtIdToGroupResponse removeFromGroup(
             @Nonnull String extId, long groupId,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         RemoveContactByExtIdToGroupRequest request = new RemoveContactByExtIdToGroupRequest(extId, groupId);
         RequestOperation<RemoveContactByExtIdToGroupRequest, RemoveContactByExtIdToGroupResponse> operation
               = new RemoveContactByExtIdToGroup.Sync(sdkConfiguration, options, _headers);
@@ -262,9 +261,9 @@ public class ByExtId {
      * @param extId External (custom) ID of the contact to add to the group.
      * @param groupId Group <code>id</code> to associate with the contact.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddContactByExtIdToGroupResponse addToGroup(@Nonnull String extId, long groupId) throws Exception {
+    public AddContactByExtIdToGroupResponse addToGroup(@Nonnull String extId, long groupId) {
         return addToGroup(extId, groupId, null);
     }
 
@@ -280,11 +279,11 @@ public class ByExtId {
      * @param groupId Group <code>id</code> to associate with the contact.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public AddContactByExtIdToGroupResponse addToGroup(
             @Nonnull String extId, long groupId,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         AddContactByExtIdToGroupRequest request = new AddContactByExtIdToGroupRequest(extId, groupId);
         RequestOperation<AddContactByExtIdToGroupRequest, AddContactByExtIdToGroupResponse> operation
               = new AddContactByExtIdToGroup.Sync(sdkConfiguration, options, _headers);

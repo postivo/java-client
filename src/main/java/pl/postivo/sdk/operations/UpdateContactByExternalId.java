@@ -4,6 +4,7 @@
 package pl.postivo.sdk.operations;
 
 import static pl.postivo.sdk.operations.Operations.RequestOperation;
+import static pl.postivo.sdk.utils.Exceptions.unchecked;
 import static pl.postivo.sdk.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -11,8 +12,8 @@ import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.IllegalArgumentException;
 import java.lang.Object;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
@@ -23,7 +24,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-import org.openapitools.jackson.nullable.JsonNullable;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.SecuritySource;
 import pl.postivo.sdk.models.components.ContactResponse;
@@ -34,7 +34,6 @@ import pl.postivo.sdk.models.operations.UpdateContactByExternalIdResponse;
 import pl.postivo.sdk.utils.AsyncRetries;
 import pl.postivo.sdk.utils.BackoffStrategy;
 import pl.postivo.sdk.utils.Blob;
-import pl.postivo.sdk.utils.Exceptions;
 import pl.postivo.sdk.utils.HTTPClient;
 import pl.postivo.sdk.utils.HTTPRequest;
 import pl.postivo.sdk.utils.Headers;
@@ -132,7 +131,7 @@ public class UpdateContactByExternalId {
                     "json",
                     false);
             if (serializedRequestBody == null) {
-                throw new Exception("Request body is required");
+                throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json;q=1, application/problem+json;q=0")
@@ -171,7 +170,7 @@ public class UpdateContactByExternalId {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(UpdateContactByExternalIdRequest request) throws Exception {
+        public HttpResponse<InputStream> doRequest(UpdateContactByExternalIdRequest request) {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -193,12 +192,12 @@ public class UpdateContactByExternalId {
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
                     .build();
-            return onSuccess(retries.run());
+            return unchecked(() -> onSuccess(retries.run())).get();
         }
 
 
         @Override
-        public UpdateContactByExternalIdResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public UpdateContactByExternalIdResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -215,79 +214,33 @@ public class UpdateContactByExternalId {
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ContactResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withContactResponse(out);
-                    return res;
+                    return res.withContactResponse(Utils.unmarshal(response, new TypeReference<ContactResponse>() {}));
                 } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "4XX")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
-                    ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                        out.withRawResponse(response);
-                    
-                    throw out;
+                    throw ErrorResponse.from(response);
                 } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
-                    ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                        out.withRawResponse(response);
-                    
-                    throw out;
+                    throw ErrorResponse.from(response);
                 } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
-                    pl.postivo.sdk.models.components.ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withErrorResponse(out);
-                    return res;
+                    return res.withErrorResponse(Utils.unmarshal(response, new TypeReference<pl.postivo.sdk.models.components.ErrorResponse>() {}));
                 } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new APIException(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw APIException.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
     public static class Async extends Base
@@ -323,7 +276,7 @@ public class UpdateContactByExternalId {
                     .statusCodes(retryStatusCodes)
                     .scheduler(retryScheduler)
                     .build();
-            return retries.retry(() -> Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+            return retries.retry(() -> unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                             .handle((resp, err) -> {
                                 if (err != null) {
                                     return onError(null, err);
@@ -356,82 +309,36 @@ public class UpdateContactByExternalId {
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        try {
-                            ContactResponse out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            res.withContactResponse(out);
-                            return res;
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
+                    return Utils.unmarshalAsync(response, new TypeReference<ContactResponse>() {})
+                            .thenApply(res::withContactResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "4XX")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        pl.postivo.sdk.models.errors.async.ErrorResponse out;
-                        try {
-                            out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            out.withRawResponse(response);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                        throw out;
-                    });
+                    return ErrorResponse.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        pl.postivo.sdk.models.errors.async.ErrorResponse out;
-                        try {
-                            out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            out.withRawResponse(response);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                        throw out;
-                    });
+                    return ErrorResponse.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        try {
-                            pl.postivo.sdk.models.components.ErrorResponse out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            res.withErrorResponse(out);
-                            return res;
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
+                    return Utils.unmarshalAsync(response, new TypeReference<pl.postivo.sdk.models.components.ErrorResponse>() {})
+                            .thenApply(res::withErrorResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            
             return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }

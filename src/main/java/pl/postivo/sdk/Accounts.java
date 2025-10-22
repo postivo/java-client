@@ -8,7 +8,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import pl.postivo.sdk.models.operations.GetAccountDetailsRequestBuilder;
 import pl.postivo.sdk.models.operations.GetAccountDetailsResponse;
@@ -61,9 +60,9 @@ public class Accounts {
      * the <a href="https://panel.postivo.pl">User Panel</a>, you can create as many subaccounts as needed.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAccountDetailsResponse getDirect() throws Exception {
+    public GetAccountDetailsResponse getDirect() {
         return get(null);
     }
 
@@ -76,9 +75,9 @@ public class Accounts {
      * 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAccountDetailsResponse get(@Nullable Options options) throws Exception {
+    public GetAccountDetailsResponse get(@Nullable Options options) {
         RequestlessOperation<GetAccountDetailsResponse> operation
             = new GetAccountDetails.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -110,9 +109,9 @@ public class Accounts {
      * 
      * @param userLogin Login of the subaccount (user) for which to retrieve data.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetSubaccountDetailsResponse getSubaccount(@Nonnull String userLogin) throws Exception {
+    public GetSubaccountDetailsResponse getSubaccount(@Nonnull String userLogin) {
         return getSubaccount(userLogin, null);
     }
 
@@ -128,9 +127,9 @@ public class Accounts {
      * @param userLogin Login of the subaccount (user) for which to retrieve data.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetSubaccountDetailsResponse getSubaccount(@Nonnull String userLogin, @Nullable Options options) throws Exception {
+    public GetSubaccountDetailsResponse getSubaccount(@Nonnull String userLogin, @Nullable Options options) {
         GetSubaccountDetailsRequest request = new GetSubaccountDetailsRequest(userLogin);
         RequestOperation<GetSubaccountDetailsRequest, GetSubaccountDetailsResponse> operation
               = new GetSubaccountDetails.Sync(sdkConfiguration, options, _headers);

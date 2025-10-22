@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.Long;
 import pl.postivo.sdk.models.components.Contact;
 import pl.postivo.sdk.models.operations.AddContactRequestBuilder;
@@ -83,9 +82,9 @@ public class Contacts {
      * <p>Retrieve a paginated list of all contacts defined in your account’s **Address Book**.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListContactsResponse listDirect() throws Exception {
+    public ListContactsResponse listDirect() {
         return list(null, null, null);
     }
 
@@ -98,11 +97,11 @@ public class Contacts {
      * @param limit Results limit per page.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListContactsResponse list(
             @Nullable Long page, @Nullable Long limit,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         ListContactsRequest request = new ListContactsRequest(page, limit);
         RequestOperation<ListContactsRequest, ListContactsResponse> operation
               = new ListContacts.Sync(sdkConfiguration, options, _headers);
@@ -127,9 +126,9 @@ public class Contacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddContactResponse add(@Nonnull Contact request) throws Exception {
+    public AddContactResponse add(@Nonnull Contact request) {
         return add(request, null);
     }
 
@@ -141,9 +140,9 @@ public class Contacts {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddContactResponse add(@Nonnull Contact request, @Nullable Options options) throws Exception {
+    public AddContactResponse add(@Nonnull Contact request, @Nullable Options options) {
         RequestOperation<Contact, AddContactResponse> operation
               = new AddContact.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -167,9 +166,9 @@ public class Contacts {
      * 
      * @param id Global contact <code>id</code> to fetch.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetContactByIdResponse get(long id) throws Exception {
+    public GetContactByIdResponse get(long id) {
         return get(id, null);
     }
 
@@ -181,9 +180,9 @@ public class Contacts {
      * @param id Global contact <code>id</code> to fetch.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetContactByIdResponse get(long id, @Nullable Options options) throws Exception {
+    public GetContactByIdResponse get(long id, @Nullable Options options) {
         GetContactByIdRequest request = new GetContactByIdRequest(id);
         RequestOperation<GetContactByIdRequest, GetContactByIdResponse> operation
               = new GetContactById.Sync(sdkConfiguration, options, _headers);
@@ -209,9 +208,9 @@ public class Contacts {
      * @param id ID of the contact to update.
      * @param contact Contact data for an Address Book entry.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateContactResponse update(long id, @Nonnull Contact contact) throws Exception {
+    public UpdateContactResponse update(long id, @Nonnull Contact contact) {
         return update(id, contact, null);
     }
 
@@ -224,11 +223,11 @@ public class Contacts {
      * @param contact Contact data for an Address Book entry.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateContactResponse update(
             long id, @Nonnull Contact contact,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         UpdateContactRequest request = new UpdateContactRequest(id, contact);
         RequestOperation<UpdateContactRequest, UpdateContactResponse> operation
               = new UpdateContact.Sync(sdkConfiguration, options, _headers);
@@ -253,9 +252,9 @@ public class Contacts {
      * 
      * @param id Global contact <code>id</code> to remove.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteContactResponse delete(long id) throws Exception {
+    public DeleteContactResponse delete(long id) {
         return delete(id, null);
     }
 
@@ -267,9 +266,9 @@ public class Contacts {
      * @param id Global contact <code>id</code> to remove.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteContactResponse delete(long id, @Nullable Options options) throws Exception {
+    public DeleteContactResponse delete(long id, @Nullable Options options) {
         DeleteContactRequest request = new DeleteContactRequest(id);
         RequestOperation<DeleteContactRequest, DeleteContactResponse> operation
               = new DeleteContact.Sync(sdkConfiguration, options, _headers);
@@ -301,9 +300,9 @@ public class Contacts {
      * @param id Global contact <code>id</code> to detach from the group.
      * @param groupId Group <code>id</code> to detach from the contact.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RemoveContactFromGroupResponse removeFromGroup(long id, long groupId) throws Exception {
+    public RemoveContactFromGroupResponse removeFromGroup(long id, long groupId) {
         return removeFromGroup(id, groupId, null);
     }
 
@@ -319,11 +318,11 @@ public class Contacts {
      * @param groupId Group <code>id</code> to detach from the contact.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public RemoveContactFromGroupResponse removeFromGroup(
             long id, long groupId,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         RemoveContactFromGroupRequest request = new RemoveContactFromGroupRequest(id, groupId);
         RequestOperation<RemoveContactFromGroupRequest, RemoveContactFromGroupResponse> operation
               = new RemoveContactFromGroup.Sync(sdkConfiguration, options, _headers);
@@ -355,9 +354,9 @@ public class Contacts {
      * @param id Global contact <code>id</code> to add to the group.
      * @param groupId Group <code>id</code> to associate with the contact.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddContactToGroupResponse addToGroup(long id, long groupId) throws Exception {
+    public AddContactToGroupResponse addToGroup(long id, long groupId) {
         return addToGroup(id, groupId, null);
     }
 
@@ -373,11 +372,11 @@ public class Contacts {
      * @param groupId Group <code>id</code> to associate with the contact.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public AddContactToGroupResponse addToGroup(
             long id, long groupId,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         AddContactToGroupRequest request = new AddContactToGroupRequest(id, groupId);
         RequestOperation<AddContactToGroupRequest, AddContactToGroupResponse> operation
               = new AddContactToGroup.Sync(sdkConfiguration, options, _headers);

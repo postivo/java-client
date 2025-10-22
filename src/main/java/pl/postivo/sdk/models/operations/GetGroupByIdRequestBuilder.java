@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.GetGroupById;
 import pl.postivo.sdk.utils.Headers;
@@ -58,7 +57,7 @@ public class GetGroupByIdRequestBuilder {
     *
     * @return The response from the server.
     */
-    public GetGroupByIdResponse call() throws Exception {
+    public GetGroupByIdResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<GetGroupByIdRequest, GetGroupByIdResponse> operation
               = new GetGroupById.Sync(sdkConfiguration, options, _headers);

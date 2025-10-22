@@ -8,7 +8,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.models.components.Sender;
 import pl.postivo.sdk.models.operations.AddSenderRequestBuilder;
 import pl.postivo.sdk.models.operations.AddSenderResponse;
@@ -73,9 +72,9 @@ public class Senders {
      * <p>Inactive senders are also returned (<code>active: false</code>), but cannot be used until activated.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSendersResponse listDirect() throws Exception {
+    public ListSendersResponse listDirect() {
         return list(null);
     }
 
@@ -90,9 +89,9 @@ public class Senders {
      * 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSendersResponse list(@Nullable Options options) throws Exception {
+    public ListSendersResponse list(@Nullable Options options) {
         RequestlessOperation<ListSendersResponse> operation
             = new ListSenders.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -126,9 +125,9 @@ public class Senders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddSenderResponse add(@Nonnull Sender request) throws Exception {
+    public AddSenderResponse add(@Nonnull Sender request) {
         return add(request, null);
     }
 
@@ -145,9 +144,9 @@ public class Senders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddSenderResponse add(@Nonnull Sender request, @Nullable Options options) throws Exception {
+    public AddSenderResponse add(@Nonnull Sender request, @Nullable Options options) {
         RequestOperation<Sender, AddSenderResponse> operation
               = new AddSender.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -173,9 +172,9 @@ public class Senders {
      * 
      * @param id Sender <code>id</code> to remove.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteSenderResponse delete(long id) throws Exception {
+    public DeleteSenderResponse delete(long id) {
         return delete(id, null);
     }
 
@@ -188,9 +187,9 @@ public class Senders {
      * @param id Sender <code>id</code> to remove.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteSenderResponse delete(long id, @Nullable Options options) throws Exception {
+    public DeleteSenderResponse delete(long id, @Nullable Options options) {
         DeleteSenderRequest request = new DeleteSenderRequest(id);
         RequestOperation<DeleteSenderRequest, DeleteSenderResponse> operation
               = new DeleteSender.Sync(sdkConfiguration, options, _headers);
@@ -218,9 +217,9 @@ public class Senders {
      * @param id ID of the sender to verify.
      * @param requestBody Verification code received in the letter.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VerifySenderResponse verify(long id, @Nonnull VerifySenderRequestBody requestBody) throws Exception {
+    public VerifySenderResponse verify(long id, @Nonnull VerifySenderRequestBody requestBody) {
         return verify(id, requestBody, null);
     }
 
@@ -234,11 +233,11 @@ public class Senders {
      * @param requestBody Verification code received in the letter.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VerifySenderResponse verify(
             long id, @Nonnull VerifySenderRequestBody requestBody,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         VerifySenderRequest request = new VerifySenderRequest(id, requestBody);
         RequestOperation<VerifySenderRequest, VerifySenderResponse> operation
               = new VerifySender.Sync(sdkConfiguration, options, _headers);

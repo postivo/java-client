@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.GetContactByExternalId;
@@ -60,7 +59,7 @@ public class GetContactByExternalIdRequestBuilder {
     *
     * @return The response from the server.
     */
-    public GetContactByExternalIdResponse call() throws Exception {
+    public GetContactByExternalIdResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<GetContactByExternalIdRequest, GetContactByExternalIdResponse> operation
               = new GetContactByExternalId.Sync(sdkConfiguration, options, _headers);

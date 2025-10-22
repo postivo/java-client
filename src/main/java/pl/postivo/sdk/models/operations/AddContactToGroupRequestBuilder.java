@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.AddContactToGroup;
 import pl.postivo.sdk.utils.Headers;
@@ -64,7 +63,7 @@ public class AddContactToGroupRequestBuilder {
     *
     * @return The response from the server.
     */
-    public AddContactToGroupResponse call() throws Exception {
+    public AddContactToGroupResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<AddContactToGroupRequest, AddContactToGroupResponse> operation
               = new AddContactToGroup.Sync(sdkConfiguration, options, _headers);

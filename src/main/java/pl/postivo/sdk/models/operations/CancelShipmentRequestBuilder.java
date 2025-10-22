@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import pl.postivo.sdk.SDKConfiguration;
@@ -61,7 +60,7 @@ public class CancelShipmentRequestBuilder {
     *
     * @return The response from the server.
     */
-    public CancelShipmentResponse call() throws Exception {
+    public CancelShipmentResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<CancelShipmentRequest, CancelShipmentResponse> operation
               = new CancelShipment.Sync(sdkConfiguration, options, _headers);

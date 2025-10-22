@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.models.components.Sender;
 import pl.postivo.sdk.operations.AddSender;
@@ -53,7 +52,7 @@ public class AddSenderRequestBuilder {
     *
     * @return The response from the server.
     */
-    public AddSenderResponse call() throws Exception {
+    public AddSenderResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<Sender, AddSenderResponse> operation
               = new AddSender.Sync(sdkConfiguration, options, _headers);

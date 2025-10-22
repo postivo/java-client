@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.GetSubaccountDetails;
@@ -60,7 +59,7 @@ public class GetSubaccountDetailsRequestBuilder {
     *
     * @return The response from the server.
     */
-    public GetSubaccountDetailsResponse call() throws Exception {
+    public GetSubaccountDetailsResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<GetSubaccountDetailsRequest, GetSubaccountDetailsResponse> operation
               = new GetSubaccountDetails.Sync(sdkConfiguration, options, _headers);

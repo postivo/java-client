@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -40,22 +41,32 @@ public class GroupResponse {
     @JsonProperty("id")
     private long id;
 
+    /**
+     * Indicates whether the group data was inherited from a main account’s shared Address Book.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("inherited")
+    private Boolean inherited;
+
     @JsonCreator
     public GroupResponse(
             @JsonProperty("name") @Nonnull String name,
             @JsonProperty("description") @Nullable JsonNullable<String> description,
-            @JsonProperty("id") long id) {
+            @JsonProperty("id") long id,
+            @JsonProperty("inherited") @Nullable Boolean inherited) {
         this.name = Optional.ofNullable(name)
             .orElseThrow(() -> new IllegalArgumentException("name cannot be null"));
         this.description = Optional.ofNullable(description)
             .orElse(JsonNullable.undefined());
         this.id = id;
+        this.inherited = inherited;
     }
     
     public GroupResponse(
             @Nonnull String name,
             long id) {
-        this(name, null, id);
+        this(name, null, id,
+            null);
     }
 
     /**
@@ -77,6 +88,13 @@ public class GroupResponse {
      */
     public long id() {
         return this.id;
+    }
+
+    /**
+     * Indicates whether the group data was inherited from a main account’s shared Address Book.
+     */
+    public Optional<Boolean> inherited() {
+        return Optional.ofNullable(this.inherited);
     }
 
     public static Builder builder() {
@@ -111,6 +129,15 @@ public class GroupResponse {
     }
 
 
+    /**
+     * Indicates whether the group data was inherited from a main account’s shared Address Book.
+     */
+    public GroupResponse withInherited(@Nullable Boolean inherited) {
+        this.inherited = inherited;
+        return this;
+    }
+
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -123,13 +150,15 @@ public class GroupResponse {
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
-            Utils.enhancedDeepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.inherited, other.inherited);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, description, id);
+            name, description, id,
+            inherited);
     }
     
     @Override
@@ -137,7 +166,8 @@ public class GroupResponse {
         return Utils.toString(GroupResponse.class,
                 "name", name,
                 "description", description,
-                "id", id);
+                "id", id,
+                "inherited", inherited);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -148,6 +178,8 @@ public class GroupResponse {
         private JsonNullable<String> description;
 
         private long id;
+
+        private Boolean inherited;
 
         private Builder() {
           // force use of static builder() method
@@ -177,9 +209,18 @@ public class GroupResponse {
             return this;
         }
 
+        /**
+         * Indicates whether the group data was inherited from a main account’s shared Address Book.
+         */
+        public Builder inherited(@Nullable Boolean inherited) {
+            this.inherited = inherited;
+            return this;
+        }
+
         public GroupResponse build() {
             return new GroupResponse(
-                name, description, id);
+                name, description, id,
+                inherited);
         }
 
     }

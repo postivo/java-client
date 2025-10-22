@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestlessOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.ListGroups;
 import pl.postivo.sdk.utils.Headers;
@@ -42,7 +41,7 @@ public class ListGroupsRequestBuilder {
     *
     * @return The response from the server.
     */
-    public ListGroupsResponse call() throws Exception {
+    public ListGroupsResponse call() {
         Options options = optionsBuilder.build();
         RequestlessOperation<ListGroupsResponse> operation
             = new ListGroups.Sync(sdkConfiguration, options, _headers);

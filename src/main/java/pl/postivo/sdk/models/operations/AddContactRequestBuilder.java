@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.models.components.Contact;
 import pl.postivo.sdk.operations.AddContact;
@@ -53,7 +52,7 @@ public class AddContactRequestBuilder {
     *
     * @return The response from the server.
     */
-    public AddContactResponse call() throws Exception {
+    public AddContactResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<Contact, AddContactResponse> operation
               = new AddContact.Sync(sdkConfiguration, options, _headers);

@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestlessOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.ListMetadata;
 import pl.postivo.sdk.utils.Headers;
@@ -42,7 +41,7 @@ public class ListMetadataRequestBuilder {
     *
     * @return The response from the server.
     */
-    public ListMetadataResponse call() throws Exception {
+    public ListMetadataResponse call() {
         Options options = optionsBuilder.build();
         RequestlessOperation<ListMetadataResponse> operation
             = new ListMetadata.Sync(sdkConfiguration, options, _headers);

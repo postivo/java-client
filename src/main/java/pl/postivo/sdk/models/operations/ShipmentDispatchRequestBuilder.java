@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.models.components.Shipment;
 import pl.postivo.sdk.operations.ShipmentDispatch;
@@ -53,7 +52,7 @@ public class ShipmentDispatchRequestBuilder {
     *
     * @return The response from the server.
     */
-    public ShipmentDispatchResponse call() throws Exception {
+    public ShipmentDispatchResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<Shipment, ShipmentDispatchResponse> operation
               = new ShipmentDispatch.Sync(sdkConfiguration, options, _headers);

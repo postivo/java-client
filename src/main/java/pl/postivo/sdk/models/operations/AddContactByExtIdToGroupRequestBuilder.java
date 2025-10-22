@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.AddContactByExtIdToGroup;
@@ -66,7 +65,7 @@ public class AddContactByExtIdToGroupRequestBuilder {
     *
     * @return The response from the server.
     */
-    public AddContactByExtIdToGroupResponse call() throws Exception {
+    public AddContactByExtIdToGroupResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<AddContactByExtIdToGroupRequest, AddContactByExtIdToGroupResponse> operation
               = new AddContactByExtIdToGroup.Sync(sdkConfiguration, options, _headers);

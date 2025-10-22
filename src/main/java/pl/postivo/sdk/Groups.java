@@ -8,7 +8,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.models.components.Group;
 import pl.postivo.sdk.models.operations.AddGroupRequestBuilder;
 import pl.postivo.sdk.models.operations.AddGroupResponse;
@@ -69,9 +68,9 @@ public class Groups {
      * <p>Retrieve the full list of groups defined in your account’s Address Book.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListGroupsResponse listDirect() throws Exception {
+    public ListGroupsResponse listDirect() {
         return list(null);
     }
 
@@ -82,9 +81,9 @@ public class Groups {
      * 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListGroupsResponse list(@Nullable Options options) throws Exception {
+    public ListGroupsResponse list(@Nullable Options options) {
         RequestlessOperation<ListGroupsResponse> operation
             = new ListGroups.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -108,9 +107,9 @@ public class Groups {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddGroupResponse add(@Nonnull Group request) throws Exception {
+    public AddGroupResponse add(@Nonnull Group request) {
         return add(request, null);
     }
 
@@ -122,9 +121,9 @@ public class Groups {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddGroupResponse add(@Nonnull Group request, @Nullable Options options) throws Exception {
+    public AddGroupResponse add(@Nonnull Group request, @Nullable Options options) {
         RequestOperation<Group, AddGroupResponse> operation
               = new AddGroup.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -150,9 +149,9 @@ public class Groups {
      * 
      * @param id Group id to fetch
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetGroupByIdResponse get(long id) throws Exception {
+    public GetGroupByIdResponse get(long id) {
         return get(id, null);
     }
 
@@ -165,9 +164,9 @@ public class Groups {
      * @param id Group id to fetch
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetGroupByIdResponse get(long id, @Nullable Options options) throws Exception {
+    public GetGroupByIdResponse get(long id, @Nullable Options options) {
         GetGroupByIdRequest request = new GetGroupByIdRequest(id);
         RequestOperation<GetGroupByIdRequest, GetGroupByIdResponse> operation
               = new GetGroupById.Sync(sdkConfiguration, options, _headers);
@@ -193,9 +192,9 @@ public class Groups {
      * @param id Group <code>id</code> to update.
      * @param group Contact group definition in the Address Book.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateGroupResponse update(long id, @Nonnull Group group) throws Exception {
+    public UpdateGroupResponse update(long id, @Nonnull Group group) {
         return update(id, group, null);
     }
 
@@ -208,11 +207,11 @@ public class Groups {
      * @param group Contact group definition in the Address Book.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateGroupResponse update(
             long id, @Nonnull Group group,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         UpdateGroupRequest request = new UpdateGroupRequest(id, group);
         RequestOperation<UpdateGroupRequest, UpdateGroupResponse> operation
               = new UpdateGroup.Sync(sdkConfiguration, options, _headers);
@@ -247,9 +246,9 @@ public class Groups {
      * 
      * @param id Group <code>id</code> to remove.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteGroupResponse delete(long id) throws Exception {
+    public DeleteGroupResponse delete(long id) {
         return delete(id, null, null);
     }
 
@@ -267,11 +266,11 @@ public class Groups {
      * @param contacts How to handle contacts that belong to the group.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeleteGroupResponse delete(
             long id, @Nullable ContactHandling contacts,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         DeleteGroupRequest request = new DeleteGroupRequest(id, contacts);
         RequestOperation<DeleteGroupRequest, DeleteGroupResponse> operation
               = new DeleteGroup.Sync(sdkConfiguration, options, _headers);

@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.GetContactById;
 import pl.postivo.sdk.utils.Headers;
@@ -58,7 +57,7 @@ public class GetContactByIdRequestBuilder {
     *
     * @return The response from the server.
     */
-    public GetContactByIdResponse call() throws Exception {
+    public GetContactByIdResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<GetContactByIdRequest, GetContactByIdResponse> operation
               = new GetContactById.Sync(sdkConfiguration, options, _headers);

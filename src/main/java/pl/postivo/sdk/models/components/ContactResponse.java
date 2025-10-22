@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import jakarta.annotation.Nullable;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -109,6 +110,13 @@ public class ContactResponse {
     @JsonProperty("id")
     private long id;
 
+    /**
+     * Indicates whether the contact data was inherited from a main account’s shared Address Book.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("inherited")
+    private Boolean inherited;
+
     @JsonCreator
     public ContactResponse(
             @JsonProperty("name") @Nullable String name,
@@ -122,7 +130,8 @@ public class ContactResponse {
             @JsonProperty("phone_number") @Nullable JsonNullable<String> phoneNumber,
             @JsonProperty("ext_id") @Nullable JsonNullable<String> extId,
             @JsonProperty("group_ids") @Nullable JsonNullable<List<Long>> groupIds,
-            @JsonProperty("id") long id) {
+            @JsonProperty("id") long id,
+            @JsonProperty("inherited") @Nullable Boolean inherited) {
         this.name = JsonNullable.of(name);
         this.name2 = Optional.ofNullable(name2)
             .orElse(JsonNullable.undefined());
@@ -142,6 +151,7 @@ public class ContactResponse {
         this.groupIds = Optional.ofNullable(groupIds)
             .orElse(JsonNullable.undefined());
         this.id = id;
+        this.inherited = inherited;
     }
     
     public ContactResponse(
@@ -149,7 +159,8 @@ public class ContactResponse {
         this(null, null, null,
             null, null, null,
             null, null, null,
-            null, null, id);
+            null, null, id,
+            null);
     }
 
     /**
@@ -236,6 +247,13 @@ public class ContactResponse {
      */
     public long id() {
         return this.id;
+    }
+
+    /**
+     * Indicates whether the contact data was inherited from a main account’s shared Address Book.
+     */
+    public Optional<Boolean> inherited() {
+        return Optional.ofNullable(this.inherited);
     }
 
     public static Builder builder() {
@@ -353,6 +371,15 @@ public class ContactResponse {
     }
 
 
+    /**
+     * Indicates whether the contact data was inherited from a main account’s shared Address Book.
+     */
+    public ContactResponse withInherited(@Nullable Boolean inherited) {
+        this.inherited = inherited;
+        return this;
+    }
+
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -374,7 +401,8 @@ public class ContactResponse {
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
             Utils.enhancedDeepEquals(this.extId, other.extId) &&
             Utils.enhancedDeepEquals(this.groupIds, other.groupIds) &&
-            Utils.enhancedDeepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.inherited, other.inherited);
     }
     
     @Override
@@ -383,7 +411,8 @@ public class ContactResponse {
             name, name2, address,
             homeNumber, flatNumber, postCode,
             city, country, phoneNumber,
-            extId, groupIds, id);
+            extId, groupIds, id,
+            inherited);
     }
     
     @Override
@@ -400,7 +429,8 @@ public class ContactResponse {
                 "phoneNumber", phoneNumber,
                 "extId", extId,
                 "groupIds", groupIds,
-                "id", id);
+                "id", id,
+                "inherited", inherited);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -429,6 +459,8 @@ public class ContactResponse {
         private JsonNullable<List<Long>> groupIds;
 
         private long id;
+
+        private Boolean inherited;
 
         private Builder() {
           // force use of static builder() method
@@ -532,12 +564,21 @@ public class ContactResponse {
             return this;
         }
 
+        /**
+         * Indicates whether the contact data was inherited from a main account’s shared Address Book.
+         */
+        public Builder inherited(@Nullable Boolean inherited) {
+            this.inherited = inherited;
+            return this;
+        }
+
         public ContactResponse build() {
             return new ContactResponse(
                 name, name2, address,
                 homeNumber, flatNumber, postCode,
                 city, country, phoneNumber,
-                extId, groupIds, id);
+                extId, groupIds, id,
+                inherited);
         }
 
 

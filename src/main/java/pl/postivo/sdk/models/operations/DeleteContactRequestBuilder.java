@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.DeleteContact;
 import pl.postivo.sdk.utils.Headers;
@@ -58,7 +57,7 @@ public class DeleteContactRequestBuilder {
     *
     * @return The response from the server.
     */
-    public DeleteContactResponse call() throws Exception {
+    public DeleteContactResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<DeleteContactRequest, DeleteContactResponse> operation
               = new DeleteContact.Sync(sdkConfiguration, options, _headers);

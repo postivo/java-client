@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.DeleteContactByExternalId;
@@ -60,7 +59,7 @@ public class DeleteContactByExternalIdRequestBuilder {
     *
     * @return The response from the server.
     */
-    public DeleteContactByExternalIdResponse call() throws Exception {
+    public DeleteContactByExternalIdResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<DeleteContactByExternalIdRequest, DeleteContactByExternalIdResponse> operation
               = new DeleteContactByExternalId.Sync(sdkConfiguration, options, _headers);

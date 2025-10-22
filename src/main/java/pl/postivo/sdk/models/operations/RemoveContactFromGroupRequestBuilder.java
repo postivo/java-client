@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.RemoveContactFromGroup;
 import pl.postivo.sdk.utils.Headers;
@@ -64,7 +63,7 @@ public class RemoveContactFromGroupRequestBuilder {
     *
     * @return The response from the server.
     */
-    public RemoveContactFromGroupResponse call() throws Exception {
+    public RemoveContactFromGroupResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<RemoveContactFromGroupRequest, RemoveContactFromGroupResponse> operation
               = new RemoveContactFromGroup.Sync(sdkConfiguration, options, _headers);

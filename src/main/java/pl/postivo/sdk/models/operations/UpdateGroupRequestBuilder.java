@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.models.components.Group;
 import pl.postivo.sdk.operations.UpdateGroup;
@@ -66,7 +65,7 @@ public class UpdateGroupRequestBuilder {
     *
     * @return The response from the server.
     */
-    public UpdateGroupResponse call() throws Exception {
+    public UpdateGroupResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<UpdateGroupRequest, UpdateGroupResponse> operation
               = new UpdateGroup.Sync(sdkConfiguration, options, _headers);

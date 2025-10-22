@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import pl.postivo.sdk.models.components.Shipment;
@@ -79,9 +78,9 @@ public class Shipments {
      * 
      * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetStatusResponse status(@Nonnull List<String> ids) throws Exception {
+    public GetStatusResponse status(@Nonnull List<String> ids) {
         return status(ids, null);
     }
 
@@ -97,9 +96,9 @@ public class Shipments {
      * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetStatusResponse status(@Nonnull List<String> ids, @Nullable Options options) throws Exception {
+    public GetStatusResponse status(@Nonnull List<String> ids, @Nullable Options options) {
         GetStatusRequest request = new GetStatusRequest(ids);
         RequestOperation<GetStatusRequest, GetStatusResponse> operation
               = new GetStatus.Sync(sdkConfiguration, options, _headers);
@@ -138,9 +137,9 @@ public class Shipments {
      * 
      * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CancelShipmentResponse cancel(@Nonnull List<String> ids) throws Exception {
+    public CancelShipmentResponse cancel(@Nonnull List<String> ids) {
         return cancel(ids, null);
     }
 
@@ -159,9 +158,9 @@ public class Shipments {
      * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CancelShipmentResponse cancel(@Nonnull List<String> ids, @Nullable Options options) throws Exception {
+    public CancelShipmentResponse cancel(@Nonnull List<String> ids, @Nullable Options options) {
         CancelShipmentRequest request = new CancelShipmentRequest(ids);
         RequestOperation<CancelShipmentRequest, CancelShipmentResponse> operation
               = new CancelShipment.Sync(sdkConfiguration, options, _headers);
@@ -200,9 +199,9 @@ public class Shipments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ShipmentDispatchResponse dispatch(@Nonnull Shipment request) throws Exception {
+    public ShipmentDispatchResponse dispatch(@Nonnull Shipment request) {
         return dispatch(request, null);
     }
 
@@ -221,9 +220,9 @@ public class Shipments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ShipmentDispatchResponse dispatch(@Nonnull Shipment request, @Nullable Options options) throws Exception {
+    public ShipmentDispatchResponse dispatch(@Nonnull Shipment request, @Nullable Options options) {
         RequestOperation<Shipment, ShipmentDispatchResponse> operation
               = new ShipmentDispatch.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -256,9 +255,9 @@ public class Shipments {
      * @param id Single shipment ID assigned by the system when the shipment was created.
      * @param type Type of document/certificate to generate.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetDocumentsResponse documents(@Nonnull String id, @Nonnull DocumentType type) throws Exception {
+    public GetDocumentsResponse documents(@Nonnull String id, @Nonnull DocumentType type) {
         return documents(id, type, null);
     }
 
@@ -275,11 +274,11 @@ public class Shipments {
      * @param type Type of document/certificate to generate.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetDocumentsResponse documents(
             @Nonnull String id, @Nonnull DocumentType type,
-            @Nullable Options options) throws Exception {
+            @Nullable Options options) {
         GetDocumentsRequest request = new GetDocumentsRequest(id, type);
         RequestOperation<GetDocumentsRequest, GetDocumentsResponse> operation
               = new GetDocuments.Sync(sdkConfiguration, options, _headers);
@@ -318,9 +317,9 @@ public class Shipments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ShipmentPriceResponse price(@Nonnull Shipment request) throws Exception {
+    public ShipmentPriceResponse price(@Nonnull Shipment request) {
         return price(request, null);
     }
 
@@ -339,9 +338,9 @@ public class Shipments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ShipmentPriceResponse price(@Nonnull Shipment request, @Nullable Options options) throws Exception {
+    public ShipmentPriceResponse price(@Nonnull Shipment request, @Nullable Options options) {
         RequestOperation<Shipment, ShipmentPriceResponse> operation
               = new ShipmentPrice.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

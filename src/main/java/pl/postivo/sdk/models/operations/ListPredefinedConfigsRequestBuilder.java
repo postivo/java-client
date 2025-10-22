@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestlessOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.ListPredefinedConfigs;
 import pl.postivo.sdk.utils.Headers;
@@ -42,7 +41,7 @@ public class ListPredefinedConfigsRequestBuilder {
     *
     * @return The response from the server.
     */
-    public ListPredefinedConfigsResponse call() throws Exception {
+    public ListPredefinedConfigsResponse call() {
         Options options = optionsBuilder.build();
         RequestlessOperation<ListPredefinedConfigsResponse> operation
             = new ListPredefinedConfigs.Sync(sdkConfiguration, options, _headers);

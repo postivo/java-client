@@ -6,7 +6,6 @@ package pl.postivo.sdk;
 import static pl.postivo.sdk.operations.Operations.RequestlessOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.models.operations.PingRequestBuilder;
 import pl.postivo.sdk.models.operations.PingResponse;
 import pl.postivo.sdk.operations.Ping;
@@ -54,9 +53,9 @@ public class Common {
      * version.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PingResponse pingDirect() throws Exception {
+    public PingResponse pingDirect() {
         return ping(null);
     }
 
@@ -68,9 +67,9 @@ public class Common {
      * 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PingResponse ping(@Nullable Options options) throws Exception {
+    public PingResponse ping(@Nullable Options options) {
         RequestlessOperation<PingResponse> operation
             = new Ping.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());

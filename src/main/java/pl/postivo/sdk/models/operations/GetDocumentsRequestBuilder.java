@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.String;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.GetDocuments;
@@ -66,7 +65,7 @@ public class GetDocumentsRequestBuilder {
     *
     * @return The response from the server.
     */
-    public GetDocumentsResponse call() throws Exception {
+    public GetDocumentsResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<GetDocumentsRequest, GetDocumentsResponse> operation
               = new GetDocuments.Sync(sdkConfiguration, options, _headers);

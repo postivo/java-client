@@ -6,7 +6,6 @@ package pl.postivo.sdk.models.operations;
 import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import java.lang.Long;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.operations.ListContacts;
@@ -65,7 +64,7 @@ public class ListContactsRequestBuilder {
     *
     * @return The response from the server.
     */
-    public ListContactsResponse call() throws Exception {
+    public ListContactsResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<ListContactsRequest, ListContactsResponse> operation
               = new ListContacts.Sync(sdkConfiguration, options, _headers);

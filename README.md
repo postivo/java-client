@@ -26,6 +26,7 @@ You can also refer to the [REST API v1 documentation](https://api.postivo.pl/res
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
 * [Development](#development)
   * [Maturity](#maturity)
@@ -44,7 +45,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'pl.postivo:client:0.0.10'
+implementation 'pl.postivo:client:0.1.0'
 ```
 
 Maven:
@@ -52,7 +53,7 @@ Maven:
 <dependency>
     <groupId>pl.postivo</groupId>
     <artifactId>client</artifactId>
-    <version>0.0.10</version>
+    <version>0.1.0</version>
 </dependency>
 ```
 
@@ -487,15 +488,19 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `get` method throws the following exceptions:
 
-| Error Type                  | Status Code   | Content Type             |
-| --------------------------- | ------------- | ------------------------ |
-| models/errors/ErrorResponse | 401, 403, 4XX | application/problem+json |
-| models/errors/ErrorResponse | 5XX           | application/problem+json |
+[`ClientException`](./src/main/java/models/errors/ClientException.java) is the base class for all HTTP error responses. It has the following properties:
+
+| Method           | Type                        | Description                                                              |
+| ---------------- | --------------------------- | ------------------------------------------------------------------------ |
+| `message()`      | `String`                    | Error message                                                            |
+| `code()`         | `int`                       | HTTP response status code eg `404`                                       |
+| `headers`        | `Map<String, List<String>>` | HTTP response headers                                                    |
+| `body()`         | `byte[]`                    | HTTP body as a byte array. Can be empty array if no body is returned.    |
+| `bodyAsString()` | `String`                    | HTTP body as a UTF-8 string. Can be empty string if no body is returned. |
+| `rawResponse()`  | `HttpResponse<?>`           | Raw HTTP response (body already read and not available for re-read)      |
 
 ### Example
-
 ```java
 package hello.world;
 
@@ -521,6 +526,25 @@ public class Application {
     }
 }
 ```
+
+### Error Classes
+**Primary errors:**
+* [`ClientException`](./src/main/java/models/errors/ClientException.java): The base class for HTTP error responses.
+  * [`pl.postivo.sdk.models.errors.ErrorResponse`](./src/main/java/models/errors/pl.postivo.sdk.models.errors.ErrorResponse.java): Problem Details object (RFC 9457) describing the error.
+
+<details><summary>Less common errors (6)</summary>
+
+<br />
+
+**Network errors:**
+* `java.io.IOException` (always wrapped by `java.io.UncheckedIOException`). Commonly encountered subclasses of
+`IOException` include `java.net.ConnectException`, `java.net.SocketTimeoutException`, `EOFException` (there are
+many more subclasses in the JDK platform).
+
+**Inherit from [`ClientException`](./src/main/java/models/errors/ClientException.java)**:
+
+
+</details>
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -594,6 +618,142 @@ public class Application {
 }
 ```
 <!-- End Server Selection [server] -->
+
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The Java SDK makes API calls using an `HTTPClient` that wraps the native
+[HttpClient](https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html). This
+client provides the ability to attach hooks around the request lifecycle that can be used to modify the request or handle
+errors and response.
+
+The `HTTPClient` interface allows you to either use the default `SpeakeasyHTTPClient` that comes with the SDK,
+or provide your own custom implementation with customized configuration such as custom executors, SSL context,
+connection pools, and other HTTP client settings.
+
+The interface provides synchronous (`send`) methods and asynchronous (`sendAsync`) methods. The `sendAsync` method
+is used to power the async SDK methods and returns a `CompletableFuture<HttpResponse<Blob>>` for non-blocking operations.
+
+The following example shows how to add a custom header and handle errors:
+
+```java
+import pl.postivo.sdk.Client;
+import pl.postivo.sdk.utils.HTTPClient;
+import pl.postivo.sdk.utils.SpeakeasyHTTPClient;
+import pl.postivo.sdk.utils.Utils;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+
+public class Application {
+    public static void main(String[] args) {
+        // Create a custom HTTP client with hooks
+        HTTPClient httpClient = new HTTPClient() {
+            private final HTTPClient defaultClient = new SpeakeasyHTTPClient();
+            
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                // Add custom header and timeout using Utils.copy()
+                HttpRequest modifiedRequest = Utils.copy(request)
+                    .header("x-custom-header", "custom value")
+                    .timeout(Duration.ofSeconds(30))
+                    .build();
+                    
+                try {
+                    HttpResponse<InputStream> response = defaultClient.send(modifiedRequest);
+                    // Log successful response
+                    System.out.println("Request successful: " + response.statusCode());
+                    return response;
+                } catch (Exception error) {
+                    // Log error
+                    System.err.println("Request failed: " + error.getMessage());
+                    throw error;
+                }
+            }
+        };
+
+        Client sdk = Client.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+
+<details>
+<summary>Custom HTTP Client Configuration</summary>
+
+You can also provide a completely custom HTTP client with your own configuration:
+
+```java
+import pl.postivo.sdk.Client;
+import pl.postivo.sdk.utils.HTTPClient;
+import pl.postivo.sdk.utils.Blob;
+import pl.postivo.sdk.utils.ResponseWithBody;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+import java.util.concurrent.Executors;
+import java.util.concurrent.CompletableFuture;
+
+public class Application {
+    public static void main(String[] args) {
+        // Custom HTTP client with custom configuration
+        HTTPClient customHttpClient = new HTTPClient() {
+            private final HttpClient client = HttpClient.newBuilder()
+                .executor(Executors.newFixedThreadPool(10))
+                .connectTimeout(Duration.ofSeconds(30))
+                // .sslContext(customSslContext) // Add custom SSL context if needed
+                .build();
+
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                return client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+            }
+
+            @Override
+            public CompletableFuture<HttpResponse<Blob>> sendAsync(HttpRequest request) {
+                // Convert response to HttpResponse<Blob> for async operations
+                return client.sendAsync(request, HttpResponse.BodyHandlers.ofPublisher())
+                    .thenApply(resp -> new ResponseWithBody<>(resp, Blob::from));
+            }
+        };
+
+        Client sdk = Client.builder()
+            .client(customHttpClient)
+            .build();
+    }
+}
+```
+
+</details>
+
+You can also enable debug logging on the default `SpeakeasyHTTPClient`:
+
+```java
+import pl.postivo.sdk.Client;
+import pl.postivo.sdk.utils.SpeakeasyHTTPClient;
+
+public class Application {
+    public static void main(String[] args) {
+        SpeakeasyHTTPClient httpClient = new SpeakeasyHTTPClient();
+        httpClient.enableDebugLogging(true);
+
+        Client sdk = Client.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+<!-- End Custom HTTP Client [http-client] -->
 
 <!-- Start Debugging [debug] -->
 ## Debugging

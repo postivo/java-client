@@ -7,7 +7,6 @@ import static pl.postivo.sdk.operations.Operations.RequestOperation;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Exception;
 import pl.postivo.sdk.SDKConfiguration;
 import pl.postivo.sdk.models.components.Shipment;
 import pl.postivo.sdk.operations.ShipmentPrice;
@@ -53,7 +52,7 @@ public class ShipmentPriceRequestBuilder {
     *
     * @return The response from the server.
     */
-    public ShipmentPriceResponse call() throws Exception {
+    public ShipmentPriceResponse call() {
         Options options = optionsBuilder.build();
         RequestOperation<Shipment, ShipmentPriceResponse> operation
               = new ShipmentPrice.Sync(sdkConfiguration, options, _headers);
