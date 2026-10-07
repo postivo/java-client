@@ -27,7 +27,7 @@ import pl.postivo.sdk.utils.Utils;
 public class ShipmentRecipients {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ShipmentRecipients(TypedObject value) {
         this.value = value;
@@ -35,12 +35,12 @@ public class ShipmentRecipients {
 
     public static ShipmentRecipients of(Recipients value) {
         Utils.checkNotNull(value, "value");
-        return new ShipmentRecipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Recipients>(){}));
+        return new ShipmentRecipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ShipmentRecipients of(List<Recipients> value) {
         Utils.checkNotNull(value, "value");
-        return new ShipmentRecipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Recipients>>(){}));
+        return new ShipmentRecipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -63,7 +63,7 @@ public class ShipmentRecipients {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -74,7 +74,7 @@ public class ShipmentRecipients {
             return false;
         }
         ShipmentRecipients other = (ShipmentRecipients) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -87,8 +87,8 @@ public class ShipmentRecipients {
 
         public _Deserializer() {
             super(ShipmentRecipients.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<List<Recipients>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Recipients>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Recipients>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<List<Recipients>>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -97,6 +97,6 @@ public class ShipmentRecipients {
         return Utils.toString(ShipmentRecipients.class,
                 "value", value);
     }
- 
+
 }
 

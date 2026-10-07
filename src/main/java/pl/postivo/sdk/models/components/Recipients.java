@@ -24,7 +24,7 @@ import pl.postivo.sdk.utils.Utils;
 public class Recipients {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Recipients(TypedObject value) {
         this.value = value;
@@ -32,17 +32,17 @@ public class Recipients {
 
     public static Recipients of(RecipientInline value) {
         Utils.checkNotNull(value, "value");
-        return new Recipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<RecipientInline>(){}));
+        return new Recipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Recipients of(RecipientFromAddressBook value) {
         Utils.checkNotNull(value, "value");
-        return new Recipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<RecipientFromAddressBook>(){}));
+        return new Recipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Recipients of(RecipientFromAddressBookByExternalId value) {
         Utils.checkNotNull(value, "value");
-        return new Recipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<RecipientFromAddressBookByExternalId>(){}));
+        return new Recipients(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -66,7 +66,7 @@ public class Recipients {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -77,7 +77,7 @@ public class Recipients {
             return false;
         }
         Recipients other = (Recipients) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -91,8 +91,8 @@ public class Recipients {
         public _Deserializer() {
             super(Recipients.class, false,
                   TypeReferenceWithShape.of(new TypeReference<RecipientInline>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<RecipientFromAddressBookByExternalId>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<RecipientFromAddressBook>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<RecipientFromAddressBook>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<RecipientFromAddressBookByExternalId>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -101,6 +101,6 @@ public class Recipients {
         return Utils.toString(Recipients.class,
                 "value", value);
     }
- 
+
 }
 

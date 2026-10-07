@@ -48,7 +48,7 @@ public class AsyncClient {
         return senders;
     }
 
-    private SDKConfiguration sdkConfiguration;
+    private final SDKConfiguration sdkConfiguration;
     private final Client syncSDK;
 
     AsyncClient(Client syncSDK, SDKConfiguration sdkConfiguration) {

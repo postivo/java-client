@@ -24,7 +24,7 @@ import pl.postivo.sdk.utils.Utils;
 public class Documents {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Documents(TypedObject value) {
         this.value = value;
@@ -32,17 +32,17 @@ public class Documents {
 
     public static Documents of(DocumentPdf value) {
         Utils.checkNotNull(value, "value");
-        return new Documents(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentPdf>(){}));
+        return new Documents(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Documents of(DocumentLibrary value) {
         Utils.checkNotNull(value, "value");
-        return new Documents(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentLibrary>(){}));
+        return new Documents(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Documents of(DocumentMock value) {
         Utils.checkNotNull(value, "value");
-        return new Documents(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentMock>(){}));
+        return new Documents(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -66,7 +66,7 @@ public class Documents {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -77,7 +77,7 @@ public class Documents {
             return false;
         }
         Documents other = (Documents) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -91,8 +91,8 @@ public class Documents {
         public _Deserializer() {
             super(Documents.class, false,
                   TypeReferenceWithShape.of(new TypeReference<DocumentPdf>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<DocumentMock>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<DocumentLibrary>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<DocumentLibrary>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<DocumentMock>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -101,6 +101,6 @@ public class Documents {
         return Utils.toString(Documents.class,
                 "value", value);
     }
- 
+
 }
 

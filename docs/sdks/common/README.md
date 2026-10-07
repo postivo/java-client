@@ -1,5 +1,4 @@
 # Common
-(*common()*)
 
 ## Overview
 
@@ -26,7 +25,7 @@ import pl.postivo.sdk.models.operations.PingResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
             .build();
@@ -35,7 +34,7 @@ public class Application {
                 .call();
 
         if (res.pingResponse().isPresent()) {
-            // handle response
+            System.out.println(res.pingResponse().get());
         }
     }
 }

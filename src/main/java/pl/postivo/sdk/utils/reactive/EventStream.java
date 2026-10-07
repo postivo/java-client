@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.postivo.sdk.utils.AsyncResponse;
 import pl.postivo.sdk.utils.Blob;
 import pl.postivo.sdk.utils.EventStreamMessage;
+import pl.postivo.sdk.utils.SpeakeasyLogger;
 import pl.postivo.sdk.utils.StreamingParser;
 import pl.postivo.sdk.utils.Utils;
 
@@ -29,6 +30,8 @@ import org.reactivestreams.Subscription;
  * @param <ItemT> the type that events are deserialized into
  */
 public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publisher<ItemT> {
+
+    private static final SpeakeasyLogger logger = SpeakeasyLogger.getLogger(EventStream.class);
     
     /**
      * Protocol interface that defines how to parse and process different event stream formats
@@ -70,6 +73,7 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
         this.typeReference = typeReference;
         this.objectMapper = objectMapper;
         this.protocol = protocol;
+        logger.debug("Reactive EventStream initialized for type: {}", typeReference.getType().getTypeName());
     }
 
     /**
@@ -80,8 +84,17 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
             TypeReference<ItemT> typeReference,
             ObjectMapper objectMapper,
             String terminalMessage) {
-        return new EventStream<>(asyncResponseFuture, typeReference, objectMapper, 
-                                new SSEProtocol<>(terminalMessage));
+        return forSSE(asyncResponseFuture, typeReference, objectMapper, terminalMessage, true);
+    }
+
+    public static <ResponseT extends AsyncResponse, ItemT> EventStream<ResponseT, ItemT> forSSE(
+            CompletableFuture<ResponseT> asyncResponseFuture,
+            TypeReference<ItemT> typeReference,
+            ObjectMapper objectMapper,
+            String terminalMessage,
+            boolean dataRequired) {
+        return new EventStream<>(asyncResponseFuture, typeReference, objectMapper,
+                                new SSEProtocol<>(terminalMessage, dataRequired));
     }
 
     /**
@@ -268,9 +281,13 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
                     ItemT item = typedProtocol.processItem(parsed, objectMapper, typeReference);
                     if (item != null) {
                         demand.decrementAndGet();
+                        if (logger.isTraceEnabled()) {
+                            logger.trace("Reactive EventStream item emitted");
+                        }
                         subscriber.onNext(item);
                     }
                 } catch (Exception e) {
+                    logger.debug("Error processing reactive EventStream item: {}", e.getMessage());
                     signalError(e);
                     return false; // Signal to stop processing on error
                 }
@@ -303,6 +320,7 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
         private void signalComplete() {
             if (!cancelled && !completed) {
                 completed = true;
+                logger.debug("Reactive EventStream completed");
                 subscriber.onComplete();
             }
         }
@@ -313,9 +331,11 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
      */
     private static class SSEProtocol<ItemT> implements Protocol<EventStreamMessage, ItemT> {
         private final String terminalMessage;
+        private final boolean dataRequired;
 
-        public SSEProtocol(String terminalMessage) {
+        public SSEProtocol(String terminalMessage, boolean dataRequired) {
             this.terminalMessage = terminalMessage;
+            this.dataRequired = dataRequired;
         }
 
         @Override
@@ -325,8 +345,8 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
 
         @Override
         public ItemT processItem(EventStreamMessage message, ObjectMapper objectMapper, TypeReference<ItemT> typeReference) {
-            // Skip empty data messages
-            if (message.data().isEmpty()) {
+            // Skip events without data when data is required
+            if (dataRequired && message.data().isEmpty()) {
                 return null;
             }
             return Utils.asType(message, objectMapper, typeReference);
@@ -335,7 +355,7 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
         @Override
         public boolean shouldStop(EventStreamMessage message) {
             // Check if this is a terminal message
-            return terminalMessage != null && terminalMessage.equals(message.data());
+            return terminalMessage != null && message.data().map(terminalMessage::equals).orElse(false);
         }
     }
 

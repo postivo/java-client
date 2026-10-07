@@ -1,5 +1,4 @@
-# ByExtId
-(*addressBook().contacts().byExtId()*)
+# AddressBook.Contacts.ByExtId
 
 ## Overview
 
@@ -28,7 +27,7 @@ import pl.postivo.sdk.models.operations.GetContactByExternalIdResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -39,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.contactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.contactResponse().get());
         }
     }
 }
@@ -81,7 +80,7 @@ import pl.postivo.sdk.models.operations.UpdateContactByExternalIdResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -106,7 +105,7 @@ public class Application {
                 .call();
 
         if (res.contactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.contactResponse().get());
         }
     }
 }
@@ -147,7 +146,7 @@ import pl.postivo.sdk.models.operations.DeleteContactByExternalIdResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -158,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.errorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.errorResponse().get());
         }
     }
 }
@@ -198,7 +197,7 @@ import pl.postivo.sdk.models.operations.RemoveContactByExtIdToGroupResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -210,7 +209,7 @@ public class Application {
                 .call();
 
         if (res.errorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.errorResponse().get());
         }
     }
 }
@@ -254,7 +253,7 @@ import pl.postivo.sdk.models.operations.AddContactByExtIdToGroupResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -266,7 +265,7 @@ public class Application {
                 .call();
 
         if (res.errorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.errorResponse().get());
         }
     }
 }

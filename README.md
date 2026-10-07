@@ -28,6 +28,7 @@ You can also refer to the [REST API v1 documentation](https://api.postivo.pl/res
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Jackson Configuration](#jackson-configuration)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -45,7 +46,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'pl.postivo:client:0.1.0'
+implementation 'pl.postivo:client:0.2.1'
 ```
 
 Maven:
@@ -53,7 +54,7 @@ Maven:
 <dependency>
     <groupId>pl.postivo</groupId>
     <artifactId>client</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.1</version>
 </dependency>
 ```
 
@@ -91,7 +92,7 @@ import pl.postivo.sdk.models.operations.ShipmentDispatchResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -129,7 +130,7 @@ public class Application {
                 .call();
 
         if (res.shipmentDetails().isPresent()) {
-            // handle response
+            System.out.println(res.shipmentDetails().get());
         }
     }
 }
@@ -151,7 +152,7 @@ import pl.postivo.sdk.models.operations.ShipmentPriceResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -189,7 +190,7 @@ public class Application {
                 .call();
 
         if (res.shipmentPrices().isPresent()) {
-            // handle response
+            System.out.println(res.shipmentPrices().get());
         }
     }
 }
@@ -218,7 +219,7 @@ public class Application {
 
         resFut.thenAccept(res -> {
             if (res.accountResponse().isPresent()) {
-            // handle response
+                System.out.println(res.accountResponse().get());
             }
         });
     }
@@ -226,6 +227,15 @@ public class Application {
 ```
 
 [comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+
+#### Union Consumption Patterns
+
+When a response field is a union model:
+
+- Discriminated unions: branch on the discriminator (`switch`) and then narrow to the concrete type.
+- Non-discriminated unions: use generated accessors (for example `string()`, `asLong()`, `simpleObject()`) to determine the active variant.
+
+For full model-specific examples (including Java 11/16/21 variants), see each union model's **Supported Types** section in the generated model docs.
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Asynchronous Support [async-support] -->
@@ -316,7 +326,7 @@ import pl.postivo.sdk.models.operations.GetAccountDetailsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -326,7 +336,7 @@ public class Application {
                 .call();
 
         if (res.accountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountResponse().get());
         }
     }
 }
@@ -339,12 +349,12 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
-### [accounts()](docs/sdks/accounts/README.md)
+### [Accounts](docs/sdks/accounts/README.md)
 
 * [get](docs/sdks/accounts/README.md#get) - Retrieve account details
 * [getSubaccount](docs/sdks/accounts/README.md#getsubaccount) - Get subaccount details
 
-#### [addressBook().contacts()](docs/sdks/contacts/README.md)
+### [AddressBook.Contacts](docs/sdks/contacts/README.md)
 
 * [list](docs/sdks/contacts/README.md#list) - List contacts
 * [add](docs/sdks/contacts/README.md#add) - Add a new contact
@@ -354,7 +364,7 @@ public class Application {
 * [removeFromGroup](docs/sdks/contacts/README.md#removefromgroup) - Remove a contact from a group
 * [addToGroup](docs/sdks/contacts/README.md#addtogroup) - Add a contact to a group
 
-#### [addressBook().contacts().byExtId()](docs/sdks/byextid/README.md)
+#### [AddressBook.Contacts.ByExtId](docs/sdks/byextid/README.md)
 
 * [get](docs/sdks/byextid/README.md#get) - Retrieve contact details by EXT_ID
 * [update](docs/sdks/byextid/README.md#update) - Update a contact by EXT_ID
@@ -362,7 +372,7 @@ public class Application {
 * [removeFromGroup](docs/sdks/byextid/README.md#removefromgroup) - Remove a contact from a group by EXT_ID
 * [addToGroup](docs/sdks/byextid/README.md#addtogroup) - Add a contact to a group by EXT_ID
 
-#### [addressBook().groups()](docs/sdks/groups/README.md)
+### [AddressBook.Groups](docs/sdks/groups/README.md)
 
 * [list](docs/sdks/groups/README.md#list) - List groups
 * [add](docs/sdks/groups/README.md#add) - Add a new group
@@ -370,23 +380,23 @@ public class Application {
 * [update](docs/sdks/groups/README.md#update) - Update a group
 * [delete](docs/sdks/groups/README.md#delete) - Delete a group
 
-### [common()](docs/sdks/common/README.md)
+### [Common](docs/sdks/common/README.md)
 
 * [ping](docs/sdks/common/README.md#ping) - Check API availability and version
 
-### [metadata()](docs/sdks/metadata/README.md)
+### [Metadata](docs/sdks/metadata/README.md)
 
 * [list](docs/sdks/metadata/README.md#list) - List metadata
 * [getPredefinedConfigs](docs/sdks/metadata/README.md#getpredefinedconfigs) - List predefined configs
 
-### [senders()](docs/sdks/senders/README.md)
+### [Senders](docs/sdks/senders/README.md)
 
 * [list](docs/sdks/senders/README.md#list) - List senders
 * [add](docs/sdks/senders/README.md#add) - Add a new sender
 * [delete](docs/sdks/senders/README.md#delete) - Delete a sender
 * [verify](docs/sdks/senders/README.md#verify) - Verify sender
 
-### [shipments()](docs/sdks/shipments/README.md)
+### [Shipments](docs/sdks/shipments/README.md)
 
 * [status](docs/sdks/shipments/README.md#status) - Retrieve shipment details with status events
 * [cancel](docs/sdks/shipments/README.md#cancel) - Cancel shipments
@@ -416,7 +426,7 @@ import pl.postivo.sdk.utils.RetryConfig;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -436,7 +446,7 @@ public class Application {
                 .call();
 
         if (res.accountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountResponse().get());
         }
     }
 }
@@ -456,7 +466,7 @@ import pl.postivo.sdk.utils.RetryConfig;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .retryConfig(RetryConfig.builder()
@@ -476,7 +486,7 @@ public class Application {
                 .call();
 
         if (res.accountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountResponse().get());
         }
     }
 }
@@ -504,26 +514,65 @@ Handling errors in this SDK should largely match your expectations. All operatio
 ```java
 package hello.world;
 
+import java.io.UncheckedIOException;
 import java.lang.Exception;
+import java.lang.Long;
+import java.lang.String;
+import java.util.Optional;
 import pl.postivo.sdk.Client;
+import pl.postivo.sdk.models.errors.ClientException;
 import pl.postivo.sdk.models.errors.ErrorResponse;
 import pl.postivo.sdk.models.operations.GetAccountDetailsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
             .build();
+        try {
 
-        GetAccountDetailsResponse res = sdk.accounts().get()
-                .call();
+            GetAccountDetailsResponse res = sdk.accounts().get()
+                    .call();
 
-        if (res.accountResponse().isPresent()) {
-            // handle response
-        }
-    }
+            if (res.accountResponse().isPresent()) {
+                System.out.println(res.accountResponse().get());
+            }
+        } catch (ClientException ex) { // all SDK exceptions inherit from ClientException
+
+            // ex.ToString() provides a detailed error message including
+            // HTTP status code, headers, and error payload (if any)
+            System.out.println(ex);
+
+            // Base exception fields
+            var rawResponse = ex.rawResponse();
+            var headers = ex.headers();
+            var contentType = headers.first("Content-Type");
+            int statusCode = ex.code();
+            Optional<byte[]> responseBody = ex.body();
+
+            // different error subclasses may be thrown 
+            // depending on the service call
+            if (ex instanceof ErrorResponse) {
+                var e = (ErrorResponse) ex;
+                // Check error data fields
+                e.data().ifPresent(payload -> {
+                      Optional<String> type = payload.type();
+                      Optional<Long> status = payload.status();
+                      // ...
+                });
+            }
+
+            // An underlying cause may be provided. If the error payload 
+            // cannot be deserialized then the deserialization exception 
+            // will be set as the cause.
+            if (ex.getCause() != null) {
+                var cause = ex.getCause();
+            }
+        } catch (UncheckedIOException ex) {
+            // handle IO error (connection, timeout, etc)
+        }    }
 }
 ```
 
@@ -571,10 +620,10 @@ import pl.postivo.sdk.models.operations.GetAccountDetailsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .server(Client.AvailableServers.SANDBOX)
+                .server(Client.AvailableServers.PROD)
                 .bearer("<YOUR API ACCESS TOKEN>")
             .build();
 
@@ -582,7 +631,7 @@ public class Application {
                 .call();
 
         if (res.accountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountResponse().get());
         }
     }
 }
@@ -601,7 +650,7 @@ import pl.postivo.sdk.models.operations.GetAccountDetailsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .serverURL("https://api.postivo.pl/rest/v1")
@@ -612,7 +661,7 @@ public class Application {
                 .call();
 
         if (res.accountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountResponse().get());
         }
     }
 }
@@ -759,9 +808,11 @@ public class Application {
 ## Debugging
 
 ### Debug
+
 You can setup your SDK to emit debug logs for SDK requests and responses.
 
 For request and response logging (especially json bodies), call `enableHTTPDebugLogging(boolean)` on the SDK builder like so:
+
 ```java
 SDK.builder()
     .enableHTTPDebugLogging(true)
@@ -779,12 +830,43 @@ Response body:
   "token": "global"
 }
 ```
-__WARNING__: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+__WARNING__: This logging should only be used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
 
 __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging()`. The `SpeakeasyHTTPClient` honors this setting. If you are using a custom HTTP client, it is up to the custom client to honor this setting.
 
+
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import pl.postivo.sdk.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `ClientJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import pl.postivo.sdk.utils.ClientJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new ClientJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

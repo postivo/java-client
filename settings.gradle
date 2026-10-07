@@ -9,12 +9,6 @@
 
 rootProject.name = 'client'
 
-include 'client-spring-boot-autoconfigure'
-include 'client-spring-boot-starter'
-
-project(':client-spring-boot-autoconfigure').projectDir = file('spring/client-spring-boot-autoconfigure')
-project(':client-spring-boot-starter').projectDir = file('spring/client-spring-boot-starter')
-
 // Apply additional settings if the file exists
 if (file('settings-extra.gradle').exists()) {
     apply from: 'settings-extra.gradle'

@@ -1,5 +1,4 @@
 # Accounts
-(*accounts()*)
 
 ## Overview
 
@@ -25,7 +24,7 @@ import pl.postivo.sdk.models.operations.GetAccountDetailsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -35,7 +34,7 @@ public class Application {
                 .call();
 
         if (res.accountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountResponse().get());
         }
     }
 }
@@ -71,7 +70,7 @@ import pl.postivo.sdk.models.operations.GetSubaccountDetailsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -82,7 +81,7 @@ public class Application {
                 .call();
 
         if (res.accountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountResponse().get());
         }
     }
 }

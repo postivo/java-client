@@ -15,7 +15,7 @@ import pl.postivo.sdk.models.operations.ShipmentDispatchResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -53,7 +53,7 @@ public class Application {
                 .call();
 
         if (res.shipmentDetails().isPresent()) {
-            // handle response
+            System.out.println(res.shipmentDetails().get());
         }
     }
 }
@@ -75,7 +75,7 @@ import pl.postivo.sdk.models.operations.ShipmentPriceResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -113,7 +113,7 @@ public class Application {
                 .call();
 
         if (res.shipmentPrices().isPresent()) {
-            // handle response
+            System.out.println(res.shipmentPrices().get());
         }
     }
 }

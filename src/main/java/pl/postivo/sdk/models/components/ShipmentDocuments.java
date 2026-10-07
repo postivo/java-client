@@ -27,7 +27,7 @@ import pl.postivo.sdk.utils.Utils;
 public class ShipmentDocuments {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ShipmentDocuments(TypedObject value) {
         this.value = value;
@@ -35,12 +35,12 @@ public class ShipmentDocuments {
 
     public static ShipmentDocuments of(Documents value) {
         Utils.checkNotNull(value, "value");
-        return new ShipmentDocuments(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Documents>(){}));
+        return new ShipmentDocuments(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ShipmentDocuments of(List<Documents> value) {
         Utils.checkNotNull(value, "value");
-        return new ShipmentDocuments(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Documents>>(){}));
+        return new ShipmentDocuments(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -63,7 +63,7 @@ public class ShipmentDocuments {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -74,7 +74,7 @@ public class ShipmentDocuments {
             return false;
         }
         ShipmentDocuments other = (ShipmentDocuments) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -87,8 +87,8 @@ public class ShipmentDocuments {
 
         public _Deserializer() {
             super(ShipmentDocuments.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<List<Documents>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Documents>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Documents>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<List<Documents>>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -97,6 +97,6 @@ public class ShipmentDocuments {
         return Utils.toString(ShipmentDocuments.class,
                 "value", value);
     }
- 
+
 }
 

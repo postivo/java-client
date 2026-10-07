@@ -7,7 +7,6 @@ import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import pl.postivo.sdk.hooks.SDKHooks;
 import pl.postivo.sdk.utils.AsyncHooks;
 import pl.postivo.sdk.utils.HTTPClient;
 import pl.postivo.sdk.utils.Hooks;
@@ -18,9 +17,9 @@ import pl.postivo.sdk.utils.Utils;
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
-    public static final String OPENAPI_DOC_VERSION = "1.0.2";
-    public static final String SDK_VERSION = "0.1.0";
-    public static final String GEN_VERSION = "2.728.0";
+    public static final String OPENAPI_DOC_VERSION = "1.0.4";
+    public static final String SDK_VERSION = "0.2.1";
+    public static final String GEN_VERSION = "2.943.0";
     private static final String BASE_PACKAGE = "pl.postivo.sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -105,8 +104,6 @@ public class SDKConfiguration {
      * Initializes state (for example hooks).
      **/
     public void initialize() {
-        SDKHooks.initialize(_hooks);
-        SDKHooks.initialize(_asyncHooks);
     }
 
     

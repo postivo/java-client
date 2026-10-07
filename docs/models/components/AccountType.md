@@ -2,6 +2,14 @@
 
 Account type.
 
+## Example Usage
+
+```java
+import pl.postivo.sdk.models.components.AccountType;
+
+AccountType value = AccountType.PRE_PAID;
+```
+
 
 ## Values
 

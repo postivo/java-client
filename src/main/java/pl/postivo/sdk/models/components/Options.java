@@ -19,7 +19,7 @@ import pl.postivo.sdk.utils.Utils;
 public class Options {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Options(TypedObject value) {
         this.value = value;
@@ -27,7 +27,7 @@ public class Options {
 
     public static Options of(ShipmentOptions value) {
         Utils.checkNotNull(value, "value");
-        return new Options(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ShipmentOptions>(){}));
+        return new Options(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -49,7 +49,7 @@ public class Options {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -60,7 +60,7 @@ public class Options {
             return false;
         }
         Options other = (Options) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -82,6 +82,6 @@ public class Options {
         return Utils.toString(Options.class,
                 "value", value);
     }
- 
+
 }
 

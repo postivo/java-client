@@ -9,7 +9,6 @@ import java.lang.SuppressWarnings;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Consumer;
 import pl.postivo.sdk.utils.HTTPClient;
 import pl.postivo.sdk.utils.Headers;
 import pl.postivo.sdk.utils.RetryConfig;
@@ -219,17 +218,6 @@ public class Client {
             return this;
         }
 
-        // Visible for testing, may be accessed via reflection in tests
-        Builder _hooks(pl.postivo.sdk.utils.Hooks hooks) {
-            sdkConfiguration.setHooks(hooks);  
-            return this;  
-        }
-        
-        // Visible for testing, may be accessed via reflection in tests
-        Builder _hooks(Consumer<? super pl.postivo.sdk.utils.Hooks> consumer) {
-            consumer.accept(sdkConfiguration.hooks());
-            return this;    
-        }
 
         /**
          * Builds a new instance of the SDK.
@@ -258,7 +246,7 @@ public class Client {
         return new Builder();
     }
 
-    public Client(SDKConfiguration sdkConfiguration) {
+    private Client(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.accounts = new Accounts(sdkConfiguration);
         this.addressBook = new AddressBook(sdkConfiguration);
@@ -266,7 +254,6 @@ public class Client {
         this.metadata = new Metadata(sdkConfiguration);
         this.common = new Common(sdkConfiguration);
         this.senders = new Senders(sdkConfiguration);
-        sdkConfiguration = sdkConfiguration.hooks().sdkInit(sdkConfiguration);
         this.asyncSDK = new AsyncClient(this, sdkConfiguration);
     }
 

@@ -1,5 +1,4 @@
-# Contacts
-(*addressBook().contacts()*)
+# AddressBook.Contacts
 
 ## Overview
 
@@ -30,7 +29,7 @@ import pl.postivo.sdk.models.operations.ListContactsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -42,7 +41,7 @@ public class Application {
                 .call();
 
         if (res.contactResponses().isPresent()) {
-            // handle response
+            System.out.println(res.contactResponses().get());
         }
     }
 }
@@ -85,7 +84,7 @@ import pl.postivo.sdk.models.operations.AddContactResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -111,7 +110,7 @@ public class Application {
                 .call();
 
         if (res.contactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.contactResponse().get());
         }
     }
 }
@@ -151,7 +150,7 @@ import pl.postivo.sdk.models.operations.GetContactByIdResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -162,7 +161,7 @@ public class Application {
                 .call();
 
         if (res.contactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.contactResponse().get());
         }
     }
 }
@@ -204,7 +203,7 @@ import pl.postivo.sdk.models.operations.UpdateContactResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -229,7 +228,7 @@ public class Application {
                 .call();
 
         if (res.contactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.contactResponse().get());
         }
     }
 }
@@ -270,7 +269,7 @@ import pl.postivo.sdk.models.operations.DeleteContactResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -281,7 +280,7 @@ public class Application {
                 .call();
 
         if (res.errorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.errorResponse().get());
         }
     }
 }
@@ -323,7 +322,7 @@ import pl.postivo.sdk.models.operations.RemoveContactFromGroupResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -335,7 +334,7 @@ public class Application {
                 .call();
 
         if (res.errorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.errorResponse().get());
         }
     }
 }
@@ -379,7 +378,7 @@ import pl.postivo.sdk.models.operations.AddContactToGroupResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -391,7 +390,7 @@ public class Application {
                 .call();
 
         if (res.errorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.errorResponse().get());
         }
     }
 }

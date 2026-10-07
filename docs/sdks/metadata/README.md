@@ -1,5 +1,4 @@
 # Metadata
-(*metadata()*)
 
 ## Overview
 
@@ -25,7 +24,7 @@ import pl.postivo.sdk.models.operations.ListMetadataResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -35,7 +34,7 @@ public class Application {
                 .call();
 
         if (res.metadataResponse().isPresent()) {
-            // handle response
+            System.out.println(res.metadataResponse().get());
         }
     }
 }
@@ -69,7 +68,7 @@ import pl.postivo.sdk.models.operations.ListPredefinedConfigsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -79,7 +78,7 @@ public class Application {
                 .call();
 
         if (res.predefinedConfigs().isPresent()) {
-            // handle response
+            System.out.println(res.predefinedConfigs().get());
         }
     }
 }

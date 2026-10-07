@@ -1,5 +1,4 @@
-# Groups
-(*addressBook().groups()*)
+# AddressBook.Groups
 
 ## Overview
 
@@ -28,7 +27,7 @@ import pl.postivo.sdk.models.operations.ListGroupsResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -38,7 +37,7 @@ public class Application {
                 .call();
 
         if (res.groupResponses().isPresent()) {
-            // handle response
+            System.out.println(res.groupResponses().get());
         }
     }
 }
@@ -73,7 +72,7 @@ import pl.postivo.sdk.models.operations.AddGroupResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -89,7 +88,7 @@ public class Application {
                 .call();
 
         if (res.groupResponse().isPresent()) {
-            // handle response
+            System.out.println(res.groupResponse().get());
         }
     }
 }
@@ -129,7 +128,7 @@ import pl.postivo.sdk.models.operations.GetGroupByIdResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -140,7 +139,7 @@ public class Application {
                 .call();
 
         if (res.groupResponse().isPresent()) {
-            // handle response
+            System.out.println(res.groupResponse().get());
         }
     }
 }
@@ -181,7 +180,7 @@ import pl.postivo.sdk.models.operations.UpdateGroupResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -196,7 +195,7 @@ public class Application {
                 .call();
 
         if (res.groupResponse().isPresent()) {
-            // handle response
+            System.out.println(res.groupResponse().get());
         }
     }
 }
@@ -240,7 +239,7 @@ import pl.postivo.sdk.models.operations.DeleteGroupResponse;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .bearer("<YOUR API ACCESS TOKEN>")
@@ -252,7 +251,7 @@ public class Application {
                 .call();
 
         if (res.errorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.errorResponse().get());
         }
     }
 }

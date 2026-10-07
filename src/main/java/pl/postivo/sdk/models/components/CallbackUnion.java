@@ -19,7 +19,7 @@ import pl.postivo.sdk.utils.Utils;
 public class CallbackUnion {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private CallbackUnion(TypedObject value) {
         this.value = value;
@@ -27,7 +27,7 @@ public class CallbackUnion {
 
     public static CallbackUnion of(Callback value) {
         Utils.checkNotNull(value, "value");
-        return new CallbackUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Callback>(){}));
+        return new CallbackUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -49,7 +49,7 @@ public class CallbackUnion {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -60,7 +60,7 @@ public class CallbackUnion {
             return false;
         }
         CallbackUnion other = (CallbackUnion) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -82,6 +82,6 @@ public class CallbackUnion {
         return Utils.toString(CallbackUnion.class,
                 "value", value);
     }
- 
+
 }
 

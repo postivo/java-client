@@ -19,7 +19,7 @@ import pl.postivo.sdk.utils.Utils;
 public class InlineConfigUnion {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private InlineConfigUnion(TypedObject value) {
         this.value = value;
@@ -27,7 +27,7 @@ public class InlineConfigUnion {
 
     public static InlineConfigUnion of(InlineConfig value) {
         Utils.checkNotNull(value, "value");
-        return new InlineConfigUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<InlineConfig>(){}));
+        return new InlineConfigUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -49,7 +49,7 @@ public class InlineConfigUnion {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -60,7 +60,7 @@ public class InlineConfigUnion {
             return false;
         }
         InlineConfigUnion other = (InlineConfigUnion) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -82,6 +82,6 @@ public class InlineConfigUnion {
         return Utils.toString(InlineConfigUnion.class,
                 "value", value);
     }
- 
+
 }
 

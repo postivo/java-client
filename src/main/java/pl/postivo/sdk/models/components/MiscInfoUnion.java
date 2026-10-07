@@ -19,7 +19,7 @@ import pl.postivo.sdk.utils.Utils;
 public class MiscInfoUnion {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private MiscInfoUnion(TypedObject value) {
         this.value = value;
@@ -27,7 +27,7 @@ public class MiscInfoUnion {
 
     public static MiscInfoUnion of(MiscInfo value) {
         Utils.checkNotNull(value, "value");
-        return new MiscInfoUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<MiscInfo>(){}));
+        return new MiscInfoUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -49,7 +49,7 @@ public class MiscInfoUnion {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -60,7 +60,7 @@ public class MiscInfoUnion {
             return false;
         }
         MiscInfoUnion other = (MiscInfoUnion) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -82,6 +82,6 @@ public class MiscInfoUnion {
         return Utils.toString(MiscInfoUnion.class,
                 "value", value);
     }
- 
+
 }
 
