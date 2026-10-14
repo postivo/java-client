@@ -17,11 +17,11 @@ import pl.postivo.sdk.utils.Utils;
 /**
  * PingResponse
  * 
- * <p>Ping response.
+ * <p>Postivo service availability and current API version.
  */
 public class PingResponse {
     /**
-     * API service status: OK (available), ERR (unavailable).
+     * API service status. A successful ping returns OK.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -56,7 +56,7 @@ public class PingResponse {
     }
 
     /**
-     * API service status: OK (available), ERR (unavailable).
+     * API service status. A successful ping returns OK.
      */
     public Optional<String> status() {
         return Optional.ofNullable(this.status);
@@ -82,7 +82,7 @@ public class PingResponse {
 
 
     /**
-     * API service status: OK (available), ERR (unavailable).
+     * API service status. A successful ping returns OK.
      */
     public PingResponse withStatus(@Nullable String status) {
         this.status = status;
@@ -151,7 +151,7 @@ public class PingResponse {
         }
 
         /**
-         * API service status: OK (available), ERR (unavailable).
+         * API service status. A successful ping returns OK.
          */
         public Builder status(@Nullable String status) {
             this.status = status;

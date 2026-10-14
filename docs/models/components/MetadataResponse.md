@@ -1,6 +1,6 @@
 # MetadataResponse
 
-Metadata response.
+Available carriers, services, paper types, envelopes and other shipment configuration data.
 
 
 ## Fields

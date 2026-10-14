@@ -8,4 +8,4 @@ Generated document content.
 | Field                            | Type                             | Required                         | Description                      | Example                          |
 | -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- |
 | `mimeType`                       | *String*                         | :heavy_check_mark:               | Document MIME type.              | application/pdf                  |
-| `fileStream`                     | *Optional\<String>*              | :heavy_minus_sign:               | Base64-encoded document content. | <file content in base64 format>  |
+| `fileStream`                     | *String*                         | :heavy_check_mark:               | Base64-encoded document content. | <file content in base64 format>  |

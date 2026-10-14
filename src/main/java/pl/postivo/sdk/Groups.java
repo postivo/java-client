@@ -54,7 +54,8 @@ public class Groups {
     /**
      * List groups
      * 
-     * <p>Retrieve the full list of groups defined in your account’s Address Book.
+     * <p>Retrieve all contact groups defined in your account's Address Book. An Address Book without groups
+     * returns an empty list.
      * 
      * @return The call builder
      */
@@ -65,7 +66,8 @@ public class Groups {
     /**
      * List groups
      * 
-     * <p>Retrieve the full list of groups defined in your account’s Address Book.
+     * <p>Retrieve all contact groups defined in your account's Address Book. An Address Book without groups
+     * returns an empty list.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -77,7 +79,8 @@ public class Groups {
     /**
      * List groups
      * 
-     * <p>Retrieve the full list of groups defined in your account’s Address Book.
+     * <p>Retrieve all contact groups defined in your account's Address Book. An Address Book without groups
+     * returns an empty list.
      * 
      * @param options additional options
      * @return The response from the API call
@@ -92,7 +95,7 @@ public class Groups {
     /**
      * Add a new group
      * 
-     * <p>Create a new contact group in your account’s Address Book.
+     * <p>Create a new contact group in your account's Address Book.
      * 
      * @return The call builder
      */
@@ -103,7 +106,7 @@ public class Groups {
     /**
      * Add a new group
      * 
-     * <p>Create a new contact group in your account’s Address Book.
+     * <p>Create a new contact group in your account's Address Book.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -116,7 +119,7 @@ public class Groups {
     /**
      * Add a new group
      * 
-     * <p>Create a new contact group in your account’s Address Book.
+     * <p>Create a new contact group in your account's Address Book.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -132,8 +135,7 @@ public class Groups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
-     * created).
+     * <p>Get the details of an Address Book group using the system ID assigned when the group was created.
      * 
      * @return The call builder
      */
@@ -144,8 +146,7 @@ public class Groups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
-     * created).
+     * <p>Get the details of an Address Book group using the system ID assigned when the group was created.
      * 
      * @param id Group id to fetch
      * @return The response from the API call
@@ -158,8 +159,7 @@ public class Groups {
     /**
      * Retrieve group details
      * 
-     * <p>Get the details of a single group from your Address Book by its <code>id</code> (returned when the group was
-     * created).
+     * <p>Get the details of an Address Book group using the system ID assigned when the group was created.
      * 
      * @param id Group id to fetch
      * @param options additional options
@@ -176,7 +176,8 @@ public class Groups {
     /**
      * Update a group
      * 
-     * <p>Update a group’s details by ID.
+     * <p>Update an Address Book group using its system ID. Submitting unchanged details leaves the group
+     * unchanged.
      * 
      * @return The call builder
      */
@@ -187,7 +188,8 @@ public class Groups {
     /**
      * Update a group
      * 
-     * <p>Update a group’s details by ID.
+     * <p>Update an Address Book group using its system ID. Submitting unchanged details leaves the group
+     * unchanged.
      * 
      * @param id Group <code>id</code> to update.
      * @param group Contact group definition in the Address Book.
@@ -201,7 +203,8 @@ public class Groups {
     /**
      * Update a group
      * 
-     * <p>Update a group’s details by ID.
+     * <p>Update an Address Book group using its system ID. Submitting unchanged details leaves the group
+     * unchanged.
      * 
      * @param id Group <code>id</code> to update.
      * @param group Contact group definition in the Address Book.
@@ -221,12 +224,9 @@ public class Groups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
-     * group is deleted immediately from the Address Book.
-     * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
-     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
-     * leaves them in the Address Book.
+     * <p>Remove an Address Book group using its system ID. By default, its contacts remain in the Address
+     * Book and their membership in the removed group is cleared. You can also choose to delete the
+     * contacts belonging to the group.
      * 
      * @return The call builder
      */
@@ -237,12 +237,9 @@ public class Groups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
-     * group is deleted immediately from the Address Book.
-     * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
-     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
-     * leaves them in the Address Book.
+     * <p>Remove an Address Book group using its system ID. By default, its contacts remain in the Address
+     * Book and their membership in the removed group is cleared. You can also choose to delete the
+     * contacts belonging to the group.
      * 
      * @param id Group <code>id</code> to remove.
      * @return The response from the API call
@@ -255,12 +252,9 @@ public class Groups {
     /**
      * Delete a group
      * 
-     * <p>Remove a group from your account’s Address Book by <code>ID</code>. Pass the group’s <code>id</code> to remove it. The
-     * group is deleted immediately from the Address Book.
-     * 
-     * <p>If you also want to remove contacts that belong to this group, set the parameter <code>contacts</code> to
-     * <code>delete</code>. The default is <code>contacts: detach</code>, which detaches contacts from the removed group but
-     * leaves them in the Address Book.
+     * <p>Remove an Address Book group using its system ID. By default, its contacts remain in the Address
+     * Book and their membership in the removed group is cleared. You can also choose to delete the
+     * contacts belonging to the group.
      * 
      * @param id Group <code>id</code> to remove.
      * @param contacts How to handle contacts that belong to the group.

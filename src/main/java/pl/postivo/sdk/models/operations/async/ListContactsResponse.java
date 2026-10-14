@@ -13,9 +13,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 import pl.postivo.sdk.models.components.ContactResponse;
-import pl.postivo.sdk.models.components.ErrorResponse;
 import pl.postivo.sdk.utils.AsyncResponse;
 import pl.postivo.sdk.utils.Blob;
 import pl.postivo.sdk.utils.Utils;
@@ -38,14 +36,10 @@ public class ListContactsResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * The request was processed successfully. Contact details are included in the response body.
+     * The request was processed successfully. The response contains an array of contacts, or an empty
+     * array for the first page of an empty address book.
      */
     private List<ContactResponse> contactResponses;
-
-    /**
-     * Invalid request.
-     */
-    private JsonNullable<ErrorResponse> errorResponse;
 
 
     private Map<String, List<String>> headers;
@@ -56,7 +50,6 @@ public class ListContactsResponse implements AsyncResponse {
             int statusCode,
             @Nonnull HttpResponse<Blob> rawResponse,
             @Nullable List<ContactResponse> contactResponses,
-            @Nullable JsonNullable<ErrorResponse> errorResponse,
             @Nonnull Map<String, List<String>> headers) {
         headers = Utils.emptyMapIfNull(headers);
         this.contentType = Optional.ofNullable(contentType)
@@ -65,8 +58,6 @@ public class ListContactsResponse implements AsyncResponse {
         this.rawResponse = Optional.ofNullable(rawResponse)
             .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.contactResponses = contactResponses;
-        this.errorResponse = Optional.ofNullable(errorResponse)
-            .orElse(JsonNullable.undefined());
         this.headers = Optional.ofNullable(headers)
             .orElseThrow(() -> new IllegalArgumentException("headers cannot be null"));
     }
@@ -77,7 +68,7 @@ public class ListContactsResponse implements AsyncResponse {
             @Nonnull HttpResponse<Blob> rawResponse,
             @Nonnull Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            null, null, headers);
+            null, headers);
     }
 
     /**
@@ -102,17 +93,11 @@ public class ListContactsResponse implements AsyncResponse {
     }
 
     /**
-     * The request was processed successfully. Contact details are included in the response body.
+     * The request was processed successfully. The response contains an array of contacts, or an empty
+     * array for the first page of an empty address book.
      */
     public Optional<List<ContactResponse>> contactResponses() {
         return Optional.ofNullable(this.contactResponses);
-    }
-
-    /**
-     * Invalid request.
-     */
-    public JsonNullable<ErrorResponse> errorResponse() {
-        return this.errorResponse;
     }
 
     public Map<String, List<String>> headers() {
@@ -152,19 +137,11 @@ public class ListContactsResponse implements AsyncResponse {
 
 
     /**
-     * The request was processed successfully. Contact details are included in the response body.
+     * The request was processed successfully. The response contains an array of contacts, or an empty
+     * array for the first page of an empty address book.
      */
     public ListContactsResponse withContactResponses(@Nullable List<ContactResponse> contactResponses) {
         this.contactResponses = contactResponses;
-        return this;
-    }
-
-
-    /**
-     * Invalid request.
-     */
-    public ListContactsResponse withErrorResponse(@Nullable ErrorResponse errorResponse) {
-        this.errorResponse = JsonNullable.of(errorResponse);
         return this;
     }
 
@@ -189,7 +166,6 @@ public class ListContactsResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.contactResponses, other.contactResponses) &&
-            Utils.enhancedDeepEquals(this.errorResponse, other.errorResponse) &&
             Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
@@ -197,7 +173,7 @@ public class ListContactsResponse implements AsyncResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            contactResponses, errorResponse, headers);
+            contactResponses, headers);
     }
     
     @Override
@@ -207,7 +183,6 @@ public class ListContactsResponse implements AsyncResponse {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "contactResponses", contactResponses,
-                "errorResponse", errorResponse,
                 "headers", headers);
     }
 
@@ -221,8 +196,6 @@ public class ListContactsResponse implements AsyncResponse {
         private HttpResponse<Blob> rawResponse;
 
         private List<ContactResponse> contactResponses;
-
-        private JsonNullable<ErrorResponse> errorResponse;
 
         private Map<String, List<String>> headers;
 
@@ -255,18 +228,11 @@ public class ListContactsResponse implements AsyncResponse {
         }
 
         /**
-         * The request was processed successfully. Contact details are included in the response body.
+         * The request was processed successfully. The response contains an array of contacts, or an empty
+         * array for the first page of an empty address book.
          */
         public Builder contactResponses(@Nullable List<ContactResponse> contactResponses) {
             this.contactResponses = contactResponses;
-            return this;
-        }
-
-        /**
-         * Invalid request.
-         */
-        public Builder errorResponse(@Nullable ErrorResponse errorResponse) {
-            this.errorResponse = JsonNullable.of(errorResponse);
             return this;
         }
 
@@ -278,7 +244,7 @@ public class ListContactsResponse implements AsyncResponse {
         public ListContactsResponse build() {
             return new ListContactsResponse(
                 contentType, statusCode, rawResponse,
-                contactResponses, errorResponse, headers);
+                contactResponses, headers);
         }
 
     }

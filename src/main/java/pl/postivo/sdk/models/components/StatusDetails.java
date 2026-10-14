@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
@@ -24,35 +25,35 @@ public class StatusDetails {
     /**
      * Single shipment details
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipment_details")
     private ShipmentDetails shipmentDetails;
 
     /**
      * List of status events for the shipment.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("status_events")
     private JsonNullable<List<StatusEvent>> statusEvents;
 
     @JsonCreator
     public StatusDetails(
-            @JsonProperty("shipment_details") @Nullable ShipmentDetails shipmentDetails,
-            @JsonProperty("status_events") @Nullable JsonNullable<List<StatusEvent>> statusEvents) {
-        this.shipmentDetails = shipmentDetails;
-        this.statusEvents = Optional.ofNullable(statusEvents)
-            .orElse(JsonNullable.undefined());
+            @JsonProperty("shipment_details") @Nonnull ShipmentDetails shipmentDetails,
+            @JsonProperty("status_events") @Nullable List<StatusEvent> statusEvents) {
+        this.shipmentDetails = Optional.ofNullable(shipmentDetails)
+            .orElseThrow(() -> new IllegalArgumentException("shipmentDetails cannot be null"));
+        this.statusEvents = JsonNullable.of(statusEvents);
     }
     
-    public StatusDetails() {
-        this(null, null);
+    public StatusDetails(
+            @Nonnull ShipmentDetails shipmentDetails) {
+        this(shipmentDetails, null);
     }
 
     /**
      * Single shipment details
      */
-    public Optional<ShipmentDetails> shipmentDetails() {
-        return Optional.ofNullable(this.shipmentDetails);
+    public ShipmentDetails shipmentDetails() {
+        return this.shipmentDetails;
     }
 
     /**
@@ -70,8 +71,8 @@ public class StatusDetails {
     /**
      * Single shipment details
      */
-    public StatusDetails withShipmentDetails(@Nullable ShipmentDetails shipmentDetails) {
-        this.shipmentDetails = shipmentDetails;
+    public StatusDetails withShipmentDetails(@Nonnull ShipmentDetails shipmentDetails) {
+        this.shipmentDetails = Utils.checkNotNull(shipmentDetails, "shipmentDetails");
         return this;
     }
 
@@ -117,7 +118,7 @@ public class StatusDetails {
 
         private ShipmentDetails shipmentDetails;
 
-        private JsonNullable<List<StatusEvent>> statusEvents;
+        private List<StatusEvent> statusEvents;
 
         private Builder() {
           // force use of static builder() method
@@ -126,8 +127,8 @@ public class StatusDetails {
         /**
          * Single shipment details
          */
-        public Builder shipmentDetails(@Nullable ShipmentDetails shipmentDetails) {
-            this.shipmentDetails = shipmentDetails;
+        public Builder shipmentDetails(@Nonnull ShipmentDetails shipmentDetails) {
+            this.shipmentDetails = Utils.checkNotNull(shipmentDetails, "shipmentDetails");
             return this;
         }
 
@@ -135,7 +136,7 @@ public class StatusDetails {
          * List of status events for the shipment.
          */
         public Builder statusEvents(@Nullable List<StatusEvent> statusEvents) {
-            this.statusEvents = JsonNullable.of(statusEvents);
+            this.statusEvents = statusEvents;
             return this;
         }
 

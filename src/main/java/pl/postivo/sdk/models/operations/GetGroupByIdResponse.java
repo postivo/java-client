@@ -10,9 +10,9 @@ import java.io.InputStream;
 import java.lang.Override;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import pl.postivo.sdk.models.components.ErrorResponse;
 import pl.postivo.sdk.models.components.GroupResponse;
 import pl.postivo.sdk.utils.Response;
 import pl.postivo.sdk.utils.Utils;
@@ -39,10 +39,8 @@ public class GetGroupByIdResponse implements Response {
      */
     private GroupResponse groupResponse;
 
-    /**
-     * Invalid request.
-     */
-    private JsonNullable<ErrorResponse> errorResponse;
+
+    private Map<String, List<String>> headers;
 
     @JsonCreator
     public GetGroupByIdResponse(
@@ -50,23 +48,25 @@ public class GetGroupByIdResponse implements Response {
             int statusCode,
             @Nonnull HttpResponse<InputStream> rawResponse,
             @Nullable GroupResponse groupResponse,
-            @Nullable JsonNullable<ErrorResponse> errorResponse) {
+            @Nonnull Map<String, List<String>> headers) {
+        headers = Utils.emptyMapIfNull(headers);
         this.contentType = Optional.ofNullable(contentType)
             .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
         this.rawResponse = Optional.ofNullable(rawResponse)
             .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.groupResponse = groupResponse;
-        this.errorResponse = Optional.ofNullable(errorResponse)
-            .orElse(JsonNullable.undefined());
+        this.headers = Optional.ofNullable(headers)
+            .orElseThrow(() -> new IllegalArgumentException("headers cannot be null"));
     }
     
     public GetGroupByIdResponse(
             @Nonnull String contentType,
             int statusCode,
-            @Nonnull HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nonnull Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            null, null);
+            null, headers);
     }
 
     /**
@@ -97,11 +97,8 @@ public class GetGroupByIdResponse implements Response {
         return Optional.ofNullable(this.groupResponse);
     }
 
-    /**
-     * Invalid request.
-     */
-    public JsonNullable<ErrorResponse> errorResponse() {
-        return this.errorResponse;
+    public Map<String, List<String>> headers() {
+        return this.headers;
     }
 
     public static Builder builder() {
@@ -145,11 +142,8 @@ public class GetGroupByIdResponse implements Response {
     }
 
 
-    /**
-     * Invalid request.
-     */
-    public GetGroupByIdResponse withErrorResponse(@Nullable ErrorResponse errorResponse) {
-        this.errorResponse = JsonNullable.of(errorResponse);
+    public GetGroupByIdResponse withHeaders(@Nonnull Map<String, List<String>> headers) {
+        this.headers = Utils.checkNotNull(headers, "headers");
         return this;
     }
 
@@ -168,14 +162,14 @@ public class GetGroupByIdResponse implements Response {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.groupResponse, other.groupResponse) &&
-            Utils.enhancedDeepEquals(this.errorResponse, other.errorResponse);
+            Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            groupResponse, errorResponse);
+            groupResponse, headers);
     }
     
     @Override
@@ -185,7 +179,7 @@ public class GetGroupByIdResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "groupResponse", groupResponse,
-                "errorResponse", errorResponse);
+                "headers", headers);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -199,7 +193,7 @@ public class GetGroupByIdResponse implements Response {
 
         private GroupResponse groupResponse;
 
-        private JsonNullable<ErrorResponse> errorResponse;
+        private Map<String, List<String>> headers;
 
         private Builder() {
           // force use of static builder() method
@@ -237,18 +231,15 @@ public class GetGroupByIdResponse implements Response {
             return this;
         }
 
-        /**
-         * Invalid request.
-         */
-        public Builder errorResponse(@Nullable ErrorResponse errorResponse) {
-            this.errorResponse = JsonNullable.of(errorResponse);
+        public Builder headers(@Nonnull Map<String, List<String>> headers) {
+            this.headers = Utils.checkNotNull(headers, "headers");
             return this;
         }
 
         public GetGroupByIdResponse build() {
             return new GetGroupByIdResponse(
                 contentType, statusCode, rawResponse,
-                groupResponse, errorResponse);
+                groupResponse, headers);
         }
 
     }

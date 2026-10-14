@@ -48,12 +48,13 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 401, 403, 4XX               | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 403, 4XX                    | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |
 
 ## getSubaccount
 
-Check the account balance and other details, such as the subcredit balance of a subaccount. Subaccounts are additional users who can access your account’s services and data. You can restrict access levels and set privileges for subaccounts in the [User Panel](https://panel.postivo.pl).
+Check the account balance and other details, such as the subcredit balance of a subaccount. Subaccounts are additional users who can access your account's services and data. You can restrict access levels and set privileges for subaccounts in the [User Panel](https://panel.postivo.pl).
 
 Provide the full subaccount login to access its data.
 
@@ -101,5 +102,6 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 401, 403, 404, 4XX          | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 403, 404, 4XX               | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |

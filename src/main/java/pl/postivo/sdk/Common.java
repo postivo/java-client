@@ -37,7 +37,7 @@ public class Common {
     /**
      * Check API availability and version
      * 
-     * <p>Check the API connection and current availability status. The response also includes the current API
+     * <p>Check the connection to Postivo and service availability. The result also includes the current API
      * version.
      * 
      * @return The call builder
@@ -49,7 +49,7 @@ public class Common {
     /**
      * Check API availability and version
      * 
-     * <p>Check the API connection and current availability status. The response also includes the current API
+     * <p>Check the connection to Postivo and service availability. The result also includes the current API
      * version.
      * 
      * @return The response from the API call
@@ -62,7 +62,7 @@ public class Common {
     /**
      * Check API availability and version
      * 
-     * <p>Check the API connection and current availability status. The response also includes the current API
+     * <p>Check the connection to Postivo and service availability. The result also includes the current API
      * version.
      * 
      * @param options additional options

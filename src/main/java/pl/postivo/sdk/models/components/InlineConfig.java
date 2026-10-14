@@ -18,23 +18,25 @@ import pl.postivo.sdk.utils.Utils;
 /**
  * InlineConfig
  * 
- * <p>Shipment configuration parameters. Overrides settings loaded from <code>predefined_config_id</code>.
+ * <p>Shipment configuration parameters. Overrides settings loaded from <code>predefined_config_id</code>. Explicit
+ * <code>false</code> disables the corresponding print option; omitted optional fields retain the profile setting.
  */
 public class InlineConfig {
     /**
-     * Preferred carrier identifier.
+     * Preferred carrier identifier. Use 0 to retain the profile setting or select the default carrier.
      */
     @JsonProperty("carrier_id")
     private long carrierId;
 
     /**
-     * Preferred service identifier (shipment type).
+     * Preferred service identifier (shipment type). Use 0 to retain the profile setting or select the
+     * default service.
      */
     @JsonProperty("service_id")
     private long serviceId;
 
     /**
-     * Preferred paper type identifier.
+     * Preferred paper type identifier. Omit or use 0 to retain the profile setting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paper_id")
@@ -55,7 +57,8 @@ public class InlineConfig {
     private Boolean duplexPrint;
 
     /**
-     * Preferred envelope size/template identifier defined in the user account.
+     * Preferred envelope size/template identifier defined in the user account. Omit or use 0 to retain the
+     * profile setting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("envelope_id")
@@ -95,21 +98,22 @@ public class InlineConfig {
     }
 
     /**
-     * Preferred carrier identifier.
+     * Preferred carrier identifier. Use 0 to retain the profile setting or select the default carrier.
      */
     public long carrierId() {
         return this.carrierId;
     }
 
     /**
-     * Preferred service identifier (shipment type).
+     * Preferred service identifier (shipment type). Use 0 to retain the profile setting or select the
+     * default service.
      */
     public long serviceId() {
         return this.serviceId;
     }
 
     /**
-     * Preferred paper type identifier.
+     * Preferred paper type identifier. Omit or use 0 to retain the profile setting.
      */
     public Optional<Long> paperId() {
         return Optional.ofNullable(this.paperId);
@@ -130,7 +134,8 @@ public class InlineConfig {
     }
 
     /**
-     * Preferred envelope size/template identifier defined in the user account.
+     * Preferred envelope size/template identifier defined in the user account. Omit or use 0 to retain the
+     * profile setting.
      */
     public Optional<Long> envelopeId() {
         return Optional.ofNullable(this.envelopeId);
@@ -149,7 +154,7 @@ public class InlineConfig {
 
 
     /**
-     * Preferred carrier identifier.
+     * Preferred carrier identifier. Use 0 to retain the profile setting or select the default carrier.
      */
     public InlineConfig withCarrierId(long carrierId) {
         this.carrierId = carrierId;
@@ -158,7 +163,8 @@ public class InlineConfig {
 
 
     /**
-     * Preferred service identifier (shipment type).
+     * Preferred service identifier (shipment type). Use 0 to retain the profile setting or select the
+     * default service.
      */
     public InlineConfig withServiceId(long serviceId) {
         this.serviceId = serviceId;
@@ -167,7 +173,7 @@ public class InlineConfig {
 
 
     /**
-     * Preferred paper type identifier.
+     * Preferred paper type identifier. Omit or use 0 to retain the profile setting.
      */
     public InlineConfig withPaperId(@Nullable Long paperId) {
         this.paperId = paperId;
@@ -194,7 +200,8 @@ public class InlineConfig {
 
 
     /**
-     * Preferred envelope size/template identifier defined in the user account.
+     * Preferred envelope size/template identifier defined in the user account. Omit or use 0 to retain the
+     * profile setting.
      */
     public InlineConfig withEnvelopeId(@Nullable Long envelopeId) {
         this.envelopeId = envelopeId;
@@ -272,7 +279,7 @@ public class InlineConfig {
         }
 
         /**
-         * Preferred carrier identifier.
+         * Preferred carrier identifier. Use 0 to retain the profile setting or select the default carrier.
          */
         public Builder carrierId(long carrierId) {
             this.carrierId = carrierId;
@@ -280,7 +287,8 @@ public class InlineConfig {
         }
 
         /**
-         * Preferred service identifier (shipment type).
+         * Preferred service identifier (shipment type). Use 0 to retain the profile setting or select the
+         * default service.
          */
         public Builder serviceId(long serviceId) {
             this.serviceId = serviceId;
@@ -288,7 +296,7 @@ public class InlineConfig {
         }
 
         /**
-         * Preferred paper type identifier.
+         * Preferred paper type identifier. Omit or use 0 to retain the profile setting.
          */
         public Builder paperId(@Nullable Long paperId) {
             this.paperId = paperId;
@@ -312,7 +320,8 @@ public class InlineConfig {
         }
 
         /**
-         * Preferred envelope size/template identifier defined in the user account.
+         * Preferred envelope size/template identifier defined in the user account. Omit or use 0 to retain the
+         * profile setting.
          */
         public Builder envelopeId(@Nullable Long envelopeId) {
             this.envelopeId = envelopeId;

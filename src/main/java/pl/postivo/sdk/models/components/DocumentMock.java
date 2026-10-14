@@ -16,7 +16,7 @@ import pl.postivo.sdk.utils.Utils;
  */
 public class DocumentMock {
     /**
-     * Number of pages in the mock document.
+     * Number of pages in the mock document; at least one page is required.
      */
     @JsonProperty("pages")
     private long pages;
@@ -28,7 +28,7 @@ public class DocumentMock {
     }
 
     /**
-     * Number of pages in the mock document.
+     * Number of pages in the mock document; at least one page is required.
      */
     public long pages() {
         return this.pages;
@@ -40,7 +40,7 @@ public class DocumentMock {
 
 
     /**
-     * Number of pages in the mock document.
+     * Number of pages in the mock document; at least one page is required.
      */
     public DocumentMock withPages(long pages) {
         this.pages = pages;
@@ -83,7 +83,7 @@ public class DocumentMock {
         }
 
         /**
-         * Number of pages in the mock document.
+         * Number of pages in the mock document; at least one page is required.
          */
         public Builder pages(long pages) {
             this.pages = pages;

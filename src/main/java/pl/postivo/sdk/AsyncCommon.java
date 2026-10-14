@@ -39,7 +39,7 @@ public class AsyncCommon {
     /**
      * Check API availability and version
      * 
-     * <p>Check the API connection and current availability status. The response also includes the current API
+     * <p>Check the connection to Postivo and service availability. The result also includes the current API
      * version.
      * 
      * @return The async call builder
@@ -51,7 +51,7 @@ public class AsyncCommon {
     /**
      * Check API availability and version
      * 
-     * <p>Check the API connection and current availability status. The response also includes the current API
+     * <p>Check the connection to Postivo and service availability. The result also includes the current API
      * version.
      * 
      * @return {@code CompletableFuture<PingResponse>} - The async response
@@ -63,7 +63,7 @@ public class AsyncCommon {
     /**
      * Check API availability and version
      * 
-     * <p>Check the API connection and current availability status. The response also includes the current API
+     * <p>Check the connection to Postivo and service availability. The result also includes the current API
      * version.
      * 
      * @param options additional options

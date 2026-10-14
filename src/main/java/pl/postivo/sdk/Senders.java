@@ -50,11 +50,8 @@ public class Senders {
     /**
      * List senders
      * 
-     * <p>Retrieve the list of allowed senders defined in your account. Senders are registered in your account
-     * and must be verified and activated before use. Activated senders have <code>active: true</code> property and
-     * can be used to send shipments.
-     * 
-     * <p>Inactive senders are also returned (<code>active: false</code>), but cannot be used until activated.
+     * <p>Retrieve the senders defined in your account. Active, verified senders can be used for shipments.
+     * Inactive senders are also included in the list.
      * 
      * @return The call builder
      */
@@ -65,11 +62,8 @@ public class Senders {
     /**
      * List senders
      * 
-     * <p>Retrieve the list of allowed senders defined in your account. Senders are registered in your account
-     * and must be verified and activated before use. Activated senders have <code>active: true</code> property and
-     * can be used to send shipments.
-     * 
-     * <p>Inactive senders are also returned (<code>active: false</code>), but cannot be used until activated.
+     * <p>Retrieve the senders defined in your account. Active, verified senders can be used for shipments.
+     * Inactive senders are also included in the list.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -81,11 +75,8 @@ public class Senders {
     /**
      * List senders
      * 
-     * <p>Retrieve the list of allowed senders defined in your account. Senders are registered in your account
-     * and must be verified and activated before use. Activated senders have <code>active: true</code> property and
-     * can be used to send shipments.
-     * 
-     * <p>Inactive senders are also returned (<code>active: false</code>), but cannot be used until activated.
+     * <p>Retrieve the senders defined in your account. Active, verified senders can be used for shipments.
+     * Inactive senders are also included in the list.
      * 
      * @param options additional options
      * @return The response from the API call
@@ -100,12 +91,11 @@ public class Senders {
     /**
      * Add a new sender
      * 
-     * <p>Create a new sender on your account. The request must contain a <code>Sender</code> object. To prevent fraud,
-     * all additional senders are verified by mailing a verification code to the sender’s address.
+     * <p>Create a sender using its address details. Additional senders are verified by mailing a verification
+     * code to the sender's address. Complete verification with the received code to activate the sender.
      * 
-     * <p>Complete the verification using the <code>verifySender</code> method. Verified senders have <code>active: true</code> and
-     * can be used to send shipments. Inactive senders are also returned (<code>active: false</code>), but cannot be
-     * used until verification is completed.
+     * <p>The sender can be created before the verification letter is sent. If sending the letter fails,
+     * retrieve the sender list before retrying creation.
      * 
      * @return The call builder
      */
@@ -116,12 +106,11 @@ public class Senders {
     /**
      * Add a new sender
      * 
-     * <p>Create a new sender on your account. The request must contain a <code>Sender</code> object. To prevent fraud,
-     * all additional senders are verified by mailing a verification code to the sender’s address.
+     * <p>Create a sender using its address details. Additional senders are verified by mailing a verification
+     * code to the sender's address. Complete verification with the received code to activate the sender.
      * 
-     * <p>Complete the verification using the <code>verifySender</code> method. Verified senders have <code>active: true</code> and
-     * can be used to send shipments. Inactive senders are also returned (<code>active: false</code>), but cannot be
-     * used until verification is completed.
+     * <p>The sender can be created before the verification letter is sent. If sending the letter fails,
+     * retrieve the sender list before retrying creation.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -134,12 +123,11 @@ public class Senders {
     /**
      * Add a new sender
      * 
-     * <p>Create a new sender on your account. The request must contain a <code>Sender</code> object. To prevent fraud,
-     * all additional senders are verified by mailing a verification code to the sender’s address.
+     * <p>Create a sender using its address details. Additional senders are verified by mailing a verification
+     * code to the sender's address. Complete verification with the received code to activate the sender.
      * 
-     * <p>Complete the verification using the <code>verifySender</code> method. Verified senders have <code>active: true</code> and
-     * can be used to send shipments. Inactive senders are also returned (<code>active: false</code>), but cannot be
-     * used until verification is completed.
+     * <p>The sender can be created before the verification letter is sent. If sending the letter fails,
+     * retrieve the sender list before retrying creation.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -155,8 +143,7 @@ public class Senders {
     /**
      * Delete a sender
      * 
-     * <p>Remove a sender from your account by <code>id</code>. Pass the sender’s <code>id</code> parameter to remove it. The sender
-     * is deleted immediately.
+     * <p>Remove a sender using its system ID. The account's default sender must be retained.
      * 
      * @return The call builder
      */
@@ -167,8 +154,7 @@ public class Senders {
     /**
      * Delete a sender
      * 
-     * <p>Remove a sender from your account by <code>id</code>. Pass the sender’s <code>id</code> parameter to remove it. The sender
-     * is deleted immediately.
+     * <p>Remove a sender using its system ID. The account's default sender must be retained.
      * 
      * @param id Sender <code>id</code> to remove.
      * @return The response from the API call
@@ -181,8 +167,7 @@ public class Senders {
     /**
      * Delete a sender
      * 
-     * <p>Remove a sender from your account by <code>id</code>. Pass the sender’s <code>id</code> parameter to remove it. The sender
-     * is deleted immediately.
+     * <p>Remove a sender using its system ID. The account's default sender must be retained.
      * 
      * @param id Sender <code>id</code> to remove.
      * @param options additional options
@@ -199,8 +184,8 @@ public class Senders {
     /**
      * Verify sender
      * 
-     * <p>Verify a sender to activate it. After adding a new sender, a letter containing a verification code
-     * is mailed to the sender’s address. Provide this code to complete verification.
+     * <p>Activate a sender using the verification code received by mail. The code must match the current
+     * verification request, and the sender must still be awaiting verification.
      * 
      * @return The call builder
      */
@@ -211,8 +196,8 @@ public class Senders {
     /**
      * Verify sender
      * 
-     * <p>Verify a sender to activate it. After adding a new sender, a letter containing a verification code
-     * is mailed to the sender’s address. Provide this code to complete verification.
+     * <p>Activate a sender using the verification code received by mail. The code must match the current
+     * verification request, and the sender must still be awaiting verification.
      * 
      * @param id ID of the sender to verify.
      * @param requestBody Verification code received in the letter.
@@ -226,8 +211,8 @@ public class Senders {
     /**
      * Verify sender
      * 
-     * <p>Verify a sender to activate it. After adding a new sender, a letter containing a verification code
-     * is mailed to the sender’s address. Provide this code to complete verification.
+     * <p>Activate a sender using the verification code received by mail. The code must match the current
+     * verification request, and the sender must still be awaiting verification.
      * 
      * @param id ID of the sender to verify.
      * @param requestBody Verification code received in the letter.

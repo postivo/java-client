@@ -57,11 +57,8 @@ public class AsyncShipments {
     /**
      * Retrieve shipment details with status events
      * 
-     * <p>Retrieve the current status and details for one or more shipments by their <code>ids</code>. Pass the unique
-     * shipment IDs (returned when the shipments were created) as a path parameter. To query provide a list
-     * (up to **50** IDs per call).
-     * 
-     * <p>For larger batches, split the requests.
+     * <p>Retrieve the current status and details for up to **50 shipments** using the IDs assigned when they
+     * were created. Separate multiple IDs with commas. Duplicate IDs are processed once.
      * 
      * @return The async call builder
      */
@@ -72,13 +69,10 @@ public class AsyncShipments {
     /**
      * Retrieve shipment details with status events
      * 
-     * <p>Retrieve the current status and details for one or more shipments by their <code>ids</code>. Pass the unique
-     * shipment IDs (returned when the shipments were created) as a path parameter. To query provide a list
-     * (up to **50** IDs per call).
+     * <p>Retrieve the current status and details for up to **50 shipments** using the IDs assigned when they
+     * were created. Separate multiple IDs with commas. Duplicate IDs are processed once.
      * 
-     * <p>For larger batches, split the requests.
-     * 
-     * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call.
+     * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call. Empty items, including leading, trailing or repeated commas, are rejected with HTTP 400. Surrounding whitespace is ignored and duplicate IDs are processed once.
      * @return {@code CompletableFuture<GetStatusResponse>} - The async response
      */
     public CompletableFuture<GetStatusResponse> status(@Nonnull List<String> ids) {
@@ -88,13 +82,10 @@ public class AsyncShipments {
     /**
      * Retrieve shipment details with status events
      * 
-     * <p>Retrieve the current status and details for one or more shipments by their <code>ids</code>. Pass the unique
-     * shipment IDs (returned when the shipments were created) as a path parameter. To query provide a list
-     * (up to **50** IDs per call).
+     * <p>Retrieve the current status and details for up to **50 shipments** using the IDs assigned when they
+     * were created. Separate multiple IDs with commas. Duplicate IDs are processed once.
      * 
-     * <p>For larger batches, split the requests.
-     * 
-     * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call.
+     * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call. Empty items, including leading, trailing or repeated commas, are rejected with HTTP 400. Surrounding whitespace is ignored and duplicate IDs are processed once.
      * @param options additional options
      * @return {@code CompletableFuture<GetStatusResponse>} - The async response
      */
@@ -112,14 +103,13 @@ public class AsyncShipments {
     /**
      * Cancel shipments
      * 
-     * <p>Cancel shipments that have not yet been processed by their <code>ids</code>. Pass the unique shipment IDs
-     * (returned when the shipment was created) as a parameter. To cancel multiple shipments at once,
-     * provide a list of IDs (up to **50** per call).
+     * <p>Cancel up to **50 shipments** using the IDs assigned when they were created. Separate multiple IDs
+     * with commas. Only shipments with status <code>ACCEPTED</code> can be cancelled; duplicate IDs are processed
+     * once.
      * 
-     * <p>For larger volumes, split the operation into multiple requests. Only shipments with status
-     * <code>ACCEPTED</code> can be cancelled.
-     * 
-     * <p>If duplicate shipment IDs are provided in a single call, the API processes each unique ID only once.
+     * <p>Check the result for each shipment, as individual cancellations can succeed or fail independently.
+     * If processing is interrupted, earlier cancellations may already have completed; check shipment
+     * status before retrying.
      * 
      * @return The async call builder
      */
@@ -130,16 +120,15 @@ public class AsyncShipments {
     /**
      * Cancel shipments
      * 
-     * <p>Cancel shipments that have not yet been processed by their <code>ids</code>. Pass the unique shipment IDs
-     * (returned when the shipment was created) as a parameter. To cancel multiple shipments at once,
-     * provide a list of IDs (up to **50** per call).
+     * <p>Cancel up to **50 shipments** using the IDs assigned when they were created. Separate multiple IDs
+     * with commas. Only shipments with status <code>ACCEPTED</code> can be cancelled; duplicate IDs are processed
+     * once.
      * 
-     * <p>For larger volumes, split the operation into multiple requests. Only shipments with status
-     * <code>ACCEPTED</code> can be cancelled.
+     * <p>Check the result for each shipment, as individual cancellations can succeed or fail independently.
+     * If processing is interrupted, earlier cancellations may already have completed; check shipment
+     * status before retrying.
      * 
-     * <p>If duplicate shipment IDs are provided in a single call, the API processes each unique ID only once.
-     * 
-     * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call.
+     * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call. Empty items, including leading, trailing or repeated commas, are rejected with HTTP 400. Surrounding whitespace is ignored and duplicate IDs are processed once.
      * @return {@code CompletableFuture<CancelShipmentResponse>} - The async response
      */
     public CompletableFuture<CancelShipmentResponse> cancel(@Nonnull List<String> ids) {
@@ -149,16 +138,15 @@ public class AsyncShipments {
     /**
      * Cancel shipments
      * 
-     * <p>Cancel shipments that have not yet been processed by their <code>ids</code>. Pass the unique shipment IDs
-     * (returned when the shipment was created) as a parameter. To cancel multiple shipments at once,
-     * provide a list of IDs (up to **50** per call).
+     * <p>Cancel up to **50 shipments** using the IDs assigned when they were created. Separate multiple IDs
+     * with commas. Only shipments with status <code>ACCEPTED</code> can be cancelled; duplicate IDs are processed
+     * once.
      * 
-     * <p>For larger volumes, split the operation into multiple requests. Only shipments with status
-     * <code>ACCEPTED</code> can be cancelled.
+     * <p>Check the result for each shipment, as individual cancellations can succeed or fail independently.
+     * If processing is interrupted, earlier cancellations may already have completed; check shipment
+     * status before retrying.
      * 
-     * <p>If duplicate shipment IDs are provided in a single call, the API processes each unique ID only once.
-     * 
-     * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call.
+     * @param ids Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50** identifiers per call. Empty items, including leading, trailing or repeated commas, are rejected with HTTP 400. Surrounding whitespace is ignored and duplicate IDs are processed once.
      * @param options additional options
      * @return {@code CompletableFuture<CancelShipmentResponse>} - The async response
      */
@@ -176,14 +164,9 @@ public class AsyncShipments {
     /**
      * Dispatch a new shipment
      * 
-     * <p>Send a shipment to one or multiple recipients in a single request. Provide a <code>Shipment</code> object. The
-     * object includes properties that define the shipment (recipient details, included documents, and
-     * optional settings).
-     * 
-     * <p>Some fields are required.
-     * 
-     * <p>The system accepts up to **50** recipients per call. For larger volumes, split the operation into
-     * multiple requests.
+     * <p>Submit shipments for up to **50 recipients** using their addresses or Address Book identifiers,
+     * documents and optional shipment settings. For larger batches, split the operation into multiple
+     * calls. Check each recipient result, as individual shipments can succeed or fail independently.
      * 
      * @return The async call builder
      */
@@ -194,14 +177,9 @@ public class AsyncShipments {
     /**
      * Dispatch a new shipment
      * 
-     * <p>Send a shipment to one or multiple recipients in a single request. Provide a <code>Shipment</code> object. The
-     * object includes properties that define the shipment (recipient details, included documents, and
-     * optional settings).
-     * 
-     * <p>Some fields are required.
-     * 
-     * <p>The system accepts up to **50** recipients per call. For larger volumes, split the operation into
-     * multiple requests.
+     * <p>Submit shipments for up to **50 recipients** using their addresses or Address Book identifiers,
+     * documents and optional shipment settings. For larger batches, split the operation into multiple
+     * calls. Check each recipient result, as individual shipments can succeed or fail independently.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ShipmentDispatchResponse>} - The async response
@@ -213,14 +191,9 @@ public class AsyncShipments {
     /**
      * Dispatch a new shipment
      * 
-     * <p>Send a shipment to one or multiple recipients in a single request. Provide a <code>Shipment</code> object. The
-     * object includes properties that define the shipment (recipient details, included documents, and
-     * optional settings).
-     * 
-     * <p>Some fields are required.
-     * 
-     * <p>The system accepts up to **50** recipients per call. For larger volumes, split the operation into
-     * multiple requests.
+     * <p>Submit shipments for up to **50 recipients** using their addresses or Address Book identifiers,
+     * documents and optional shipment settings. For larger batches, split the operation into multiple
+     * calls. Check each recipient result, as individual shipments can succeed or fail independently.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -239,11 +212,9 @@ public class AsyncShipments {
     /**
      * Retrieve documents related to a shipment
      * 
-     * <p>Download documents related to a shipment by its <code>id</code>. Pass the unique shipment <code>id</code> (returned when
-     * the shipment was created) as a parameter. The second parameter is the document type to download.
-     * 
-     * <p>Supported document types include: dispatch certificate, envelope template, and EPO (in PDF or XML
-     * formats).
+     * <p>Retrieve a shipment document using the shipment ID and document type. Available documents include
+     * dispatch confirmations, envelope previews, EPO certificate visualizations in PDF format and EPO
+     * certificates in XML format. Availability depends on the document type and shipment state.
      * 
      * @return The async call builder
      */
@@ -254,11 +225,9 @@ public class AsyncShipments {
     /**
      * Retrieve documents related to a shipment
      * 
-     * <p>Download documents related to a shipment by its <code>id</code>. Pass the unique shipment <code>id</code> (returned when
-     * the shipment was created) as a parameter. The second parameter is the document type to download.
-     * 
-     * <p>Supported document types include: dispatch certificate, envelope template, and EPO (in PDF or XML
-     * formats).
+     * <p>Retrieve a shipment document using the shipment ID and document type. Available documents include
+     * dispatch confirmations, envelope previews, EPO certificate visualizations in PDF format and EPO
+     * certificates in XML format. Availability depends on the document type and shipment state.
      * 
      * @param id Single shipment ID assigned by the system when the shipment was created.
      * @param type Type of document/certificate to generate.
@@ -271,11 +240,9 @@ public class AsyncShipments {
     /**
      * Retrieve documents related to a shipment
      * 
-     * <p>Download documents related to a shipment by its <code>id</code>. Pass the unique shipment <code>id</code> (returned when
-     * the shipment was created) as a parameter. The second parameter is the document type to download.
-     * 
-     * <p>Supported document types include: dispatch certificate, envelope template, and EPO (in PDF or XML
-     * formats).
+     * <p>Retrieve a shipment document using the shipment ID and document type. Available documents include
+     * dispatch confirmations, envelope previews, EPO certificate visualizations in PDF format and EPO
+     * certificates in XML format. Availability depends on the document type and shipment state.
      * 
      * @param id Single shipment ID assigned by the system when the shipment was created.
      * @param type Type of document/certificate to generate.
@@ -298,14 +265,9 @@ public class AsyncShipments {
     /**
      * Check the shipment price
      * 
-     * <p>Check the price of a shipment for one or multiple recipients. Provide a <code>Shipment</code> object in the
-     * request. Each object includes properties such as recipient details, included documents, and optional
-     * settings.
-     * 
-     * <p>Some fields are required.
-     * 
-     * <p>The system accepts up to **50** recipients per call. For larger volumes, split the operation into
-     * multiple requests.
+     * <p>Calculate shipment prices for up to **50 recipients** using their addresses or Address Book
+     * identifiers, documents and optional shipment settings. For larger batches, split the operation into
+     * multiple calls. Check each recipient result to determine whether pricing succeeded.
      * 
      * @return The async call builder
      */
@@ -316,14 +278,9 @@ public class AsyncShipments {
     /**
      * Check the shipment price
      * 
-     * <p>Check the price of a shipment for one or multiple recipients. Provide a <code>Shipment</code> object in the
-     * request. Each object includes properties such as recipient details, included documents, and optional
-     * settings.
-     * 
-     * <p>Some fields are required.
-     * 
-     * <p>The system accepts up to **50** recipients per call. For larger volumes, split the operation into
-     * multiple requests.
+     * <p>Calculate shipment prices for up to **50 recipients** using their addresses or Address Book
+     * identifiers, documents and optional shipment settings. For larger batches, split the operation into
+     * multiple calls. Check each recipient result to determine whether pricing succeeded.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ShipmentPriceResponse>} - The async response
@@ -335,14 +292,9 @@ public class AsyncShipments {
     /**
      * Check the shipment price
      * 
-     * <p>Check the price of a shipment for one or multiple recipients. Provide a <code>Shipment</code> object in the
-     * request. Each object includes properties such as recipient details, included documents, and optional
-     * settings.
-     * 
-     * <p>Some fields are required.
-     * 
-     * <p>The system accepts up to **50** recipients per call. For larger volumes, split the operation into
-     * multiple requests.
+     * <p>Calculate shipment prices for up to **50 recipients** using their addresses or Address Book
+     * identifiers, documents and optional shipment settings. For larger batches, split the operation into
+     * multiple calls. Check each recipient result to determine whether pricing succeeded.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

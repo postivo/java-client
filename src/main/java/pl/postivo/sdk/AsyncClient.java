@@ -5,6 +5,9 @@ package pl.postivo.sdk;
 
 import pl.postivo.sdk.utils.Headers;
 
+/**
+ * <a href="https://api.postivo.pl/problems/">Error catalog and operation results</a>
+ */
 public class AsyncClient {
     private static final Headers _headers = Headers.EMPTY;
 

@@ -12,7 +12,7 @@
 
 ## list
 
-Retrieve the full list of groups defined in your account’s Address Book.
+Retrieve all contact groups defined in your account's Address Book. An Address Book without groups returns an empty list.
 
 ### Example Usage
 
@@ -51,12 +51,13 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 401, 403, 4XX          | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 403, 4XX               | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |
 
 ## add
 
-Create a new contact group in your account’s Address Book.
+Create a new contact group in your account's Address Book.
 
 ### Example Usage
 
@@ -108,12 +109,13 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 401, 403, 4XX          | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 403, 415, 4XX          | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |
 
 ## get
 
-Get the details of a single group from your Address Book by its `id` (returned when the group was created).
+Get the details of an Address Book group using the system ID assigned when the group was created.
 
 ### Example Usage
 
@@ -159,12 +161,13 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 401, 404, 4XX          | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 404, 4XX               | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |
 
 ## update
 
-Update a group’s details by ID.
+Update an Address Book group using its system ID. Submitting unchanged details leaves the group unchanged.
 
 ### Example Usage
 
@@ -206,7 +209,7 @@ public class Application {
 | Parameter                                 | Type                                      | Required                                  | Description                               | Example                                   |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | `id`                                      | *long*                                    | :heavy_check_mark:                        | Group `id` to update.                     | 14                                        |
-| `group`                                   | [Group](../../models/components/Group.md) | :heavy_check_mark:                        | A `Group` object with the updated fields. |                                           |
+| `group`                                   | [Group](../../models/components/Group.md) | :heavy_check_mark:                        | Updated contact group details.            |                                           |
 
 ### Response
 
@@ -216,14 +219,13 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 401, 403, 404, 4XX     | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 403, 404, 415, 4XX     | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |
 
 ## delete
 
-Remove a group from your account’s Address Book by `ID`. Pass the group’s `id` to remove it. The group is deleted immediately from the Address Book.
-
-If you also want to remove contacts that belong to this group, set the parameter `contacts` to `delete`. The default is `contacts: detach`, which detaches contacts from the removed group but leaves them in the Address Book.
+Remove an Address Book group using its system ID. By default, its contacts remain in the Address Book and their membership in the removed group is cleared. You can also choose to delete the contacts belonging to the group.
 
 ### Example Usage
 
@@ -250,9 +252,7 @@ public class Application {
                 .contacts(ContactHandling.DETACH)
                 .call();
 
-        if (res.errorResponse().isPresent()) {
-            System.out.println(res.errorResponse().get());
-        }
+        // handle response
     }
 }
 ```
@@ -272,5 +272,6 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 401, 403, 404, 4XX     | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 403, 404, 4XX          | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |

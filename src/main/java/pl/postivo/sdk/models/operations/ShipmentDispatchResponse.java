@@ -13,8 +13,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import pl.postivo.sdk.models.components.ErrorResponse;
 import pl.postivo.sdk.models.components.ShipmentDetails;
 import pl.postivo.sdk.utils.Response;
 import pl.postivo.sdk.utils.Utils;
@@ -42,11 +40,6 @@ public class ShipmentDispatchResponse implements Response {
      */
     private List<ShipmentDetails> shipmentDetails;
 
-    /**
-     * Invalid request.
-     */
-    private JsonNullable<ErrorResponse> errorResponse;
-
 
     private Map<String, List<String>> headers;
 
@@ -56,7 +49,6 @@ public class ShipmentDispatchResponse implements Response {
             int statusCode,
             @Nonnull HttpResponse<InputStream> rawResponse,
             @Nullable List<ShipmentDetails> shipmentDetails,
-            @Nullable JsonNullable<ErrorResponse> errorResponse,
             @Nonnull Map<String, List<String>> headers) {
         headers = Utils.emptyMapIfNull(headers);
         this.contentType = Optional.ofNullable(contentType)
@@ -65,8 +57,6 @@ public class ShipmentDispatchResponse implements Response {
         this.rawResponse = Optional.ofNullable(rawResponse)
             .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.shipmentDetails = shipmentDetails;
-        this.errorResponse = Optional.ofNullable(errorResponse)
-            .orElse(JsonNullable.undefined());
         this.headers = Optional.ofNullable(headers)
             .orElseThrow(() -> new IllegalArgumentException("headers cannot be null"));
     }
@@ -77,7 +67,7 @@ public class ShipmentDispatchResponse implements Response {
             @Nonnull HttpResponse<InputStream> rawResponse,
             @Nonnull Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            null, null, headers);
+            null, headers);
     }
 
     /**
@@ -107,13 +97,6 @@ public class ShipmentDispatchResponse implements Response {
      */
     public Optional<List<ShipmentDetails>> shipmentDetails() {
         return Optional.ofNullable(this.shipmentDetails);
-    }
-
-    /**
-     * Invalid request.
-     */
-    public JsonNullable<ErrorResponse> errorResponse() {
-        return this.errorResponse;
     }
 
     public Map<String, List<String>> headers() {
@@ -162,15 +145,6 @@ public class ShipmentDispatchResponse implements Response {
     }
 
 
-    /**
-     * Invalid request.
-     */
-    public ShipmentDispatchResponse withErrorResponse(@Nullable ErrorResponse errorResponse) {
-        this.errorResponse = JsonNullable.of(errorResponse);
-        return this;
-    }
-
-
     public ShipmentDispatchResponse withHeaders(@Nonnull Map<String, List<String>> headers) {
         this.headers = Utils.checkNotNull(headers, "headers");
         return this;
@@ -191,7 +165,6 @@ public class ShipmentDispatchResponse implements Response {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.shipmentDetails, other.shipmentDetails) &&
-            Utils.enhancedDeepEquals(this.errorResponse, other.errorResponse) &&
             Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
@@ -199,7 +172,7 @@ public class ShipmentDispatchResponse implements Response {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            shipmentDetails, errorResponse, headers);
+            shipmentDetails, headers);
     }
     
     @Override
@@ -209,7 +182,6 @@ public class ShipmentDispatchResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "shipmentDetails", shipmentDetails,
-                "errorResponse", errorResponse,
                 "headers", headers);
     }
 
@@ -223,8 +195,6 @@ public class ShipmentDispatchResponse implements Response {
         private HttpResponse<InputStream> rawResponse;
 
         private List<ShipmentDetails> shipmentDetails;
-
-        private JsonNullable<ErrorResponse> errorResponse;
 
         private Map<String, List<String>> headers;
 
@@ -265,14 +235,6 @@ public class ShipmentDispatchResponse implements Response {
             return this;
         }
 
-        /**
-         * Invalid request.
-         */
-        public Builder errorResponse(@Nullable ErrorResponse errorResponse) {
-            this.errorResponse = JsonNullable.of(errorResponse);
-            return this;
-        }
-
         public Builder headers(@Nonnull Map<String, List<String>> headers) {
             this.headers = Utils.checkNotNull(headers, "headers");
             return this;
@@ -281,7 +243,7 @@ public class ShipmentDispatchResponse implements Response {
         public ShipmentDispatchResponse build() {
             return new ShipmentDispatchResponse(
                 contentType, statusCode, rawResponse,
-                shipmentDetails, errorResponse, headers);
+                shipmentDetails, headers);
         }
 
     }

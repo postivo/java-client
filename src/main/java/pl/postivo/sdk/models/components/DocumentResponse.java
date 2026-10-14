@@ -4,11 +4,8 @@
 package pl.postivo.sdk.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -29,22 +26,17 @@ public class DocumentResponse {
     /**
      * Base64-encoded document content.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("file_stream")
     private String fileStream;
 
     @JsonCreator
     public DocumentResponse(
             @JsonProperty("mime_type") @Nonnull String mimeType,
-            @JsonProperty("file_stream") @Nullable String fileStream) {
+            @JsonProperty("file_stream") @Nonnull String fileStream) {
         this.mimeType = Optional.ofNullable(mimeType)
             .orElseThrow(() -> new IllegalArgumentException("mimeType cannot be null"));
-        this.fileStream = fileStream;
-    }
-    
-    public DocumentResponse(
-            @Nonnull String mimeType) {
-        this(mimeType, null);
+        this.fileStream = Optional.ofNullable(fileStream)
+            .orElseThrow(() -> new IllegalArgumentException("fileStream cannot be null"));
     }
 
     /**
@@ -57,8 +49,8 @@ public class DocumentResponse {
     /**
      * Base64-encoded document content.
      */
-    public Optional<String> fileStream() {
-        return Optional.ofNullable(this.fileStream);
+    public String fileStream() {
+        return this.fileStream;
     }
 
     public static Builder builder() {
@@ -78,8 +70,8 @@ public class DocumentResponse {
     /**
      * Base64-encoded document content.
      */
-    public DocumentResponse withFileStream(@Nullable String fileStream) {
-        this.fileStream = fileStream;
+    public DocumentResponse withFileStream(@Nonnull String fileStream) {
+        this.fileStream = Utils.checkNotNull(fileStream, "fileStream");
         return this;
     }
 
@@ -133,8 +125,8 @@ public class DocumentResponse {
         /**
          * Base64-encoded document content.
          */
-        public Builder fileStream(@Nullable String fileStream) {
-            this.fileStream = fileStream;
+        public Builder fileStream(@Nonnull String fileStream) {
+            this.fileStream = Utils.checkNotNull(fileStream, "fileStream");
             return this;
         }
 

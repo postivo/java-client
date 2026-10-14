@@ -21,7 +21,7 @@ public class UpdateContactByExternalIdRequest {
     private String extId;
 
     /**
-     * A <code>Contact</code> object with the updated fields.
+     * Updated contact details.
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Contact contact;
@@ -44,7 +44,7 @@ public class UpdateContactByExternalIdRequest {
     }
 
     /**
-     * A <code>Contact</code> object with the updated fields.
+     * Updated contact details.
      */
     public Contact contact() {
         return this.contact;
@@ -65,7 +65,7 @@ public class UpdateContactByExternalIdRequest {
 
 
     /**
-     * A <code>Contact</code> object with the updated fields.
+     * Updated contact details.
      */
     public UpdateContactByExternalIdRequest withContact(@Nonnull Contact contact) {
         this.contact = Utils.checkNotNull(contact, "contact");
@@ -120,7 +120,7 @@ public class UpdateContactByExternalIdRequest {
         }
 
         /**
-         * A <code>Contact</code> object with the updated fields.
+         * Updated contact details.
          */
         public Builder contact(@Nonnull Contact contact) {
             this.contact = Utils.checkNotNull(contact, "contact");

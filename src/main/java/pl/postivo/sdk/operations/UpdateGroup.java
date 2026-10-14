@@ -134,7 +134,7 @@ public class UpdateGroup {
                 throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "application/json;q=1, application/problem+json;q=0")
+            req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -219,7 +219,15 @@ public class UpdateGroup {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "4XX")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "401", "405")) {
+                res.withHeaders(response.headers().map());
+                if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
+                    throw ErrorResponse.from(response);
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "403", "404", "415", "4XX")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     throw ErrorResponse.from(response);
                 } else {
@@ -229,13 +237,6 @@ public class UpdateGroup {
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     throw ErrorResponse.from(response);
-                } else {
-                    throw APIException.from("Unexpected content-type received: " + contentType, response);
-                }
-            }
-            if (Utils.statusCodeMatches(response.statusCode(), "default")) {
-                if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
-                    return res.withErrorResponse(Utils.unmarshal(response, new TypeReference<pl.postivo.sdk.models.components.ErrorResponse>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -315,7 +316,16 @@ public class UpdateGroup {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "4XX")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "401", "405")) {
+                res.withHeaders(response.headers().map());
+                if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
+                    return ErrorResponse.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "403", "404", "415", "4XX")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     return ErrorResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -327,14 +337,6 @@ public class UpdateGroup {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     return ErrorResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
-            }
-            if (Utils.statusCodeMatches(response.statusCode(), "default")) {
-                if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<pl.postivo.sdk.models.components.ErrorResponse>() {})
-                            .thenApply(res::withErrorResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

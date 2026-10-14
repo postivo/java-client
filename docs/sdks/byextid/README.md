@@ -12,7 +12,7 @@
 
 ## get
 
-Get the details of a contact from your Address Book using your external (custom) ID (the value you defined when creating the contact).
+Get the details of an Address Book contact using its external (custom) ID, assigned when the contact was created.
 
 ### Example Usage
 
@@ -58,12 +58,13 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 401, 404, 4XX          | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 404, 4XX               | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |
 
 ## update
 
-Update a contact by its external (custom) ID - the value you defined when creating the contact.
+Update an Address Book contact using its external (custom) ID, assigned when the contact was created. Submitting unchanged details leaves the contact unchanged.
 
 ### Example Usage
 
@@ -116,7 +117,7 @@ public class Application {
 | Parameter                                      | Type                                           | Required                                       | Description                                    | Example                                        |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | `extId`                                        | *String*                                       | :heavy_check_mark:                             | External (custom) ID of the contact to update. | my-id-2                                        |
-| `contact`                                      | [Contact](../../models/components/Contact.md)  | :heavy_check_mark:                             | A `Contact` object with the updated fields.    |                                                |
+| `contact`                                      | [Contact](../../models/components/Contact.md)  | :heavy_check_mark:                             | Updated contact details.                       |                                                |
 
 ### Response
 
@@ -124,14 +125,15 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 401, 403, 404, 4XX     | application/problem+json    |
-| models/errors/ErrorResponse | 5XX                         | application/problem+json    |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/ErrorResponse  | 401, 405                     | application/problem+json     |
+| models/errors/ErrorResponse  | 400, 403, 404, 409, 415, 4XX | application/problem+json     |
+| models/errors/ErrorResponse  | 5XX                          | application/problem+json     |
 
 ## delete
 
-Remove a contact from your account by its external (custom) ID - the value defined when the contact was created.
+Remove an Address Book contact using its external (custom) ID, assigned when the contact was created.
 
 ### Example Usage
 
@@ -156,9 +158,7 @@ public class Application {
                 .extId("my-id-2")
                 .call();
 
-        if (res.errorResponse().isPresent()) {
-            System.out.println(res.errorResponse().get());
-        }
+        // handle response
     }
 }
 ```
@@ -177,12 +177,13 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 401, 403, 404, 4XX     | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 403, 404, 4XX          | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |
 
 ## removeFromGroup
 
-Remove a contact from a group in your Address Book using the contact’s external (custom) ID. This operation does not delete the contact; it only detaches the contact from the group. Provide the contact’s `ext_id` and the group’s `group_id` parameters to perform the detachment.
+Remove a contact from an Address Book group using the contact's external (custom) ID and the group's system ID. The contact remains in the Address Book.
 
 ### Example Usage
 
@@ -208,9 +209,7 @@ public class Application {
                 .groupId(656L)
                 .call();
 
-        if (res.errorResponse().isPresent()) {
-            System.out.println(res.errorResponse().get());
-        }
+        // handle response
     }
 }
 ```
@@ -230,15 +229,13 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404                         | application/json            |
-| models/errors/ErrorResponse | 400, 401, 403, 4XX          | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 403, 404, 4XX          | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |
 
 ## addToGroup
 
-Assign a contact to a group using the contact’s external (custom) ID (assigned when creating the contact). If a contact and a group exist in your account, you can add the contact to that group.
-
-Provide the contact’s `ext_id` and the group’s `group_id` parameters to perform the assignment.
+Assign a contact to an Address Book group using the contact's external (custom) ID and the group's system ID. Both the contact and the group must exist in your Address Book.
 
 ### Example Usage
 
@@ -264,9 +261,7 @@ public class Application {
                 .groupId(656L)
                 .call();
 
-        if (res.errorResponse().isPresent()) {
-            System.out.println(res.errorResponse().get());
-        }
+        // handle response
     }
 }
 ```
@@ -286,6 +281,6 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404                         | application/json            |
-| models/errors/ErrorResponse | 400, 401, 403, 4XX          | application/problem+json    |
+| models/errors/ErrorResponse | 401, 405                    | application/problem+json    |
+| models/errors/ErrorResponse | 400, 403, 404, 4XX          | application/problem+json    |
 | models/errors/ErrorResponse | 5XX                         | application/problem+json    |

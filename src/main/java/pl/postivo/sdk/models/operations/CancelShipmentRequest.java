@@ -16,7 +16,10 @@ import pl.postivo.sdk.utils.Utils;
 public class CancelShipmentRequest {
     /**
      * Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50**
-     * identifiers per call.
+     * identifiers per call. Empty items, including leading, trailing or repeated commas, are rejected with
+     * HTTP 400.
+     * 
+     * <p>Surrounding whitespace is ignored and duplicate IDs are processed once.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=true,name=ids")
     private List<String> ids;
@@ -30,7 +33,10 @@ public class CancelShipmentRequest {
 
     /**
      * Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50**
-     * identifiers per call.
+     * identifiers per call. Empty items, including leading, trailing or repeated commas, are rejected with
+     * HTTP 400.
+     * 
+     * <p>Surrounding whitespace is ignored and duplicate IDs are processed once.
      */
     public List<String> ids() {
         return this.ids;
@@ -43,7 +49,10 @@ public class CancelShipmentRequest {
 
     /**
      * Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50**
-     * identifiers per call.
+     * identifiers per call. Empty items, including leading, trailing or repeated commas, are rejected with
+     * HTTP 400.
+     * 
+     * <p>Surrounding whitespace is ignored and duplicate IDs are processed once.
      */
     public CancelShipmentRequest withIds(@Nonnull List<String> ids) {
         this.ids = Utils.checkNotNull(ids, "ids");
@@ -87,7 +96,10 @@ public class CancelShipmentRequest {
 
         /**
          * Shipment IDs assigned by the system (comma-separated). The system accepts a maximum of **50**
-         * identifiers per call.
+         * identifiers per call. Empty items, including leading, trailing or repeated commas, are rejected with
+         * HTTP 400.
+         * 
+         * <p>Surrounding whitespace is ignored and duplicate IDs are processed once.
          */
         public Builder ids(@Nonnull List<String> ids) {
             this.ids = Utils.checkNotNull(ids, "ids");

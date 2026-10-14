@@ -46,7 +46,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'pl.postivo:client:0.2.1'
+implementation 'pl.postivo:client:0.3.11'
 ```
 
 Maven:
@@ -54,7 +54,7 @@ Maven:
 <dependency>
     <groupId>pl.postivo</groupId>
     <artifactId>client</artifactId>
-    <version>0.2.1</version>
+    <version>0.3.11</version>
 </dependency>
 ```
 
@@ -516,7 +516,6 @@ package hello.world;
 
 import java.io.UncheckedIOException;
 import java.lang.Exception;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import pl.postivo.sdk.Client;
@@ -558,8 +557,8 @@ public class Application {
                 var e = (ErrorResponse) ex;
                 // Check error data fields
                 e.data().ifPresent(payload -> {
-                      Optional<String> type = payload.type();
-                      Optional<Long> status = payload.status();
+                      String type = payload.type();
+                      long status = payload.status();
                       // ...
                 });
             }
@@ -579,7 +578,7 @@ public class Application {
 ### Error Classes
 **Primary errors:**
 * [`ClientException`](./src/main/java/models/errors/ClientException.java): The base class for HTTP error responses.
-  * [`pl.postivo.sdk.models.errors.ErrorResponse`](./src/main/java/models/errors/pl.postivo.sdk.models.errors.ErrorResponse.java): Problem Details object (RFC 9457) describing the error.
+  * [`pl.postivo.sdk.models.errors.ErrorResponse`](./src/main/java/models/errors/pl.postivo.sdk.models.errors.ErrorResponse.java): Problem Details object (RFC 9457) describing the error. See the [error catalog](https://api.postivo.pl/problems/) for problem types and recovery steps.
 
 <details><summary>Less common errors (6)</summary>
 

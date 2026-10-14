@@ -23,7 +23,7 @@ public enum DocumentType {
      */
     ENVELOPE("envelope"),
     /**
-     * EPO certificate in PDF format (Elektroniczne Potwierdzenie Odbioru)
+     * EPO certificate visualization in PDF format (Elektroniczne Potwierdzenie Odbioru)
      */
     EPO_PDF("epo_pdf"),
     /**

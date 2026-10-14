@@ -13,8 +13,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import pl.postivo.sdk.models.components.ErrorResponse;
 import pl.postivo.sdk.models.components.ShipmentPrice;
 import pl.postivo.sdk.utils.AsyncResponse;
 import pl.postivo.sdk.utils.Blob;
@@ -42,11 +40,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
      */
     private List<ShipmentPrice> shipmentPrices;
 
-    /**
-     * Invalid request.
-     */
-    private JsonNullable<ErrorResponse> errorResponse;
-
 
     private Map<String, List<String>> headers;
 
@@ -56,7 +49,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
             int statusCode,
             @Nonnull HttpResponse<Blob> rawResponse,
             @Nullable List<ShipmentPrice> shipmentPrices,
-            @Nullable JsonNullable<ErrorResponse> errorResponse,
             @Nonnull Map<String, List<String>> headers) {
         headers = Utils.emptyMapIfNull(headers);
         this.contentType = Optional.ofNullable(contentType)
@@ -65,8 +57,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
         this.rawResponse = Optional.ofNullable(rawResponse)
             .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.shipmentPrices = shipmentPrices;
-        this.errorResponse = Optional.ofNullable(errorResponse)
-            .orElse(JsonNullable.undefined());
         this.headers = Optional.ofNullable(headers)
             .orElseThrow(() -> new IllegalArgumentException("headers cannot be null"));
     }
@@ -77,7 +67,7 @@ public class ShipmentPriceResponse implements AsyncResponse {
             @Nonnull HttpResponse<Blob> rawResponse,
             @Nonnull Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            null, null, headers);
+            null, headers);
     }
 
     /**
@@ -106,13 +96,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
      */
     public Optional<List<ShipmentPrice>> shipmentPrices() {
         return Optional.ofNullable(this.shipmentPrices);
-    }
-
-    /**
-     * Invalid request.
-     */
-    public JsonNullable<ErrorResponse> errorResponse() {
-        return this.errorResponse;
     }
 
     public Map<String, List<String>> headers() {
@@ -160,15 +143,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
     }
 
 
-    /**
-     * Invalid request.
-     */
-    public ShipmentPriceResponse withErrorResponse(@Nullable ErrorResponse errorResponse) {
-        this.errorResponse = JsonNullable.of(errorResponse);
-        return this;
-    }
-
-
     public ShipmentPriceResponse withHeaders(@Nonnull Map<String, List<String>> headers) {
         this.headers = Utils.checkNotNull(headers, "headers");
         return this;
@@ -189,7 +163,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.shipmentPrices, other.shipmentPrices) &&
-            Utils.enhancedDeepEquals(this.errorResponse, other.errorResponse) &&
             Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
@@ -197,7 +170,7 @@ public class ShipmentPriceResponse implements AsyncResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            shipmentPrices, errorResponse, headers);
+            shipmentPrices, headers);
     }
     
     @Override
@@ -207,7 +180,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "shipmentPrices", shipmentPrices,
-                "errorResponse", errorResponse,
                 "headers", headers);
     }
 
@@ -221,8 +193,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
         private HttpResponse<Blob> rawResponse;
 
         private List<ShipmentPrice> shipmentPrices;
-
-        private JsonNullable<ErrorResponse> errorResponse;
 
         private Map<String, List<String>> headers;
 
@@ -262,14 +232,6 @@ public class ShipmentPriceResponse implements AsyncResponse {
             return this;
         }
 
-        /**
-         * Invalid request.
-         */
-        public Builder errorResponse(@Nullable ErrorResponse errorResponse) {
-            this.errorResponse = JsonNullable.of(errorResponse);
-            return this;
-        }
-
         public Builder headers(@Nonnull Map<String, List<String>> headers) {
             this.headers = Utils.checkNotNull(headers, "headers");
             return this;
@@ -278,7 +240,7 @@ public class ShipmentPriceResponse implements AsyncResponse {
         public ShipmentPriceResponse build() {
             return new ShipmentPriceResponse(
                 contentType, statusCode, rawResponse,
-                shipmentPrices, errorResponse, headers);
+                shipmentPrices, headers);
         }
 
     }

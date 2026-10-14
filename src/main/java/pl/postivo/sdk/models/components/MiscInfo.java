@@ -19,7 +19,8 @@ import pl.postivo.sdk.utils.Utils;
 /**
  * MiscInfo
  * 
- * <p>Additional shipment metadata. At least one of <code>order_name</code> or <code>mpk</code> must be provided.
+ * <p>Optional shipment metadata. An empty object is allowed. Omitted or null fields supply no metadata;
+ * the string "0" is preserved.
  */
 public class MiscInfo {
     /**

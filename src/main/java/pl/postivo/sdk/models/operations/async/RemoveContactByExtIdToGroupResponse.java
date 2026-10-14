@@ -5,7 +5,6 @@ package pl.postivo.sdk.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Override;
 import java.lang.String;
@@ -13,8 +12,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import pl.postivo.sdk.models.components.ErrorResponse;
 import pl.postivo.sdk.utils.AsyncResponse;
 import pl.postivo.sdk.utils.Blob;
 import pl.postivo.sdk.utils.Utils;
@@ -36,11 +33,6 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
      */
     private HttpResponse<Blob> rawResponse;
 
-    /**
-     * Invalid request.
-     */
-    private JsonNullable<ErrorResponse> errorResponse;
-
 
     private Map<String, List<String>> headers;
 
@@ -49,7 +41,6 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
             @Nonnull String contentType,
             int statusCode,
             @Nonnull HttpResponse<Blob> rawResponse,
-            @Nullable JsonNullable<ErrorResponse> errorResponse,
             @Nonnull Map<String, List<String>> headers) {
         headers = Utils.emptyMapIfNull(headers);
         this.contentType = Optional.ofNullable(contentType)
@@ -57,19 +48,8 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
         this.statusCode = statusCode;
         this.rawResponse = Optional.ofNullable(rawResponse)
             .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
-        this.errorResponse = Optional.ofNullable(errorResponse)
-            .orElse(JsonNullable.undefined());
         this.headers = Optional.ofNullable(headers)
             .orElseThrow(() -> new IllegalArgumentException("headers cannot be null"));
-    }
-    
-    public RemoveContactByExtIdToGroupResponse(
-            @Nonnull String contentType,
-            int statusCode,
-            @Nonnull HttpResponse<Blob> rawResponse,
-            @Nonnull Map<String, List<String>> headers) {
-        this(contentType, statusCode, rawResponse,
-            null, headers);
     }
 
     /**
@@ -91,13 +71,6 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
      */
     public HttpResponse<Blob> rawResponse() {
         return this.rawResponse;
-    }
-
-    /**
-     * Invalid request.
-     */
-    public JsonNullable<ErrorResponse> errorResponse() {
-        return this.errorResponse;
     }
 
     public Map<String, List<String>> headers() {
@@ -136,15 +109,6 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
     }
 
 
-    /**
-     * Invalid request.
-     */
-    public RemoveContactByExtIdToGroupResponse withErrorResponse(@Nullable ErrorResponse errorResponse) {
-        this.errorResponse = JsonNullable.of(errorResponse);
-        return this;
-    }
-
-
     public RemoveContactByExtIdToGroupResponse withHeaders(@Nonnull Map<String, List<String>> headers) {
         this.headers = Utils.checkNotNull(headers, "headers");
         return this;
@@ -164,7 +128,6 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.errorResponse, other.errorResponse) &&
             Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
@@ -172,7 +135,7 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            errorResponse, headers);
+            headers);
     }
     
     @Override
@@ -181,7 +144,6 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "errorResponse", errorResponse,
                 "headers", headers);
     }
 
@@ -193,8 +155,6 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
         private int statusCode;
 
         private HttpResponse<Blob> rawResponse;
-
-        private JsonNullable<ErrorResponse> errorResponse;
 
         private Map<String, List<String>> headers;
 
@@ -226,14 +186,6 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
             return this;
         }
 
-        /**
-         * Invalid request.
-         */
-        public Builder errorResponse(@Nullable ErrorResponse errorResponse) {
-            this.errorResponse = JsonNullable.of(errorResponse);
-            return this;
-        }
-
         public Builder headers(@Nonnull Map<String, List<String>> headers) {
             this.headers = Utils.checkNotNull(headers, "headers");
             return this;
@@ -242,7 +194,7 @@ public class RemoveContactByExtIdToGroupResponse implements AsyncResponse {
         public RemoveContactByExtIdToGroupResponse build() {
             return new RemoveContactByExtIdToGroupResponse(
                 contentType, statusCode, rawResponse,
-                errorResponse, headers);
+                headers);
         }
 
     }

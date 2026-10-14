@@ -38,9 +38,8 @@ public class Metadata {
     /**
      * List metadata
      * 
-     * <p>Retrieve a complete list of all types for shipments and their possible values. The method has no
-     * body and takes no parameters. The response includes metadata such as carrier types, service types,
-     * and more.
+     * <p>Retrieve available shipment metadata, including carriers, services, paper types, envelopes and other
+     * configuration options.
      * 
      * @return The call builder
      */
@@ -51,9 +50,8 @@ public class Metadata {
     /**
      * List metadata
      * 
-     * <p>Retrieve a complete list of all types for shipments and their possible values. The method has no
-     * body and takes no parameters. The response includes metadata such as carrier types, service types,
-     * and more.
+     * <p>Retrieve available shipment metadata, including carriers, services, paper types, envelopes and other
+     * configuration options.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -65,9 +63,8 @@ public class Metadata {
     /**
      * List metadata
      * 
-     * <p>Retrieve a complete list of all types for shipments and their possible values. The method has no
-     * body and takes no parameters. The response includes metadata such as carrier types, service types,
-     * and more.
+     * <p>Retrieve available shipment metadata, including carriers, services, paper types, envelopes and other
+     * configuration options.
      * 
      * @param options additional options
      * @return The response from the API call
@@ -82,8 +79,8 @@ public class Metadata {
     /**
      * List predefined configs
      * 
-     * <p>Retrieve a complete list of predefined shipment configurations. The method has no body and takes no
-     * parameters. The response includes all stored configuration options.
+     * <p>Retrieve the predefined shipment configuration profiles stored in your account, including their
+     * configuration options.
      * 
      * @return The call builder
      */
@@ -94,8 +91,8 @@ public class Metadata {
     /**
      * List predefined configs
      * 
-     * <p>Retrieve a complete list of predefined shipment configurations. The method has no body and takes no
-     * parameters. The response includes all stored configuration options.
+     * <p>Retrieve the predefined shipment configuration profiles stored in your account, including their
+     * configuration options.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -107,8 +104,8 @@ public class Metadata {
     /**
      * List predefined configs
      * 
-     * <p>Retrieve a complete list of predefined shipment configurations. The method has no body and takes no
-     * parameters. The response includes all stored configuration options.
+     * <p>Retrieve the predefined shipment configuration profiles stored in your account, including their
+     * configuration options.
      * 
      * @param options additional options
      * @return The response from the API call

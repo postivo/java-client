@@ -13,9 +13,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 import pl.postivo.sdk.models.components.ContactResponse;
-import pl.postivo.sdk.models.components.ErrorResponse;
 import pl.postivo.sdk.utils.AsyncResponse;
 import pl.postivo.sdk.utils.Blob;
 import pl.postivo.sdk.utils.Utils;
@@ -42,11 +40,6 @@ public class UpdateContactResponse implements AsyncResponse {
      */
     private ContactResponse contactResponse;
 
-    /**
-     * Invalid request.
-     */
-    private JsonNullable<ErrorResponse> errorResponse;
-
 
     private Map<String, List<String>> headers;
 
@@ -56,7 +49,6 @@ public class UpdateContactResponse implements AsyncResponse {
             int statusCode,
             @Nonnull HttpResponse<Blob> rawResponse,
             @Nullable ContactResponse contactResponse,
-            @Nullable JsonNullable<ErrorResponse> errorResponse,
             @Nonnull Map<String, List<String>> headers) {
         headers = Utils.emptyMapIfNull(headers);
         this.contentType = Optional.ofNullable(contentType)
@@ -65,8 +57,6 @@ public class UpdateContactResponse implements AsyncResponse {
         this.rawResponse = Optional.ofNullable(rawResponse)
             .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.contactResponse = contactResponse;
-        this.errorResponse = Optional.ofNullable(errorResponse)
-            .orElse(JsonNullable.undefined());
         this.headers = Optional.ofNullable(headers)
             .orElseThrow(() -> new IllegalArgumentException("headers cannot be null"));
     }
@@ -77,7 +67,7 @@ public class UpdateContactResponse implements AsyncResponse {
             @Nonnull HttpResponse<Blob> rawResponse,
             @Nonnull Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            null, null, headers);
+            null, headers);
     }
 
     /**
@@ -106,13 +96,6 @@ public class UpdateContactResponse implements AsyncResponse {
      */
     public Optional<ContactResponse> contactResponse() {
         return Optional.ofNullable(this.contactResponse);
-    }
-
-    /**
-     * Invalid request.
-     */
-    public JsonNullable<ErrorResponse> errorResponse() {
-        return this.errorResponse;
     }
 
     public Map<String, List<String>> headers() {
@@ -160,15 +143,6 @@ public class UpdateContactResponse implements AsyncResponse {
     }
 
 
-    /**
-     * Invalid request.
-     */
-    public UpdateContactResponse withErrorResponse(@Nullable ErrorResponse errorResponse) {
-        this.errorResponse = JsonNullable.of(errorResponse);
-        return this;
-    }
-
-
     public UpdateContactResponse withHeaders(@Nonnull Map<String, List<String>> headers) {
         this.headers = Utils.checkNotNull(headers, "headers");
         return this;
@@ -189,7 +163,6 @@ public class UpdateContactResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.contactResponse, other.contactResponse) &&
-            Utils.enhancedDeepEquals(this.errorResponse, other.errorResponse) &&
             Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
@@ -197,7 +170,7 @@ public class UpdateContactResponse implements AsyncResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            contactResponse, errorResponse, headers);
+            contactResponse, headers);
     }
     
     @Override
@@ -207,7 +180,6 @@ public class UpdateContactResponse implements AsyncResponse {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "contactResponse", contactResponse,
-                "errorResponse", errorResponse,
                 "headers", headers);
     }
 
@@ -221,8 +193,6 @@ public class UpdateContactResponse implements AsyncResponse {
         private HttpResponse<Blob> rawResponse;
 
         private ContactResponse contactResponse;
-
-        private JsonNullable<ErrorResponse> errorResponse;
 
         private Map<String, List<String>> headers;
 
@@ -262,14 +232,6 @@ public class UpdateContactResponse implements AsyncResponse {
             return this;
         }
 
-        /**
-         * Invalid request.
-         */
-        public Builder errorResponse(@Nullable ErrorResponse errorResponse) {
-            this.errorResponse = JsonNullable.of(errorResponse);
-            return this;
-        }
-
         public Builder headers(@Nonnull Map<String, List<String>> headers) {
             this.headers = Utils.checkNotNull(headers, "headers");
             return this;
@@ -278,7 +240,7 @@ public class UpdateContactResponse implements AsyncResponse {
         public UpdateContactResponse build() {
             return new UpdateContactResponse(
                 contentType, statusCode, rawResponse,
-                contactResponse, errorResponse, headers);
+                contactResponse, headers);
         }
 
     }

@@ -18,7 +18,7 @@ import pl.postivo.sdk.utils.Utils;
 /**
  * MetadataResponse
  * 
- * <p>Metadata response.
+ * <p>Available carriers, services, paper types, envelopes and other shipment configuration data.
  */
 public class MetadataResponse {
     /**

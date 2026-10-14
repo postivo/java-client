@@ -68,7 +68,8 @@ public class Contacts {
     /**
      * List contacts
      * 
-     * <p>Retrieve a paginated list of all contacts defined in your account’s **Address Book**.
+     * <p>Retrieve a paginated list of contacts defined in your account's **Address Book**. An Address Book
+     * without contacts returns an empty list.
      * 
      * @return The call builder
      */
@@ -79,7 +80,8 @@ public class Contacts {
     /**
      * List contacts
      * 
-     * <p>Retrieve a paginated list of all contacts defined in your account’s **Address Book**.
+     * <p>Retrieve a paginated list of contacts defined in your account's **Address Book**. An Address Book
+     * without contacts returns an empty list.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -91,7 +93,8 @@ public class Contacts {
     /**
      * List contacts
      * 
-     * <p>Retrieve a paginated list of all contacts defined in your account’s **Address Book**.
+     * <p>Retrieve a paginated list of contacts defined in your account's **Address Book**. An Address Book
+     * without contacts returns an empty list.
      * 
      * @param page Page number of results
      * @param limit Results limit per page.
@@ -111,7 +114,8 @@ public class Contacts {
     /**
      * Add a new contact
      * 
-     * <p>Create a new contact in your account’s **Address Book**.
+     * <p>Create a new contact in your account's **Address Book**. An optional external (custom) ID must be
+     * unique within the Address Book.
      * 
      * @return The call builder
      */
@@ -122,7 +126,8 @@ public class Contacts {
     /**
      * Add a new contact
      * 
-     * <p>Create a new contact in your account’s **Address Book**.
+     * <p>Create a new contact in your account's **Address Book**. An optional external (custom) ID must be
+     * unique within the Address Book.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -135,7 +140,8 @@ public class Contacts {
     /**
      * Add a new contact
      * 
-     * <p>Create a new contact in your account’s **Address Book**.
+     * <p>Create a new contact in your account's **Address Book**. An optional external (custom) ID must be
+     * unique within the Address Book.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -151,7 +157,7 @@ public class Contacts {
     /**
      * Retrieve contact details
      * 
-     * <p>Get the details of a contact from your Address Book using its global <code>id</code>.
+     * <p>Get the details of an Address Book contact using its system ID.
      * 
      * @return The call builder
      */
@@ -162,7 +168,7 @@ public class Contacts {
     /**
      * Retrieve contact details
      * 
-     * <p>Get the details of a contact from your Address Book using its global <code>id</code>.
+     * <p>Get the details of an Address Book contact using its system ID.
      * 
      * @param id Global contact <code>id</code> to fetch.
      * @return The response from the API call
@@ -175,7 +181,7 @@ public class Contacts {
     /**
      * Retrieve contact details
      * 
-     * <p>Get the details of a contact from your Address Book using its global <code>id</code>.
+     * <p>Get the details of an Address Book contact using its system ID.
      * 
      * @param id Global contact <code>id</code> to fetch.
      * @param options additional options
@@ -192,7 +198,8 @@ public class Contacts {
     /**
      * Update a contact
      * 
-     * <p>Update a contact by its global ID.
+     * <p>Update an Address Book contact using its system ID. Submitting unchanged details leaves the contact
+     * unchanged.
      * 
      * @return The call builder
      */
@@ -203,7 +210,8 @@ public class Contacts {
     /**
      * Update a contact
      * 
-     * <p>Update a contact by its global ID.
+     * <p>Update an Address Book contact using its system ID. Submitting unchanged details leaves the contact
+     * unchanged.
      * 
      * @param id ID of the contact to update.
      * @param contact Contact data for an Address Book entry.
@@ -217,7 +225,8 @@ public class Contacts {
     /**
      * Update a contact
      * 
-     * <p>Update a contact by its global ID.
+     * <p>Update an Address Book contact using its system ID. Submitting unchanged details leaves the contact
+     * unchanged.
      * 
      * @param id ID of the contact to update.
      * @param contact Contact data for an Address Book entry.
@@ -237,7 +246,7 @@ public class Contacts {
     /**
      * Delete a contact
      * 
-     * <p>Remove a contact from your account by system ID.
+     * <p>Remove an Address Book contact using its system ID.
      * 
      * @return The call builder
      */
@@ -248,7 +257,7 @@ public class Contacts {
     /**
      * Delete a contact
      * 
-     * <p>Remove a contact from your account by system ID.
+     * <p>Remove an Address Book contact using its system ID.
      * 
      * @param id Global contact <code>id</code> to remove.
      * @return The response from the API call
@@ -261,7 +270,7 @@ public class Contacts {
     /**
      * Delete a contact
      * 
-     * <p>Remove a contact from your account by system ID.
+     * <p>Remove an Address Book contact using its system ID.
      * 
      * @param id Global contact <code>id</code> to remove.
      * @param options additional options
@@ -278,10 +287,8 @@ public class Contacts {
     /**
      * Remove a contact from a group
      * 
-     * <p>Remove a contact from a group in your Address Book. This does not delete the contact; it only
-     * detaches the contact from the group.
-     * 
-     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
+     * <p>Remove a contact from an Address Book group using the contact and group system IDs. The contact
+     * remains in the Address Book.
      * 
      * @return The call builder
      */
@@ -292,10 +299,8 @@ public class Contacts {
     /**
      * Remove a contact from a group
      * 
-     * <p>Remove a contact from a group in your Address Book. This does not delete the contact; it only
-     * detaches the contact from the group.
-     * 
-     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
+     * <p>Remove a contact from an Address Book group using the contact and group system IDs. The contact
+     * remains in the Address Book.
      * 
      * @param id Global contact <code>id</code> to detach from the group.
      * @param groupId Group <code>id</code> to detach from the contact.
@@ -309,10 +314,8 @@ public class Contacts {
     /**
      * Remove a contact from a group
      * 
-     * <p>Remove a contact from a group in your Address Book. This does not delete the contact; it only
-     * detaches the contact from the group.
-     * 
-     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
+     * <p>Remove a contact from an Address Book group using the contact and group system IDs. The contact
+     * remains in the Address Book.
      * 
      * @param id Global contact <code>id</code> to detach from the group.
      * @param groupId Group <code>id</code> to detach from the contact.
@@ -332,10 +335,8 @@ public class Contacts {
     /**
      * Add a contact to a group
      * 
-     * <p>Assign a contact to a group. If a contact and a group exist in your account, you can add the contact
-     * to that group.
-     * 
-     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
+     * <p>Assign a contact to an Address Book group using the contact and group system IDs. Both the contact
+     * and the group must exist in your Address Book.
      * 
      * @return The call builder
      */
@@ -346,10 +347,8 @@ public class Contacts {
     /**
      * Add a contact to a group
      * 
-     * <p>Assign a contact to a group. If a contact and a group exist in your account, you can add the contact
-     * to that group.
-     * 
-     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
+     * <p>Assign a contact to an Address Book group using the contact and group system IDs. Both the contact
+     * and the group must exist in your Address Book.
      * 
      * @param id Global contact <code>id</code> to add to the group.
      * @param groupId Group <code>id</code> to associate with the contact.
@@ -363,10 +362,8 @@ public class Contacts {
     /**
      * Add a contact to a group
      * 
-     * <p>Assign a contact to a group. If a contact and a group exist in your account, you can add the contact
-     * to that group.
-     * 
-     * <p>Provide the contact’s <code>id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
+     * <p>Assign a contact to an Address Book group using the contact and group system IDs. Both the contact
+     * and the group must exist in your Address Book.
      * 
      * @param id Global contact <code>id</code> to add to the group.
      * @param groupId Group <code>id</code> to associate with the contact.

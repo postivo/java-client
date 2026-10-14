@@ -24,7 +24,8 @@ import pl.postivo.sdk.utils.Utils;
  */
 public class ShipmentOptions {
     /**
-     * ID of the shipment configuration profile stored in the user account.
+     * ID of the shipment configuration profile stored in the user account. Omit, use null or 0 to apply
+     * the default configuration; a positive ID selects a specific profile.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("predefined_config_id")
@@ -36,14 +37,18 @@ public class ShipmentOptions {
     private JsonNullable<InlineConfigUnion> inlineConfig;
 
     /**
-     * ID of the sender stored in the user account.
+     * ID of the sender stored in the user account. Omit, use null or 0 to select the default sender; a
+     * positive ID selects a specific sender.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sender_id")
     private JsonNullable<Long> senderId;
 
     /**
-     * Scheduled dispatch date (ISO 8601).
+     * Scheduled dispatch date (YYYY-MM-DD). Omit to select the first allowed dispatch date. A supplied
+     * date must satisfy the API working-day rules.
+     * 
+     * <p>Null is not allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dispatch_date")
@@ -61,6 +66,7 @@ public class ShipmentOptions {
 
     /**
      * If true, rotate all documents 180° before printing (barcodes will be printed on opposite margins).
+     * Omit or use false to disable rotation. Null is not allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rotate_documents")
@@ -96,7 +102,8 @@ public class ShipmentOptions {
     }
 
     /**
-     * ID of the shipment configuration profile stored in the user account.
+     * ID of the shipment configuration profile stored in the user account. Omit, use null or 0 to apply
+     * the default configuration; a positive ID selects a specific profile.
      */
     public JsonNullable<Long> predefinedConfigId() {
         return this.predefinedConfigId;
@@ -107,14 +114,18 @@ public class ShipmentOptions {
     }
 
     /**
-     * ID of the sender stored in the user account.
+     * ID of the sender stored in the user account. Omit, use null or 0 to select the default sender; a
+     * positive ID selects a specific sender.
      */
     public JsonNullable<Long> senderId() {
         return this.senderId;
     }
 
     /**
-     * Scheduled dispatch date (ISO 8601).
+     * Scheduled dispatch date (YYYY-MM-DD). Omit to select the first allowed dispatch date. A supplied
+     * date must satisfy the API working-day rules.
+     * 
+     * <p>Null is not allowed.
      */
     public Optional<LocalDate> dispatchDate() {
         return Optional.ofNullable(this.dispatchDate);
@@ -130,6 +141,7 @@ public class ShipmentOptions {
 
     /**
      * If true, rotate all documents 180° before printing (barcodes will be printed on opposite margins).
+     * Omit or use false to disable rotation. Null is not allowed.
      */
     public Optional<Boolean> rotateDocuments() {
         return Optional.ofNullable(this.rotateDocuments);
@@ -141,7 +153,8 @@ public class ShipmentOptions {
 
 
     /**
-     * ID of the shipment configuration profile stored in the user account.
+     * ID of the shipment configuration profile stored in the user account. Omit, use null or 0 to apply
+     * the default configuration; a positive ID selects a specific profile.
      */
     public ShipmentOptions withPredefinedConfigId(@Nullable Long predefinedConfigId) {
         this.predefinedConfigId = JsonNullable.of(predefinedConfigId);
@@ -156,7 +169,8 @@ public class ShipmentOptions {
 
 
     /**
-     * ID of the sender stored in the user account.
+     * ID of the sender stored in the user account. Omit, use null or 0 to select the default sender; a
+     * positive ID selects a specific sender.
      */
     public ShipmentOptions withSenderId(@Nullable Long senderId) {
         this.senderId = JsonNullable.of(senderId);
@@ -165,7 +179,10 @@ public class ShipmentOptions {
 
 
     /**
-     * Scheduled dispatch date (ISO 8601).
+     * Scheduled dispatch date (YYYY-MM-DD). Omit to select the first allowed dispatch date. A supplied
+     * date must satisfy the API working-day rules.
+     * 
+     * <p>Null is not allowed.
      */
     public ShipmentOptions withDispatchDate(@Nullable LocalDate dispatchDate) {
         this.dispatchDate = dispatchDate;
@@ -187,6 +204,7 @@ public class ShipmentOptions {
 
     /**
      * If true, rotate all documents 180° before printing (barcodes will be printed on opposite margins).
+     * Omit or use false to disable rotation. Null is not allowed.
      */
     public ShipmentOptions withRotateDocuments(@Nullable Boolean rotateDocuments) {
         this.rotateDocuments = rotateDocuments;
@@ -255,7 +273,8 @@ public class ShipmentOptions {
         }
 
         /**
-         * ID of the shipment configuration profile stored in the user account.
+         * ID of the shipment configuration profile stored in the user account. Omit, use null or 0 to apply
+         * the default configuration; a positive ID selects a specific profile.
          */
         public Builder predefinedConfigId(@Nullable Long predefinedConfigId) {
             this.predefinedConfigId = JsonNullable.of(predefinedConfigId);
@@ -268,7 +287,8 @@ public class ShipmentOptions {
         }
 
         /**
-         * ID of the sender stored in the user account.
+         * ID of the sender stored in the user account. Omit, use null or 0 to select the default sender; a
+         * positive ID selects a specific sender.
          */
         public Builder senderId(@Nullable Long senderId) {
             this.senderId = JsonNullable.of(senderId);
@@ -276,7 +296,10 @@ public class ShipmentOptions {
         }
 
         /**
-         * Scheduled dispatch date (ISO 8601).
+         * Scheduled dispatch date (YYYY-MM-DD). Omit to select the first allowed dispatch date. A supplied
+         * date must satisfy the API working-day rules.
+         * 
+         * <p>Null is not allowed.
          */
         public Builder dispatchDate(@Nullable LocalDate dispatchDate) {
             this.dispatchDate = dispatchDate;
@@ -295,6 +318,7 @@ public class ShipmentOptions {
 
         /**
          * If true, rotate all documents 180° before printing (barcodes will be printed on opposite margins).
+         * Omit or use false to disable rotation. Null is not allowed.
          */
         public Builder rotateDocuments(@Nullable Boolean rotateDocuments) {
             this.rotateDocuments = rotateDocuments;

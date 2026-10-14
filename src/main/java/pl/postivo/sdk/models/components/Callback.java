@@ -25,13 +25,17 @@ import pl.postivo.sdk.utils.Utils;
  */
 public class Callback {
     /**
-     * Callback target URL.
+     * Non-empty absolute HTTP or HTTPS callback target URL. Use percent encoding for characters such as
+     * spaces in paths.
      */
     @JsonProperty("url")
     private String url;
 
     /**
-     * Bearer token to include in callback requests for authentication.
+     * Bearer token to include in callback requests for authentication. Leading and trailing whitespace is
+     * removed before saving. An omitted, null, empty or whitespace-only token uses the account token.
+     * 
+     * <p>The string "0" overrides the account token. The submitted value can contain at most 255 characters.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("user_token")
@@ -53,14 +57,18 @@ public class Callback {
     }
 
     /**
-     * Callback target URL.
+     * Non-empty absolute HTTP or HTTPS callback target URL. Use percent encoding for characters such as
+     * spaces in paths.
      */
     public String url() {
         return this.url;
     }
 
     /**
-     * Bearer token to include in callback requests for authentication.
+     * Bearer token to include in callback requests for authentication. Leading and trailing whitespace is
+     * removed before saving. An omitted, null, empty or whitespace-only token uses the account token.
+     * 
+     * <p>The string "0" overrides the account token. The submitted value can contain at most 255 characters.
      */
     public JsonNullable<String> userToken() {
         return this.userToken;
@@ -72,7 +80,8 @@ public class Callback {
 
 
     /**
-     * Callback target URL.
+     * Non-empty absolute HTTP or HTTPS callback target URL. Use percent encoding for characters such as
+     * spaces in paths.
      */
     public Callback withUrl(@Nonnull String url) {
         this.url = Utils.checkNotNull(url, "url");
@@ -81,7 +90,10 @@ public class Callback {
 
 
     /**
-     * Bearer token to include in callback requests for authentication.
+     * Bearer token to include in callback requests for authentication. Leading and trailing whitespace is
+     * removed before saving. An omitted, null, empty or whitespace-only token uses the account token.
+     * 
+     * <p>The string "0" overrides the account token. The submitted value can contain at most 255 characters.
      */
     public Callback withUserToken(@Nullable String userToken) {
         this.userToken = JsonNullable.of(userToken);
@@ -128,7 +140,8 @@ public class Callback {
         }
 
         /**
-         * Callback target URL.
+         * Non-empty absolute HTTP or HTTPS callback target URL. Use percent encoding for characters such as
+         * spaces in paths.
          */
         public Builder url(@Nonnull String url) {
             this.url = Utils.checkNotNull(url, "url");
@@ -136,7 +149,10 @@ public class Callback {
         }
 
         /**
-         * Bearer token to include in callback requests for authentication.
+         * Bearer token to include in callback requests for authentication. Leading and trailing whitespace is
+         * removed before saving. An omitted, null, empty or whitespace-only token uses the account token.
+         * 
+         * <p>The string "0" overrides the account token. The submitted value can contain at most 255 characters.
          */
         public Builder userToken(@Nullable String userToken) {
             this.userToken = JsonNullable.of(userToken);

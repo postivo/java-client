@@ -15,6 +15,9 @@ import pl.postivo.sdk.utils.RetryConfig;
 import pl.postivo.sdk.utils.SpeakeasyHTTPClient;
 import pl.postivo.sdk.utils.Utils;
 
+/**
+ * <a href="https://api.postivo.pl/problems/">Error catalog and operation results</a>
+ */
 public class Client {
     private static final Headers _headers = Headers.EMPTY;
 

@@ -55,8 +55,8 @@ public class ByExtId {
     /**
      * Retrieve contact details by EXT_ID
      * 
-     * <p>Get the details of a contact from your Address Book using your external (custom) ID (the value you
-     * defined when creating the contact).
+     * <p>Get the details of an Address Book contact using its external (custom) ID, assigned when the contact
+     * was created.
      * 
      * @return The call builder
      */
@@ -67,8 +67,8 @@ public class ByExtId {
     /**
      * Retrieve contact details by EXT_ID
      * 
-     * <p>Get the details of a contact from your Address Book using your external (custom) ID (the value you
-     * defined when creating the contact).
+     * <p>Get the details of an Address Book contact using its external (custom) ID, assigned when the contact
+     * was created.
      * 
      * @param extId External (custom) ID of the contact to fetch.
      * @return The response from the API call
@@ -81,8 +81,8 @@ public class ByExtId {
     /**
      * Retrieve contact details by EXT_ID
      * 
-     * <p>Get the details of a contact from your Address Book using your external (custom) ID (the value you
-     * defined when creating the contact).
+     * <p>Get the details of an Address Book contact using its external (custom) ID, assigned when the contact
+     * was created.
      * 
      * @param extId External (custom) ID of the contact to fetch.
      * @param options additional options
@@ -99,7 +99,8 @@ public class ByExtId {
     /**
      * Update a contact by EXT_ID
      * 
-     * <p>Update a contact by its external (custom) ID - the value you defined when creating the contact.
+     * <p>Update an Address Book contact using its external (custom) ID, assigned when the contact was
+     * created. Submitting unchanged details leaves the contact unchanged.
      * 
      * @return The call builder
      */
@@ -110,7 +111,8 @@ public class ByExtId {
     /**
      * Update a contact by EXT_ID
      * 
-     * <p>Update a contact by its external (custom) ID - the value you defined when creating the contact.
+     * <p>Update an Address Book contact using its external (custom) ID, assigned when the contact was
+     * created. Submitting unchanged details leaves the contact unchanged.
      * 
      * @param extId External (custom) ID of the contact to update.
      * @param contact Contact data for an Address Book entry.
@@ -124,7 +126,8 @@ public class ByExtId {
     /**
      * Update a contact by EXT_ID
      * 
-     * <p>Update a contact by its external (custom) ID - the value you defined when creating the contact.
+     * <p>Update an Address Book contact using its external (custom) ID, assigned when the contact was
+     * created. Submitting unchanged details leaves the contact unchanged.
      * 
      * @param extId External (custom) ID of the contact to update.
      * @param contact Contact data for an Address Book entry.
@@ -144,8 +147,8 @@ public class ByExtId {
     /**
      * Delete a contact by EXT_ID
      * 
-     * <p>Remove a contact from your account by its external (custom) ID - the value defined when the contact
-     * was created.
+     * <p>Remove an Address Book contact using its external (custom) ID, assigned when the contact was
+     * created.
      * 
      * @return The call builder
      */
@@ -156,8 +159,8 @@ public class ByExtId {
     /**
      * Delete a contact by EXT_ID
      * 
-     * <p>Remove a contact from your account by its external (custom) ID - the value defined when the contact
-     * was created.
+     * <p>Remove an Address Book contact using its external (custom) ID, assigned when the contact was
+     * created.
      * 
      * @param extId External (custom) ID of the contact to remove.
      * @return The response from the API call
@@ -170,8 +173,8 @@ public class ByExtId {
     /**
      * Delete a contact by EXT_ID
      * 
-     * <p>Remove a contact from your account by its external (custom) ID - the value defined when the contact
-     * was created.
+     * <p>Remove an Address Book contact using its external (custom) ID, assigned when the contact was
+     * created.
      * 
      * @param extId External (custom) ID of the contact to remove.
      * @param options additional options
@@ -188,9 +191,8 @@ public class ByExtId {
     /**
      * Remove a contact from a group by EXT_ID
      * 
-     * <p>Remove a contact from a group in your Address Book using the contact’s external (custom) ID. This
-     * operation does not delete the contact; it only detaches the contact from the group. Provide the
-     * contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
+     * <p>Remove a contact from an Address Book group using the contact's external (custom) ID and the group's
+     * system ID. The contact remains in the Address Book.
      * 
      * @return The call builder
      */
@@ -201,9 +203,8 @@ public class ByExtId {
     /**
      * Remove a contact from a group by EXT_ID
      * 
-     * <p>Remove a contact from a group in your Address Book using the contact’s external (custom) ID. This
-     * operation does not delete the contact; it only detaches the contact from the group. Provide the
-     * contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
+     * <p>Remove a contact from an Address Book group using the contact's external (custom) ID and the group's
+     * system ID. The contact remains in the Address Book.
      * 
      * @param extId External (custom) ID of the contact to detach from the group.
      * @param groupId Group <code>id</code> to detach from the contact.
@@ -217,9 +218,8 @@ public class ByExtId {
     /**
      * Remove a contact from a group by EXT_ID
      * 
-     * <p>Remove a contact from a group in your Address Book using the contact’s external (custom) ID. This
-     * operation does not delete the contact; it only detaches the contact from the group. Provide the
-     * contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the detachment.
+     * <p>Remove a contact from an Address Book group using the contact's external (custom) ID and the group's
+     * system ID. The contact remains in the Address Book.
      * 
      * @param extId External (custom) ID of the contact to detach from the group.
      * @param groupId Group <code>id</code> to detach from the contact.
@@ -239,10 +239,8 @@ public class ByExtId {
     /**
      * Add a contact to a group by EXT_ID
      * 
-     * <p>Assign a contact to a group using the contact’s external (custom) ID (assigned when creating the
-     * contact). If a contact and a group exist in your account, you can add the contact to that group.
-     * 
-     * <p>Provide the contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
+     * <p>Assign a contact to an Address Book group using the contact's external (custom) ID and the group's
+     * system ID. Both the contact and the group must exist in your Address Book.
      * 
      * @return The call builder
      */
@@ -253,10 +251,8 @@ public class ByExtId {
     /**
      * Add a contact to a group by EXT_ID
      * 
-     * <p>Assign a contact to a group using the contact’s external (custom) ID (assigned when creating the
-     * contact). If a contact and a group exist in your account, you can add the contact to that group.
-     * 
-     * <p>Provide the contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
+     * <p>Assign a contact to an Address Book group using the contact's external (custom) ID and the group's
+     * system ID. Both the contact and the group must exist in your Address Book.
      * 
      * @param extId External (custom) ID of the contact to add to the group.
      * @param groupId Group <code>id</code> to associate with the contact.
@@ -270,10 +266,8 @@ public class ByExtId {
     /**
      * Add a contact to a group by EXT_ID
      * 
-     * <p>Assign a contact to a group using the contact’s external (custom) ID (assigned when creating the
-     * contact). If a contact and a group exist in your account, you can add the contact to that group.
-     * 
-     * <p>Provide the contact’s <code>ext_id</code> and the group’s <code>group_id</code> parameters to perform the assignment.
+     * <p>Assign a contact to an Address Book group using the contact's external (custom) ID and the group's
+     * system ID. Both the contact and the group must exist in your Address Book.
      * 
      * @param extId External (custom) ID of the contact to add to the group.
      * @param groupId Group <code>id</code> to associate with the contact.

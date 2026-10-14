@@ -28,7 +28,8 @@ public class Group {
     private String name;
 
     /**
-     * Optional group description.
+     * Optional group description. An omitted, null or empty value clears the description; the string "0"
+     * is preserved.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -57,7 +58,8 @@ public class Group {
     }
 
     /**
-     * Optional group description.
+     * Optional group description. An omitted, null or empty value clears the description; the string "0"
+     * is preserved.
      */
     public JsonNullable<String> description() {
         return this.description;
@@ -78,7 +80,8 @@ public class Group {
 
 
     /**
-     * Optional group description.
+     * Optional group description. An omitted, null or empty value clears the description; the string "0"
+     * is preserved.
      */
     public Group withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
@@ -133,7 +136,8 @@ public class Group {
         }
 
         /**
-         * Optional group description.
+         * Optional group description. An omitted, null or empty value clears the description; the string "0"
+         * is preserved.
          */
         public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);

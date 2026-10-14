@@ -13,8 +13,6 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import pl.postivo.sdk.models.components.ErrorResponse;
 import pl.postivo.sdk.models.components.ShipmentCancellation;
 import pl.postivo.sdk.utils.Response;
 import pl.postivo.sdk.utils.Utils;
@@ -37,15 +35,10 @@ public class CancelShipmentResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * The request was processed successfully. Check the shipment cancellation statuses in the response
-     * body.
+     * The batch was processed. Check every shipment cancellation status and X-Success-Count/X-Error-Count.
+     * Item statuses 404, 409 or 500 do not change the batch HTTP status 200.
      */
     private List<ShipmentCancellation> shipmentCancellations;
-
-    /**
-     * Invalid request.
-     */
-    private JsonNullable<ErrorResponse> errorResponse;
 
 
     private Map<String, List<String>> headers;
@@ -56,7 +49,6 @@ public class CancelShipmentResponse implements Response {
             int statusCode,
             @Nonnull HttpResponse<InputStream> rawResponse,
             @Nullable List<ShipmentCancellation> shipmentCancellations,
-            @Nullable JsonNullable<ErrorResponse> errorResponse,
             @Nonnull Map<String, List<String>> headers) {
         headers = Utils.emptyMapIfNull(headers);
         this.contentType = Optional.ofNullable(contentType)
@@ -65,8 +57,6 @@ public class CancelShipmentResponse implements Response {
         this.rawResponse = Optional.ofNullable(rawResponse)
             .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.shipmentCancellations = shipmentCancellations;
-        this.errorResponse = Optional.ofNullable(errorResponse)
-            .orElse(JsonNullable.undefined());
         this.headers = Optional.ofNullable(headers)
             .orElseThrow(() -> new IllegalArgumentException("headers cannot be null"));
     }
@@ -77,7 +67,7 @@ public class CancelShipmentResponse implements Response {
             @Nonnull HttpResponse<InputStream> rawResponse,
             @Nonnull Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            null, null, headers);
+            null, headers);
     }
 
     /**
@@ -102,18 +92,11 @@ public class CancelShipmentResponse implements Response {
     }
 
     /**
-     * The request was processed successfully. Check the shipment cancellation statuses in the response
-     * body.
+     * The batch was processed. Check every shipment cancellation status and X-Success-Count/X-Error-Count.
+     * Item statuses 404, 409 or 500 do not change the batch HTTP status 200.
      */
     public Optional<List<ShipmentCancellation>> shipmentCancellations() {
         return Optional.ofNullable(this.shipmentCancellations);
-    }
-
-    /**
-     * Invalid request.
-     */
-    public JsonNullable<ErrorResponse> errorResponse() {
-        return this.errorResponse;
     }
 
     public Map<String, List<String>> headers() {
@@ -153,20 +136,11 @@ public class CancelShipmentResponse implements Response {
 
 
     /**
-     * The request was processed successfully. Check the shipment cancellation statuses in the response
-     * body.
+     * The batch was processed. Check every shipment cancellation status and X-Success-Count/X-Error-Count.
+     * Item statuses 404, 409 or 500 do not change the batch HTTP status 200.
      */
     public CancelShipmentResponse withShipmentCancellations(@Nullable List<ShipmentCancellation> shipmentCancellations) {
         this.shipmentCancellations = shipmentCancellations;
-        return this;
-    }
-
-
-    /**
-     * Invalid request.
-     */
-    public CancelShipmentResponse withErrorResponse(@Nullable ErrorResponse errorResponse) {
-        this.errorResponse = JsonNullable.of(errorResponse);
         return this;
     }
 
@@ -191,7 +165,6 @@ public class CancelShipmentResponse implements Response {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.shipmentCancellations, other.shipmentCancellations) &&
-            Utils.enhancedDeepEquals(this.errorResponse, other.errorResponse) &&
             Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
@@ -199,7 +172,7 @@ public class CancelShipmentResponse implements Response {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            shipmentCancellations, errorResponse, headers);
+            shipmentCancellations, headers);
     }
     
     @Override
@@ -209,7 +182,6 @@ public class CancelShipmentResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "shipmentCancellations", shipmentCancellations,
-                "errorResponse", errorResponse,
                 "headers", headers);
     }
 
@@ -223,8 +195,6 @@ public class CancelShipmentResponse implements Response {
         private HttpResponse<InputStream> rawResponse;
 
         private List<ShipmentCancellation> shipmentCancellations;
-
-        private JsonNullable<ErrorResponse> errorResponse;
 
         private Map<String, List<String>> headers;
 
@@ -257,19 +227,11 @@ public class CancelShipmentResponse implements Response {
         }
 
         /**
-         * The request was processed successfully. Check the shipment cancellation statuses in the response
-         * body.
+         * The batch was processed. Check every shipment cancellation status and X-Success-Count/X-Error-Count.
+         * Item statuses 404, 409 or 500 do not change the batch HTTP status 200.
          */
         public Builder shipmentCancellations(@Nullable List<ShipmentCancellation> shipmentCancellations) {
             this.shipmentCancellations = shipmentCancellations;
-            return this;
-        }
-
-        /**
-         * Invalid request.
-         */
-        public Builder errorResponse(@Nullable ErrorResponse errorResponse) {
-            this.errorResponse = JsonNullable.of(errorResponse);
             return this;
         }
 
@@ -281,7 +243,7 @@ public class CancelShipmentResponse implements Response {
         public CancelShipmentResponse build() {
             return new CancelShipmentResponse(
                 contentType, statusCode, rawResponse,
-                shipmentCancellations, errorResponse, headers);
+                shipmentCancellations, headers);
         }
 
     }

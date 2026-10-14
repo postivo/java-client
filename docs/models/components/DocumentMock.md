@@ -5,6 +5,6 @@ Mock document used to simulate page count for pricing without uploading a real f
 
 ## Fields
 
-| Field                                 | Type                                  | Required                              | Description                           | Example                               |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| `pages`                               | *long*                                | :heavy_check_mark:                    | Number of pages in the mock document. | 3                                     |
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `pages`                                                              | *long*                                                               | :heavy_check_mark:                                                   | Number of pages in the mock document; at least one page is required. | 3                                                                    |

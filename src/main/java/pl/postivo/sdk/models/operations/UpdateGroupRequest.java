@@ -21,7 +21,7 @@ public class UpdateGroupRequest {
     private long id;
 
     /**
-     * A <code>Group</code> object with the updated fields.
+     * Updated contact group details.
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Group group;
@@ -43,7 +43,7 @@ public class UpdateGroupRequest {
     }
 
     /**
-     * A <code>Group</code> object with the updated fields.
+     * Updated contact group details.
      */
     public Group group() {
         return this.group;
@@ -64,7 +64,7 @@ public class UpdateGroupRequest {
 
 
     /**
-     * A <code>Group</code> object with the updated fields.
+     * Updated contact group details.
      */
     public UpdateGroupRequest withGroup(@Nonnull Group group) {
         this.group = Utils.checkNotNull(group, "group");
@@ -119,7 +119,7 @@ public class UpdateGroupRequest {
         }
 
         /**
-         * A <code>Group</code> object with the updated fields.
+         * Updated contact group details.
          */
         public Builder group(@Nonnull Group group) {
             this.group = Utils.checkNotNull(group, "group");

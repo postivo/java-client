@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -24,55 +24,65 @@ public class ShipmentCancellation {
     /**
      * Shipment ID.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private String id;
 
     /**
-     * Cancellation status code (<code>204</code> if cancelled successfully; otherwise an error code).
+     * Per-shipment status: <code>204</code> when cancelled, <code>404</code> when missing, <code>409</code> when the current state prevents
+     * cancellation, <code>500</code> after a technical failure whose transaction was successfully rolled back. A
+     * processed batch returns HTTP 200.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Long status;
+    private long status;
 
     /**
-     * Problem Details object (RFC 9457) describing the error.
+     * Problem Details object (RFC 9457) describing the error. See the <a href="https://api.postivo.pl/problems/">error
+     * catalog</a> for problem types and recovery steps.
+     * 
+     * <p><a href="https://api.postivo.pl/problems/">Error catalog and operation results</a>
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("error")
     private JsonNullable<ErrorResponse> error;
 
     @JsonCreator
     public ShipmentCancellation(
-            @JsonProperty("id") @Nullable String id,
-            @JsonProperty("status") @Nullable Long status,
-            @JsonProperty("error") @Nullable JsonNullable<ErrorResponse> error) {
-        this.id = id;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("status") long status,
+            @JsonProperty("error") @Nullable ErrorResponse error) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.status = status;
-        this.error = Optional.ofNullable(error)
-            .orElse(JsonNullable.undefined());
+        this.error = JsonNullable.of(error);
     }
     
-    public ShipmentCancellation() {
-        this(null, null, null);
+    public ShipmentCancellation(
+            @Nonnull String id,
+            long status) {
+        this(id, status, null);
     }
 
     /**
      * Shipment ID.
      */
-    public Optional<String> id() {
-        return Optional.ofNullable(this.id);
+    public String id() {
+        return this.id;
     }
 
     /**
-     * Cancellation status code (<code>204</code> if cancelled successfully; otherwise an error code).
+     * Per-shipment status: <code>204</code> when cancelled, <code>404</code> when missing, <code>409</code> when the current state prevents
+     * cancellation, <code>500</code> after a technical failure whose transaction was successfully rolled back. A
+     * processed batch returns HTTP 200.
      */
-    public Optional<Long> status() {
-        return Optional.ofNullable(this.status);
+    public long status() {
+        return this.status;
     }
 
     /**
-     * Problem Details object (RFC 9457) describing the error.
+     * Problem Details object (RFC 9457) describing the error. See the <a href="https://api.postivo.pl/problems/">error
+     * catalog</a> for problem types and recovery steps.
+     * 
+     * <p><a href="https://api.postivo.pl/problems/">Error catalog and operation results</a>
      */
     public JsonNullable<ErrorResponse> error() {
         return this.error;
@@ -86,23 +96,28 @@ public class ShipmentCancellation {
     /**
      * Shipment ID.
      */
-    public ShipmentCancellation withId(@Nullable String id) {
-        this.id = id;
+    public ShipmentCancellation withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
 
     /**
-     * Cancellation status code (<code>204</code> if cancelled successfully; otherwise an error code).
+     * Per-shipment status: <code>204</code> when cancelled, <code>404</code> when missing, <code>409</code> when the current state prevents
+     * cancellation, <code>500</code> after a technical failure whose transaction was successfully rolled back. A
+     * processed batch returns HTTP 200.
      */
-    public ShipmentCancellation withStatus(@Nullable Long status) {
+    public ShipmentCancellation withStatus(long status) {
         this.status = status;
         return this;
     }
 
 
     /**
-     * Problem Details object (RFC 9457) describing the error.
+     * Problem Details object (RFC 9457) describing the error. See the <a href="https://api.postivo.pl/problems/">error
+     * catalog</a> for problem types and recovery steps.
+     * 
+     * <p><a href="https://api.postivo.pl/problems/">Error catalog and operation results</a>
      */
     public ShipmentCancellation withError(@Nullable ErrorResponse error) {
         this.error = JsonNullable.of(error);
@@ -144,9 +159,9 @@ public class ShipmentCancellation {
 
         private String id;
 
-        private Long status;
+        private long status;
 
-        private JsonNullable<ErrorResponse> error;
+        private ErrorResponse error;
 
         private Builder() {
           // force use of static builder() method
@@ -155,24 +170,29 @@ public class ShipmentCancellation {
         /**
          * Shipment ID.
          */
-        public Builder id(@Nullable String id) {
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         /**
-         * Cancellation status code (<code>204</code> if cancelled successfully; otherwise an error code).
+         * Per-shipment status: <code>204</code> when cancelled, <code>404</code> when missing, <code>409</code> when the current state prevents
+         * cancellation, <code>500</code> after a technical failure whose transaction was successfully rolled back. A
+         * processed batch returns HTTP 200.
          */
-        public Builder status(@Nullable Long status) {
+        public Builder status(long status) {
             this.status = status;
             return this;
         }
 
         /**
-         * Problem Details object (RFC 9457) describing the error.
+         * Problem Details object (RFC 9457) describing the error. See the <a href="https://api.postivo.pl/problems/">error
+         * catalog</a> for problem types and recovery steps.
+         * 
+         * <p><a href="https://api.postivo.pl/problems/">Error catalog and operation results</a>
          */
         public Builder error(@Nullable ErrorResponse error) {
-            this.error = JsonNullable.of(error);
+            this.error = error;
             return this;
         }
 

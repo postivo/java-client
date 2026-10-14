@@ -88,7 +88,7 @@ public class RecipientInline {
     private JsonNullable<String> phoneNumber;
 
     /**
-     * Optional postscript printed above the recipient data on the envelope.
+     * Optional postscript printed above the recipient data on the envelope. The string "0" is preserved.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postscript")
@@ -207,7 +207,7 @@ public class RecipientInline {
     }
 
     /**
-     * Optional postscript printed above the recipient data on the envelope.
+     * Optional postscript printed above the recipient data on the envelope. The string "0" is preserved.
      */
     public JsonNullable<String> postscript() {
         return this.postscript;
@@ -309,7 +309,7 @@ public class RecipientInline {
 
 
     /**
-     * Optional postscript printed above the recipient data on the envelope.
+     * Optional postscript printed above the recipient data on the envelope. The string "0" is preserved.
      */
     public RecipientInline withPostscript(@Nullable String postscript) {
         this.postscript = JsonNullable.of(postscript);
@@ -478,7 +478,7 @@ public class RecipientInline {
         }
 
         /**
-         * Optional postscript printed above the recipient data on the envelope.
+         * Optional postscript printed above the recipient data on the envelope. The string "0" is preserved.
          */
         public Builder postscript(@Nullable String postscript) {
             this.postscript = JsonNullable.of(postscript);

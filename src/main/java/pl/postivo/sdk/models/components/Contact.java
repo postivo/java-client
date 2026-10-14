@@ -90,14 +90,17 @@ public class Contact {
     private JsonNullable<String> phoneNumber;
 
     /**
-     * Custom (external) contact ID; must be unique per contact.
+     * Custom (external) contact ID; must be unique per contact. Use at most 16 ASCII letters, digits,
+     * underscores or hyphens. An omitted, null or empty value removes the external ID.
+     * 
+     * <p>The string "0" is a valid ID and is preserved in writes, responses and external-ID routes.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ext_id")
     private JsonNullable<String> extId;
 
     /**
-     * IDs of groups the contact belongs to.
+     * Positive IDs of groups the contact belongs to. Missing or foreign groups are ignored.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("group_ids")
@@ -209,14 +212,17 @@ public class Contact {
     }
 
     /**
-     * Custom (external) contact ID; must be unique per contact.
+     * Custom (external) contact ID; must be unique per contact. Use at most 16 ASCII letters, digits,
+     * underscores or hyphens. An omitted, null or empty value removes the external ID.
+     * 
+     * <p>The string "0" is a valid ID and is preserved in writes, responses and external-ID routes.
      */
     public JsonNullable<String> extId() {
         return this.extId;
     }
 
     /**
-     * IDs of groups the contact belongs to.
+     * Positive IDs of groups the contact belongs to. Missing or foreign groups are ignored.
      */
     public JsonNullable<List<Long>> groupIds() {
         return this.groupIds;
@@ -311,7 +317,10 @@ public class Contact {
 
 
     /**
-     * Custom (external) contact ID; must be unique per contact.
+     * Custom (external) contact ID; must be unique per contact. Use at most 16 ASCII letters, digits,
+     * underscores or hyphens. An omitted, null or empty value removes the external ID.
+     * 
+     * <p>The string "0" is a valid ID and is preserved in writes, responses and external-ID routes.
      */
     public Contact withExtId(@Nullable String extId) {
         this.extId = JsonNullable.of(extId);
@@ -320,7 +329,7 @@ public class Contact {
 
 
     /**
-     * IDs of groups the contact belongs to.
+     * Positive IDs of groups the contact belongs to. Missing or foreign groups are ignored.
      */
     public Contact withGroupIds(@Nullable List<Long> groupIds) {
         this.groupIds = JsonNullable.of(groupIds);
@@ -480,7 +489,10 @@ public class Contact {
         }
 
         /**
-         * Custom (external) contact ID; must be unique per contact.
+         * Custom (external) contact ID; must be unique per contact. Use at most 16 ASCII letters, digits,
+         * underscores or hyphens. An omitted, null or empty value removes the external ID.
+         * 
+         * <p>The string "0" is a valid ID and is preserved in writes, responses and external-ID routes.
          */
         public Builder extId(@Nullable String extId) {
             this.extId = JsonNullable.of(extId);
@@ -488,7 +500,7 @@ public class Contact {
         }
 
         /**
-         * IDs of groups the contact belongs to.
+         * Positive IDs of groups the contact belongs to. Missing or foreign groups are ignored.
          */
         public Builder groupIds(@Nullable List<Long> groupIds) {
             this.groupIds = JsonNullable.of(groupIds);

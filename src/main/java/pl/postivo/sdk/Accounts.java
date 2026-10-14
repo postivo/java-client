@@ -87,7 +87,7 @@ public class Accounts {
      * Get subaccount details
      * 
      * <p>Check the account balance and other details, such as the subcredit balance of a subaccount.
-     * Subaccounts are additional users who can access your account’s services and data. You can restrict
+     * Subaccounts are additional users who can access your account's services and data. You can restrict
      * access levels and set privileges for subaccounts in the <a href="https://panel.postivo.pl">User Panel</a>.
      * 
      * <p>Provide the full subaccount login to access its data.
@@ -102,7 +102,7 @@ public class Accounts {
      * Get subaccount details
      * 
      * <p>Check the account balance and other details, such as the subcredit balance of a subaccount.
-     * Subaccounts are additional users who can access your account’s services and data. You can restrict
+     * Subaccounts are additional users who can access your account's services and data. You can restrict
      * access levels and set privileges for subaccounts in the <a href="https://panel.postivo.pl">User Panel</a>.
      * 
      * <p>Provide the full subaccount login to access its data.
@@ -119,7 +119,7 @@ public class Accounts {
      * Get subaccount details
      * 
      * <p>Check the account balance and other details, such as the subcredit balance of a subaccount.
-     * Subaccounts are additional users who can access your account’s services and data. You can restrict
+     * Subaccounts are additional users who can access your account's services and data. You can restrict
      * access levels and set privileges for subaccounts in the <a href="https://panel.postivo.pl">User Panel</a>.
      * 
      * <p>Provide the full subaccount login to access its data.

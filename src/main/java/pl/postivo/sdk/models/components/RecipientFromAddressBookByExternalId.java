@@ -25,13 +25,16 @@ import pl.postivo.sdk.utils.Utils;
  */
 public class RecipientFromAddressBookByExternalId {
     /**
-     * External (custom) ID of the recipient stored in your Address Book.
+     * External (custom) ID of the recipient stored in your Address Book. Use 1–16 ASCII letters, digits,
+     * underscores or hyphens; the string "0" is valid. An invalid format rejects the request with HTTP
+     * 400; an unavailable recipient with a valid ID remains an item processing error.
      */
     @JsonProperty("ext_id")
     private String extId;
 
     /**
-     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book.
+     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book when
+     * permitted. Omit or use false to select your own Address Book. Null is not allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inherited")
@@ -45,7 +48,7 @@ public class RecipientFromAddressBookByExternalId {
     private JsonNullable<String> customId;
 
     /**
-     * Optional postscript printed above the recipient data on the envelope.
+     * Optional postscript printed above the recipient data on the envelope. The string "0" is preserved.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postscript")
@@ -74,14 +77,17 @@ public class RecipientFromAddressBookByExternalId {
     }
 
     /**
-     * External (custom) ID of the recipient stored in your Address Book.
+     * External (custom) ID of the recipient stored in your Address Book. Use 1–16 ASCII letters, digits,
+     * underscores or hyphens; the string "0" is valid. An invalid format rejects the request with HTTP
+     * 400; an unavailable recipient with a valid ID remains an item processing error.
      */
     public String extId() {
         return this.extId;
     }
 
     /**
-     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book.
+     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book when
+     * permitted. Omit or use false to select your own Address Book. Null is not allowed.
      */
     public Optional<Boolean> inherited() {
         return Optional.ofNullable(this.inherited);
@@ -95,7 +101,7 @@ public class RecipientFromAddressBookByExternalId {
     }
 
     /**
-     * Optional postscript printed above the recipient data on the envelope.
+     * Optional postscript printed above the recipient data on the envelope. The string "0" is preserved.
      */
     public JsonNullable<String> postscript() {
         return this.postscript;
@@ -107,7 +113,9 @@ public class RecipientFromAddressBookByExternalId {
 
 
     /**
-     * External (custom) ID of the recipient stored in your Address Book.
+     * External (custom) ID of the recipient stored in your Address Book. Use 1–16 ASCII letters, digits,
+     * underscores or hyphens; the string "0" is valid. An invalid format rejects the request with HTTP
+     * 400; an unavailable recipient with a valid ID remains an item processing error.
      */
     public RecipientFromAddressBookByExternalId withExtId(@Nonnull String extId) {
         this.extId = Utils.checkNotNull(extId, "extId");
@@ -116,7 +124,8 @@ public class RecipientFromAddressBookByExternalId {
 
 
     /**
-     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book.
+     * Set to true to fetch recipient data by external ID from inherited main account’s Address Book when
+     * permitted. Omit or use false to select your own Address Book. Null is not allowed.
      */
     public RecipientFromAddressBookByExternalId withInherited(@Nullable Boolean inherited) {
         this.inherited = inherited;
@@ -134,7 +143,7 @@ public class RecipientFromAddressBookByExternalId {
 
 
     /**
-     * Optional postscript printed above the recipient data on the envelope.
+     * Optional postscript printed above the recipient data on the envelope. The string "0" is preserved.
      */
     public RecipientFromAddressBookByExternalId withPostscript(@Nullable String postscript) {
         this.postscript = JsonNullable.of(postscript);
@@ -190,7 +199,9 @@ public class RecipientFromAddressBookByExternalId {
         }
 
         /**
-         * External (custom) ID of the recipient stored in your Address Book.
+         * External (custom) ID of the recipient stored in your Address Book. Use 1–16 ASCII letters, digits,
+         * underscores or hyphens; the string "0" is valid. An invalid format rejects the request with HTTP
+         * 400; an unavailable recipient with a valid ID remains an item processing error.
          */
         public Builder extId(@Nonnull String extId) {
             this.extId = Utils.checkNotNull(extId, "extId");
@@ -198,7 +209,8 @@ public class RecipientFromAddressBookByExternalId {
         }
 
         /**
-         * Set to true to fetch recipient data by external ID from inherited main account’s Address Book.
+         * Set to true to fetch recipient data by external ID from inherited main account’s Address Book when
+         * permitted. Omit or use false to select your own Address Book. Null is not allowed.
          */
         public Builder inherited(@Nullable Boolean inherited) {
             this.inherited = inherited;
@@ -214,7 +226,7 @@ public class RecipientFromAddressBookByExternalId {
         }
 
         /**
-         * Optional postscript printed above the recipient data on the envelope.
+         * Optional postscript printed above the recipient data on the envelope. The string "0" is preserved.
          */
         public Builder postscript(@Nullable String postscript) {
             this.postscript = JsonNullable.of(postscript);

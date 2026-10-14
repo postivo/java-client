@@ -10,7 +10,7 @@ Common
 
 ## ping
 
-Check the API connection and current availability status. The response also includes the current API version.
+Check the connection to Postivo and service availability. The result also includes the current API version.
 
 ### Example Usage
 
@@ -48,5 +48,6 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 405                         | application/problem+json    |
 | models/errors/ErrorResponse | 400, 4XX                    | application/problem+json    |
-| models/errors/ErrorResponse | 503, 5XX                    | application/problem+json    |
+| models/errors/ErrorResponse | 5XX                         | application/problem+json    |
